@@ -1,0 +1,108 @@
+#login_content{
+    background: url('/assets/img/1.jpg') no-repeat right;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 657px;
+}
+a{
+    text-decoration: none;
+}
+#reg{
+    display: none;
+}
+.btn_h{
+    background-color: black;
+    color: white;
+    height: 40px;
+    cursor: pointer;
+}
+
+
+@media only screen and (max-width:576px){
+   #logo{
+       height: 75px;
+       width: 75px;
+   }
+   #topic{
+       font-size: 18px;
+   }
+}
+
+@media only screen and (max-width:768px){
+    .btn_h{
+        width: 20px;
+    }
+    #logo{
+        height: 100px;
+        width: 100px;
+    }
+    #topic{
+        font-size: 10px;
+    }
+}
+
+@media only screen and (max-width:992px){
+    #topic{
+        font-size: 35px;
+        color: white;
+    }
+    .login_form{
+        width: 120%;
+        padding: 25px;
+        color: white;
+        border: 2px solid white;
+        border-right: none;
+        border-bottom-left-radius: 10px;
+        
+    }
+    #forms{
+        margin-left: 25%;
+    }
+    .btn_h{
+        width: 100px;
+    }
+}
+
+@media only screen and (max-width:1200px){
+    #topic{
+        font-size: 45px;
+        color: white;
+    }
+    .login_form{
+        width: 120%;
+        padding: 25px;
+        color: white;
+        border: 2px solid white;
+        border-right: none;
+        border-bottom-left-radius: 10px;
+        
+    }
+    #forms{
+        margin-left: 25%;
+    }
+    .btn_h{
+        width: 110px;
+    }
+}
+
+@media only screen and (min-width:1200px){
+    #topic{
+        font-size: 50px;
+        color: white;
+    }
+    .login_form{
+        width: 120%;
+        padding: 25px;
+        color: white;
+        border: 2px solid white;
+        border-right: none;
+        border-bottom-left-radius: 10px;
+        
+    }
+    #forms{
+        margin-left: 25%;
+    }
+    .btn_h{
+        width: 120px;
+    }
+}
