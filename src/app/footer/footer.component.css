@@ -1,0 +1,78 @@
+#footer{
+    background-color: #314152;
+    color: white;
+    bottom: 0;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+a:hover{
+    color: grey;
+}
+li{
+    list-style: none;
+    border-bottom: 1px solid white;
+    line-height: 2em;
+    padding-left: 10px;
+}
+#footer_list{
+    min-width: 200px;
+    min-height: 130px;
+}
+#footer_service{
+    min-width: 300px;
+}
+#fb:hover{
+    
+}
+
+@media only screen and (max-width:576px){
+   #footer{
+       font-size: 10px;
+       text-align: center;
+   }
+   #social_media{
+       display: inline-block;
+   }
+}
+
+@media only screen and (max-width:768px){
+    #footer{
+        padding: 20px 20px 5px 20px;
+        font-size: 12px;
+    }
+    #social_media{
+        display: inline-block;
+    }
+}
+
+@media only screen and (max-width:992px){
+    #footer{
+        padding: 25px 25px 5px 25px;
+    }
+}
+
+@media only screen and (max-width:1200px){
+    #footer{
+        padding: 25px 25px 5px 25px;
+    }
+}
+
+@media only screen and (min-width:1200px){
+    #footer{
+        padding: 25px 25px 5px 25px;
+    }
+    #fb:hover{
+        transform: rotate(-15deg);
+        cursor: pointer;
+    }
+    #twitter:hover{
+        transform: rotate(-15deg);
+        cursor: pointer;
+    }
+    #linkedin:hover{
+        transform: rotate(-15deg);
+        cursor: pointer;
+    }
+}
