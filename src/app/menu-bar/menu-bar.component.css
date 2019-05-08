@@ -2,7 +2,6 @@
     background-color: #314152;
 }
 nav .navbar-expand{
-    padding: 0 1rem;
     background: grey;
     box-shadow: 1px 2px 2px 1px rgba(12, 12, 12, 0.11);
 } 
@@ -55,7 +54,7 @@ nav .navbar-expand{
     }
     .btn{
         margin-left: 5px;
-        padding: 5px;
+        padding: 3px;
         width: 50px;
     }
     .btn:hover{
@@ -63,23 +62,23 @@ nav .navbar-expand{
     }
     .btn img{
         width: 18px;
-        height: 18px;;
+        height: 15px;;
     }
     .search_field{
         border-radius: 10px;
         border: 0;
-        height: 35px;
-        padding-left: 10px;
+        height: 30px;
+        padding-left: 5px;
         width: 250px;
         float: right;
     }
     .search_part{
-        margin-left: 300px;
+        margin-left: 100px;
         margin-top: 5px;
     }
     #search_type{
         margin-right: 5px;
-        height: 35px;
+        height: 30px;
         border-radius: 10px;
         cursor: pointer;
         padding: 0 10px 0 10px;
