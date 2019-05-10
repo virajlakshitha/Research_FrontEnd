@@ -1,8 +1,11 @@
-.navbar{
-    background-color: #314152;
+a{
+    text-decoration: none;
+    color: white;
 }
-nav .navbar-expand{
-    padding: 0 1rem;
+.navbar {
+    background: #314152;
+}
+.navbar .navbar-expand{
     background: grey;
     box-shadow: 1px 2px 2px 1px rgba(12, 12, 12, 0.11);
 } 
@@ -10,7 +13,6 @@ nav .navbar-expand{
     color: #fff;
     letter-spacing: 1px;
     padding: 0 20px;
-    font-size: 15px;
     font-family: 'Acme', sans-serif;
 }
 .nav-link:hover, .navbar-brand:hover{
@@ -55,31 +57,30 @@ nav .navbar-expand{
     }
     .btn{
         margin-left: 5px;
-        padding: 5px;
         width: 50px;
+        height: 33px;
     }
     .btn:hover{
         background-color: cornflowerblue;
     }
     .btn img{
         width: 18px;
-        height: 18px;;
+        height: 20px;;
     }
     .search_field{
         border-radius: 10px;
         border: 0;
-        height: 35px;
-        padding-left: 10px;
+        height: 30px;
+        padding-left: 8px;
         width: 250px;
-        float: right;
     }
     .search_part{
-        margin-left: 300px;
+        margin-left: 100px;
         margin-top: 5px;
     }
     #search_type{
         margin-right: 5px;
-        height: 35px;
+        height: 30px;
         border-radius: 10px;
         cursor: pointer;
         padding: 0 10px 0 10px;
@@ -89,8 +90,29 @@ nav .navbar-expand{
         color: white;
         display: none;
     }
-    #login_item:hover{
-        
+    .second-nav{
+        background: #314152;
+    }
+    .sec-nav{
+        margin-top: 5px;
+        border: 1px solid whitesmoke;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+    #nav1:hover, #nav2:hover, #nav3:hover{
+        background: darkcyan;
+        cursor: pointer;
+    }
+    ul li:hover > ul,
+    ul li ul:hover {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+    }
+
+    ul li ul li {
+        clear: both;
+    width: 100%;
     }
 }
 @media(min-width: 992px){
