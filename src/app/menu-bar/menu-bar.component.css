@@ -43,13 +43,6 @@ a{
 .fields{
     display: inline-block;
 }
-#search_type{
-    border-radius: 10px;
-}
-.search_field{
-    border-radius: 10px;
-}
-
 
 @media(min-width: 1280px){
     .navbar-brand{
@@ -57,8 +50,10 @@ a{
     }
     .btn{
         margin-left: 5px;
+        margin-bottom: 5px;
         width: 50px;
-        height: 33px;
+        height: 30px;
+        padding: 0;
     }
     .btn:hover{
         background-color: cornflowerblue;
@@ -68,11 +63,9 @@ a{
         height: 20px;;
     }
     .search_field{
-        border-radius: 10px;
-        border: 0;
         height: 30px;
-        padding-left: 8px;
         width: 250px;
+        display: inline;
     }
     .search_part{
         margin-left: 100px;
@@ -81,10 +74,11 @@ a{
     #search_type{
         margin-right: 5px;
         height: 30px;
-        border-radius: 10px;
         cursor: pointer;
         padding: 0 10px 0 10px;
+        display: inline;
         font-size: 14px;
+        width: 160px;
     }
     #login_list{
         color: white;
@@ -94,10 +88,11 @@ a{
         background: #314152;
     }
     .sec-nav{
-        margin-top: 5px;
+        /* margin-top: 5px; */
         border: 1px solid whitesmoke;
         text-align: center;
         margin-bottom: 5px;
+        padding: 5px;
     }
     #nav1:hover, #nav2:hover, #nav3:hover{
         background: darkcyan;
@@ -112,7 +107,14 @@ a{
 
     ul li ul li {
         clear: both;
-    width: 100%;
+        width: 100%;
+    }
+
+    .drop_down1{
+        display: none;
+        position: absolute;
+        min-width: 400px;
+        z-index: 1;
     }
 }
 @media(min-width: 992px){
