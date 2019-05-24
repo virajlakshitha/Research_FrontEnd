@@ -1,0 +1,17 @@
+.content1{
+    margin-top: 80px;
+}
+.content2{
+    margin-top: 25px;
+}
+.item_list{
+    border: 1px solid black;
+    padding: 10px;
+}
+.topic{
+    background-color: #335b87;
+    color: white;
+    border-radius: 5px;
+    padding: 12px;
+    margin-top: 25px;
+}

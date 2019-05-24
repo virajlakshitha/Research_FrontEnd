@@ -2,16 +2,17 @@
     margin-top: 125px;
 }
 .left_side{
-    background-color: powderblue; 
+    background-color: cadetblue;
     padding: 30px;
 }
 .right_side{
-    background-color: cadetblue;
+    background-color: steelblue;
     padding: 30px;
 }
 .imgs{
     width: 150px;
     height: 150px;
+    margin-left: 175px;
 }
 .pro_name{
     margin: 20px 0px;

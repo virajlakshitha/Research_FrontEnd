@@ -1,12 +1,12 @@
 <header>
     <nav class="navbar fixed-top navbar-expand">
         <a class="navbar-brand" href="">
-            <img src="assets/img/logo.png" height="40px">
+            <img src="assets/img/logo.png">
         </a>
         <div class="collapse navbar-collapse" id="navbar_content">
             <ul class="navbar-nav text-center ml-auto mr-lg-6">
                 <li>
-                    <a class="nav-link" href="">Home<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="">Home</a>
                 </li>
                 <li>
                     <a href="" class="nav-link">About Us</a>
@@ -22,25 +22,25 @@
     </nav>
     <div class="container-fluid second-nav text-white fixed-top" style="margin-top: 60px;">
         <div class="row">
-            <div class="col-2 sec-nav" id="nav1"><a href="">Browse Products</a></div>
-            <div class="col-2 sec-nav" id="nav2">
-                <a href="" class="dropdown-toggle" data-toggle="dropdown">System Build</a>
-                <ul class="dropdown-menu" data-toggle="dropdown">
-                    <li><a href="">Price</a></li>
-                    <li><a href="">Gaming Requirements</a></li>
-                </ul>
+            <div class="col-2 sec-nav" id="nav1">Browse Products</div>
+            <div class="drop_down1">
+                <a href="">PC Parts</a>
+                <a href="">Laptops</a>
             </div>
-            <div class="col-2 sec-nav" id="nav3"><a href="">Laptop Comparison</a></div>
+            <div class="col-2 sec-nav" id="nav2">System Build</div>
+            <div class="col-2 sec-nav" id="nav3">Laptop Comparison</div>
             <div class="col-5 text-center">
-                <select name="search_type" id="search_type" class="form-group">
+                <select name="search_type" id="search_type" class="form-control">
                     <option value="0">ACCESSORY</option>
-                    <option value="1">VGA</option>
+                    <option value="3">MOTHERBOARD</option>
+                    <option value="3">SOCKET</option>
                     <option value="2">CPU</option>
                     <option value="3">RAM</option>
-                    <option value="3">MOTHERBOARD</option>
+                    <option value="1">VGA</option>
+                    <option value="2">HARD DISK</option>
                 </select>
-                <input type="text" class="search_field" placeholder="Search" />
-                <button type="button" class="btn btn-primary"><img src="assets/img/search.png" /></button>
+                <input type="text" class="form-control search_field" placeholder="Search" />
+                <button type="button" class="btn btn-primary form-control"><img src="../../assets/img/search.png"></button>
             </div>
         </div>
     </div>
