@@ -40,7 +40,7 @@ a{
         border-radius: 5px;
     }
     #container{
-        margin-top: 80px;
+        margin-top: 125px;
         margin-bottom: 20px;
     }
     .item_list{
@@ -48,5 +48,8 @@ a{
     }
     #price_right{
         text-align: right;
+    }
+    .component{
+        margin-top: 40px;
     }
 }
