@@ -16,7 +16,21 @@ a{
     height: 40px;
     cursor: pointer;
 }
-
+.bottom_line1{
+    border-top: 1px solid white;
+}
+#fb:hover{
+    transform: rotate(-15deg);
+    cursor: pointer;
+}
+#twitter:hover{
+    transform: rotate(-15deg);
+    cursor: pointer;
+}
+#linkedin:hover{
+    transform: rotate(-15deg);
+    cursor: pointer;
+}
 
 @media only screen and (max-width:576px){
    #logo{
@@ -95,14 +109,31 @@ a{
         padding: 25px;
         color: white;
         border: 2px solid white;
-        border-right: none;
-        border-bottom-left-radius: 10px;
         
     }
     #forms{
-        margin-left: 25%;
+        margin-left: 27%;
     }
     .btn_h{
         width: 120px;
+    }
+    .topic{
+        font-size: 22px;
+        text-align: center;
+    }
+    .topic1{
+        font-size: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid white;
+        margin-bottom: 10px;
+    }
+    .reg{
+        font-size: 20px;
+    }
+    #submit{
+        width: 100%;
+    }
+    .social_media{
+        margin-top: 20px;
     }
 }
