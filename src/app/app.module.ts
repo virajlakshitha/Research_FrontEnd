@@ -6,17 +6,30 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { FooterComponent } from './footer/footer.component';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
+import { RegisterCustomersComponent } from './register-customers/register-customers.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     FooterComponent,
-    MenuBarComponent
+    MenuBarComponent,
+    RegisterCustomersComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RouterModule.forRoot([
+      {
+        path: 'register',
+        component: RegisterComponent
+      },
+      {
+        path: 'home',
+        component: RegisterComponent
+      }
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
