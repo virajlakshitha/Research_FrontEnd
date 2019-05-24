@@ -10,6 +10,11 @@ import { LaptopProductsComponent } from './laptop-products/laptop-products.compo
 import { RegisterComponent } from './register/register.component';
 import { RegisterCustomersComponent } from './register-customers/register-customers.component';
 import { SearchComponent } from './search/search.component';
+import { BuildForPriceComponent } from './build-for-price/build-for-price.component';
+import { BuildForRequirementsComponent } from './build-for-requirements/build-for-requirements.component';
+import { MoreDetailsComponent } from './more-details/more-details.component';
+import { LoginComponent } from './login/login.component';
+import { LaptopComparisonComponent } from './laptop-comparison/laptop-comparison.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +25,12 @@ import { SearchComponent } from './search/search.component';
     LaptopProductsComponent,
     RegisterComponent,
     RegisterCustomersComponent,
-    SearchComponent
+    SearchComponent,
+    BuildForPriceComponent,
+    BuildForRequirementsComponent,
+    MoreDetailsComponent,
+    LoginComponent,
+    LaptopComparisonComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,55 @@
+body{
+    margin: 0;
+}
+.checked{
+    color: orange;
+}
+a{
+    text-decoration: none;
+}
+@media only screen and (max-width:576px){
+
+}
+
+@media only screen and (max-width:768px){
+
+}
+
+@media only screen and (max-width:992px){
+
+}
+
+@media only screen and (max-width:1200px){
+
+}
+
+@media only screen and (min-width:1200px){
+    #content_head{
+        margin: 25px 0 15px 0;
+        background: darkslateblue;
+        color: white;
+        padding: 10px 0;
+        border-radius: 8px;
+    }
+    .content_topic{
+        margin-top: 10px;
+    }
+    .content{
+        background: #335b87;
+        padding: 15px 0;
+        border-radius: 5px;
+    }
+    #container{
+        margin-top: 125px;
+        margin-bottom: 20px;
+    }
+    .item_list{
+        margin-top: 10px;
+    }
+    #price_right{
+        text-align: right;
+    }
+    .component{
+        margin-top: 40px;
+    }
+}

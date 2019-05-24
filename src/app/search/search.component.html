@@ -1,22 +1,19 @@
-<!DOCTYPE html>
-<html>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>TechRing</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" media="screen" href="../../assets/css/main.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+<!--Menu Bar-->
+<app-menu-bar></app-menu-bar>
+<!------------>
+
+<!--Search PC Parts-->
 
 <body>
-  <div class="container-fluid">
+  <div class="container-fluid content">
     <div class="row">
       <!--Left Bar-->
       <div class="col-3">
         <div class="row">
-          <div class="col-10 left_bar text-white">
+          <div class="left_bar text-white">
+            <div class="left_topic1"><b>CATEGORIES</b></div>
             <div class="left_bar_names" id="left1">MotherBoard</div>
             <div class="left_bar_names" id="left2">VGA</div>
             <div class="left_bar_names" id="left3">RAM</div>
@@ -25,14 +22,13 @@
             <div class="left_bar_last">
               <div class="text-center">Sort By</div>
               <div class="text-center">
-                <select>
+                <select class="form-control drop">
                   <option>Ratings</option>
                   <option>Price</option>
                   <option>Features</option>
                   <option>Best Products</option>
                 </select>
               </div>
-
             </div>
           </div>
         </div>
@@ -157,6 +153,8 @@
     </div>
   </div>
 </body>
+<!------------------------------->
 
-</html>
-<script src="../../assets/js/main.js"></script>
+<!--Footer-->
+<app-footer></app-footer>
+<!---------->

@@ -1,0 +1,33 @@
+.content{
+    margin-top: 125px;
+}
+.left_side{
+    background-color: cadetblue;
+    padding: 30px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.right_side{
+    background-color: steelblue;
+    padding: 30px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.imgs{
+    width: 150px;
+    height: 150px;
+    margin-left: 175px;
+}
+.pro_name{
+    margin: 20px 0px;
+}
+.choice{
+    margin-top: 25px;
+    color: green;
+}
+.left_side .col-5{
+    border-right: 1px solid;
+}
+.right_side .col-5{
+    border-right: 1px solid;
+}
