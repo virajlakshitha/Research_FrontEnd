@@ -3,6 +3,7 @@
     background-size: cover;
     background-attachment: fixed;
     min-height: 657px;
+    padding-bottom: 35px;
 }
 a{
     text-decoration: none;
