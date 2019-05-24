@@ -11,6 +11,7 @@
     border: 1px solid black;
     margin-left: 40px;
     border-radius: 8px;
+    background: #335b87;
 }
 .btn_lap{
     margin-left: 40px;
@@ -18,18 +19,25 @@
 }
 .imgs{
     height: 125px;
-    width: 125px;
+    width: 145px;
     margin: 15px 70px;
 }
 .left_bar{
     background: #335b87;
-    height: 550px;
-    padding: 60px 0 20px 0;
+    height: 450px;
+    padding: 5px 0 20px 0;
+    margin: 35px 20px 0 50px;
+    width: 100%;
+    border-radius: 5px;
 }
 .left_bar_names{
     padding: 10px 0 10px 30px;
     border-top : 1px solid white;
     border-bottom : 1px solid white;
+}
+.left_topic1{
+    padding: 10px 0 20px 0;
+    text-align: center;
 }
 #left1:hover, #left2:hover, #left3:hover, #left4:hover, #left5:hover {
     background: steelblue;
@@ -37,11 +45,14 @@
 }
 #pagination{
     float: right;
+    margin-right: 55px;
 }
 .pages{
-    background: steelblue;
+    background: darkslateblue;
     padding: 5px 10px;
     margin-left: 8px;
+    color: white;
+    cursor: pointer;
 }
 .content{
     margin-top: 110px;

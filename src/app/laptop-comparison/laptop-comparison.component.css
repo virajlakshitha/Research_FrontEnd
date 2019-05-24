@@ -4,10 +4,14 @@
 .left_side{
     background-color: cadetblue;
     padding: 30px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 .right_side{
     background-color: steelblue;
     padding: 30px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 .imgs{
     width: 150px;
