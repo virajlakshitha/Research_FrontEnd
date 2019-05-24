@@ -1,0 +1,27 @@
+.content{
+    background: url('/assets/img/1.jpg') no-repeat right;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 657px;
+    width: 100%;
+}
+.register_content{
+    border: 1px solid white;
+    padding: 20px;
+    margin-top: 20px;
+}
+.topic{
+    font-size: 20px;
+    border-bottom: 1px solid white;
+    padding: 0 0 10px 20px;
+}
+.register_content2{
+    padding: 40px 20px;
+}
+#submit1{
+    margin: 20px 0 0 0;
+    width: 100%;
+}
+.topic_up{
+    font-size: 22px;
+}

@@ -1,0 +1,83 @@
+<div id="login_content" class="container-fluid">
+  <div class="row">
+    <div class="col-1 text-left">
+      <img src="assets/img/logo.png" id="logo" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 text-white text-center" style="font-size: 18px;">Register with Us !!!</div>
+  </div>
+  <div class="row" style="height: 20px;"></div>
+  <div class="row" id="forms">
+    <div class="col-12">
+      <button class="text-white btn_h"><b>Register</b></button>
+      <div class="login_form">
+        <form method="POST" action="" id="reg">
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label class="font-weight-bold">EMAIL</label>
+                <input type="email" name="email" id="email" class="form-control fields" placeholder="Email" required>
+              </div>
+              <div class="form-group">
+                <label class="font-weight-bold">USERNAME</label>
+                <input type="uname" name="uname" id="uname" class="form-control fields" placeholder="Username" required>
+              </div>
+              <div class="form-group">
+                <label class="font-weight-bold">PASSWORD</label>
+                <input type="password" name="pword" id="pword" class="form-control fields" placeholder="Password"
+                  required>
+              </div>
+              <div class="form-group">
+                <label class="font-weight-bold">RE-ENTER PASSWORD</label>
+                <input type="password" name="pword2" id="pword2" class="form-control fields" placeholder="Re-Password"
+                  required>
+              </div>
+              <div class="form-group">
+                <button type="submit" name="submit1" id="submit1" class="btn btn-success">Register</button>&nbsp;
+                <button type="reset" name="reset1" id="reset1" class="btn btn-primary">Reset</button>
+              </div>
+              <div class="form-group">
+                <a href="">Already have an account</a>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label class="font-weight-bold">STREET LINE 1</label>
+                <input type="text" name="street1" id="street1" class="form-control fields" placeholder="Street 1">
+              </div>
+              <div class="form-group">
+                <label class="font-weight-bold">STREET LINE 2</label>
+                <input type="text" name="street2" id="street2" class="form-control fields" placeholder="Street 2">
+              </div>
+              <div class="form-group">
+                <label class="font-weight-bold">CITY/TOWN</label>
+                <input type="text" name="city" id="city" class="form-control fields" placeholder="City/Town">
+              </div>
+              <div class="form-group">
+                <label class="font-weight-bold">PROVINCE</label>
+                <input type="text" name="province" id="province" class="form-control fields" placeholder="Province">
+              </div>
+              <div class="form-group">
+                <label class="font-weight-bold">TELEPHONE NO.</label>
+                <input type="text" name="tel" id="tel" class="form-control fields" placeholder="Telephone No.">
+              </div>
+              <div class="form-group">
+                <label class="font-weight-bold">MOBILE NO.</label>
+                <input type="text" name="mobile" id="mobile" class="form-control fields" placeholder="Mobile No.">
+              </div>
+              <div class="form-group">
+                <label class="font-weight-bold">CREDIT CARD / DEBIT CARD NO.</label>
+                <input type="text" name="credit_card" id="credit_card" class="form-control fields"
+                  placeholder="Credit/Debit Card No.">
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Footer-->
+<app-footer></app-footer>
