@@ -14,23 +14,23 @@ export class PcpartServiceService {
     this.pcpartsUrl = 'http://localhost:8080/api-techRing/pcparts/';
   }
 
-  public findAll(): Observable<Pcpart[]> {
+  public findMaximum(): Observable<Pcpart[]> {
     return this.http.get<Pcpart[]>(this.pcpartsUrl);
-  }
-
-  public save(pcpart: Pcpart) {
-    return this.http.post<Pcpart>(this.pcpartsUrl+'add/', pcpart);
-  }
-
-  public findByName(name: string): Observable<Pcpart[]> {
-    return this.http.get<Pcpart[]>(this.pcpartsUrl+''+name);
-  }
-
-  public findByCategory(category: string): Observable<Pcpart[]> {
-    return this.http.get<Pcpart[]>(this.pcpartsUrl+'category/'+category);
   }
 
   public findById(_id: string): Observable<Pcpart> {
     return this.http.get<Pcpart>(this.pcpartsUrl+_id);
+  }
+
+  public findByPriceRange(min, max): Observable<Pcpart[]> {
+    return this.http.get<Pcpart[]>(this.pcpartsUrl+'build_for_price/'+min+'/'+max);
+  }
+
+  public changePCPart(category, id, min, max) {
+    return this.http.get<Pcpart[]>(this.pcpartsUrl+'change/'+category+'/'+id+'/'+min+'/'+max);
+  }
+
+  public differentPlan(min, max) {
+    return this.http.get<Pcpart[]>(this.pcpartsUrl+'different_plan/'+'/'+min+'/'+max);
   }
 }
