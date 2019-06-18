@@ -16,7 +16,10 @@ export class BuildForPriceComponent implements OnInit {
     ceil: 250
   };
 
-  pcpart: Pcpart[];
+  ram: Pcpart[];
+  vga: Pcpart[];
+  motherboard: Pcpart[];
+  cpu: Pcpart[];
 
   constructor(private pcpartServiceService: PcpartServiceService) { }
 
@@ -32,7 +35,10 @@ export class BuildForPriceComponent implements OnInit {
     // (error: any) => console.log(error),
     // () => console.log('Gets all data'));
 
-    this.pcpart = [{ id: "0145263", name: "Kingston 4GB RAM", price: "15000.00", category: "RAM", image: "" }];
+    this.ram = [{ id: "0145263", name: "Kingston 4GB RAM", price: "15000.00", category: "RAM", image: "" }];
+    this.vga = [{ id: "0145263", name: "Kingston 4GB RAM", price: "15000.00", category: "VGA", image: "" }];
+    this.motherboard = [{ id: "0145263", name: "Kingston 4GB RAM", price: "15000.00", category: "VGA", image: "" }];
+    this.cpu = [{ id: "0145263", name: "Kingston 4GB RAM", price: "15000.00", category: "VGA", image: "" }];
 
   }
 
@@ -41,7 +47,7 @@ export class BuildForPriceComponent implements OnInit {
     var min = 1200;
     var max = 90000;
     this.pcpartServiceService.findByPriceRange(min, max).subscribe(data => {
-      this.pcpart = data;
+      this.ram = data;
     },
       (error: any) => console.log(error),
       () => console.log('Gets all data'));
@@ -52,7 +58,7 @@ export class BuildForPriceComponent implements OnInit {
     var min = 1200.00;
     var max = 90000.00;
     this.pcpartServiceService.changePCPart(category, id, min, max).subscribe(data => {
-      this.pcpart = data;
+      this.ram = data;
     },
       (error: any) => console.log(error),
       () => console.log('Gets all data'));
@@ -63,7 +69,7 @@ export class BuildForPriceComponent implements OnInit {
     var min = 1200;
     var max = 90000;
     this.pcpartServiceService.differentPlan(min, max).subscribe(data => {
-      this.pcpart = data;
+      this.ram = data;
     },
       (error: any) => console.log(error),
       () => console.log('Gets all data'));

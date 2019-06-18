@@ -20,7 +20,7 @@
         <div class="component">MOTHERBOARD</div>
       </div>
 
-      <div class="col-10 content text-white">
+      <div class="col-10 content text-white" ng-repeat="x in pcpart">
         <div class="container-fluid">
           <div class="row">
             <div class="col-2">
@@ -28,13 +28,14 @@
             </div>
             <div class="col-5">
               <div class="row">
-                <span>Intel Core i7 8100 3.6GHz 4-core/4-thread</span>
+                <!-- <span>Intel Core i7 8100 3.6GHz 4-core/4-thread</span> -->
+                <span>{{ ram[0].name }}</span>
               </div>
               <div class="row text-center">
                 <button class="btn btn-info">Replace</button>
               </div>
             </div>
-            <div class="col-3">Rs. 25,000.00 /=</div>
+            <div class="col-3">Rs. {{ ram[0].price }} /=</div>
             <div class="col-2">
               <span class="fa fa-star checked"></span>
               <span class="fa fa-star checked"></span>
