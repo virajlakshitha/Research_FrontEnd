@@ -1,0 +1,87 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!--Menu Bar-->
+<app-menu-bar></app-menu-bar>
+<!------------>
+
+<!--PC Part Details-->
+<div class="container content">
+  <div class="row">
+    <div class="col-4 left_images">
+      <img src="" class="imgs">
+      <div class="rating">
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="row">
+        <div class="col-12 pro_name"><b>{{ pcPart.name }}</b></div>
+      </div>
+      <div class="row">
+        <div class="col-4">Brand Name</div>
+        <div class="col-6">ASUS</div>
+      </div>
+      <div class="row">
+        <div class="col-4">Item Weight</div>
+        <div class="col-6">1.5 KG</div>
+      </div>
+      <div class="row">
+        <div class="col-4">Product Dimensions</div>
+        <div class="col-6">28.8*5.3*3.4 cm</div>
+      </div>
+      <div class="row">
+        <div class="col-4">Color</div>
+        <div class="col-6">Black</div>
+      </div>
+      <div class="row">
+        <div class="col-4">Warranty</div>
+        <div class="col-6">{{ pcPart.warranty }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container content2">
+    <div class="row table_headers">
+      <div class="col-3 text-center"><b>Vendor</b></div>
+      <div class="col-3 text-center"><img src=""+{{ vendorPrice[0].image }}+"" class="imgs2"></div>
+      <div class="col-3 text-center"><img src=""+{{ vendorPrice[1].image }}+"" class="imgs2"></div>
+      <div class="col-3 text-center"><img src=""+{{ vendorPrice[2].image }}+"" class="imgs2"></div>
+    </div>
+    <div class="row">
+      <div class="col-3 text-center table_headers"><b>Price</b></div>
+      <div class="col-3 text-center">{{ vendorPrice[0].price }}</div>
+      <div class="col-3 text-center">{{ vendorPrice[1].price }}</div>
+      <div class="col-3 text-center">{{ vendorPrice[2].price }}</div>
+    </div>
+  </div>
+  <!--Comment Section-->
+  <div class="container content2">
+    <div class="row">
+      <div class="col-12 comment_topic"><b>Comments</b></div>
+    </div>
+    <div class="row">
+      <div class="comment_list">
+        <img src="" class="pro_pic">
+        <div class="pro_name"><b>{{ comments[0].name }}</b></div>
+        <div class="comment">{{ comments[0].comment }}</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="comment_list">
+        <img src="" class="pro_pic">
+        <div class="pro_name"><b>{{ comments[1].name }}</b></div>
+        <div class="comment">{{ comments[1].comment }}</div>
+      </div>
+    </div>
+  </div>
+  <!------------------>
+</div>
+<!------------------->
+
+<!--Footer-->
+<app-footer></app-footer>
+<!---------->

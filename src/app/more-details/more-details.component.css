@@ -1,0 +1,69 @@
+.imgs{
+    height: 250px;
+    width: 250px;
+
+}
+.col-8 .row{
+    line-height: 35px;
+}
+.checked{
+    color: orange;
+}
+.rating{
+    margin-top: 15px;
+}
+.fa-star{
+    font-size: 30px;
+}
+.col-8 .row .col-4{
+    background-color: lightsteelblue;
+    border-bottom: 1px solid cadetblue;
+}
+.col-8 .row .col-6{
+    border-bottom: 1px solid cadetblue;
+}
+.content2{
+    margin-top: 35px;
+}
+.imgs2{
+    height: 50px;
+    width: 150px;
+}
+.content2 .row .col-3{
+    border: 1px solid black;
+    padding: 20px;
+}
+.img4{
+    height: 50px;
+    width: 50px;
+}
+.comment_list{
+    padding: 15px;
+    border-bottom: 1px solid black;
+    width: 100%;
+}
+.content{
+    margin-top: 140px;
+}
+.comment_topic{
+    font-size: 20px;
+}
+.pro_pic{
+    height: 50px;
+    width: 50px;
+    display: inline;
+}
+.pro_name{
+    margin-left: 25px;
+    display: inline;
+}
+.comment{
+    margin-top: 10px;
+}
+.table_headers{
+    background-color: cadetblue;
+}
+.pro_name{
+    font-size: 20px;
+    padding: 0 0 10px 0;
+}

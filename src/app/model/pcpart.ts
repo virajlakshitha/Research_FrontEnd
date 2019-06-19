@@ -1,7 +1,9 @@
 export class Pcpart {
     id: string;
     name: string;
-    category: string;
-    price: string;
-    image: string;
+    brand: string;
+    category: String;
+    description: String;
+    size: String;
+    price: DoubleRange;
 }
