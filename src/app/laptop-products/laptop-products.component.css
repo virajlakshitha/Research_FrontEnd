@@ -1,0 +1,46 @@
+.left_side{
+    background-color: #314152;
+    height: 100px;
+}
+.item_line{
+    margin-top: 35px;
+}
+.item_list{
+    width: 27%;
+    height: 250px;
+    border: 1px solid black;
+    margin-left: 40px;
+    border-radius: 8px;
+}
+.btn_lap{
+    margin-left: 40px;
+    margin-top: 10px;
+}
+.imgs{
+    height: 125px;
+    width: 125px;
+    margin: 15px 70px;
+}
+.left_bar{
+    background: #335b87;
+    height: 550px;
+    padding: 60px 0 20px 0;
+}
+.left_bar_names{
+    padding: 10px 0 10px 30px;
+    border-top : 1px solid white;
+    border-bottom : 1px solid white;
+}
+#left1:hover, #left2:hover, #left3:hover, #left4:hover, #left5:hover {
+    background: steelblue;
+    cursor: pointer;
+}
+#pagination{
+    float: right;
+}
+.pages{
+    background: steelblue;
+    padding: 5px 10px;
+    margin-left: 8px;
+}
+
