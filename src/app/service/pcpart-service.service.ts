@@ -15,7 +15,10 @@ export class PcpartServiceService {
   }
 
   public findMaximum(): Observable<Pcpart[]> {
-    return this.http.get<Pcpart[]>(this.pcpartsUrl);
+    let headers = new HttpHeaders().set('Authorization', 'auth-token');
+
+    return this.http.get<Pcpart[]>(this.pcpartsUrl, {headers});
+    // return this.http.get<Pcpart[]>(this.pcpartsUrl);
   }
 
   public findById(_id: string): Observable<Pcpart> {

@@ -24,18 +24,18 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-2">
-              <img src="../../assets/img/cpu.png" height="80px" width="80px">
+              <img src="" height="80px" width="80px">
             </div>
             <div class="col-5">
               <div class="row">
                 <!-- <span>Intel Core i7 8100 3.6GHz 4-core/4-thread</span> -->
-                <span>{{ ram[0].name }}</span>
+                <span>{{ motherboard.name }}</span>
               </div>
               <div class="row text-center">
                 <button class="btn btn-info">Replace</button>
               </div>
             </div>
-            <div class="col-3">Rs. {{ ram[0].price }} /=</div>
+            <div class="col-3">Rs. {{ motherboard.price }} /=</div>
             <div class="col-2">
               <span class="fa fa-star checked"></span>
               <span class="fa fa-star checked"></span>
@@ -90,13 +90,13 @@
             </div>
             <div class="col-5">
               <div class="row">
-                <span>Intel Core i7 8100 3.6GHz 4-core/4-thread</span>
+                <span>{{ cpu.name }}</span>
               </div>
               <div class="row text-center">
                 <button class="btn btn-info">Replace</button>
               </div>
             </div>
-            <div class="col-3">Rs. 25,000.00 /=</div>
+            <div class="col-3">Rs. {{ cpu.price }} /=</div>
             <div class="col-2">
               <span class="fa fa-star checked"></span>
               <span class="fa fa-star checked"></span>
@@ -120,13 +120,13 @@
             </div>
             <div class="col-5">
               <div class="row">
-                <span>Intel Core i7 8100 3.6GHz 4-core/4-thread</span>
+                <span>{{ ram.name }}</span>
               </div>
               <div class="row text-center">
                 <button class="btn btn-info">Replace</button>
               </div>
             </div>
-            <div class="col-3">Rs. 25,000.00 /=</div>
+            <div class="col-3">Rs. {{ ram.price }} /=</div>
             <div class="col-2">
               <span class="fa fa-star checked"></span>
               <span class="fa fa-star checked"></span>
@@ -150,13 +150,13 @@
             </div>
             <div class="col-5">
               <div class="row">
-                <span>Intel Core i7 8100 3.6GHz 4-core/4-thread</span>
+                <span>{{ vga.name }}</span>
               </div>
               <div class="row text-center">
                 <button class="btn btn-info">Replace</button>
               </div>
             </div>
-            <div class="col-3">Rs. 25,000.00 /=</div>
+            <div class="col-3">Rs. {{ vga.price }} /=</div>
             <div class="col-2">
               <span class="fa fa-star checked"></span>
               <span class="fa fa-star checked"></span>

@@ -25,6 +25,11 @@ export class SearchComponent implements OnInit {
       (error: any) => console.log(error),
       () => console.log('Gets all data')
     );
+
+    this.pcpart = [{ id: "0145263", name: "Kingston 4GB RAM", price: "15000.00", category: "RAM", image: "" },
+    { id: "0145263", name: "Kingston 4GB RAM", price: "15000.00", category: "RAM", image: "" },
+    { id: "0145263", name: "Kingston 4GB RAM", price: "15000.00", category: "RAM", image: "" },
+    { id: "0145263", name: "Kingston 4GB RAM", price: "15000.00", category: "RAM", image: "" }];
   }
 
   getSortedProducts(option: string) {

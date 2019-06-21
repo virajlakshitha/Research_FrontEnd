@@ -7,13 +7,17 @@ import { AppComponent } from './app.component';
 import { BuildForPriceComponent } from './build-for-price/build-for-price.component';
 import { FooterComponent } from './footer/footer.component';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
+import { SearchComponent } from './search/search.component';
+import { MoreDetailsComponent } from './more-details/more-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BuildForPriceComponent,
     FooterComponent,
-    MenuBarComponent
+    MenuBarComponent,
+    SearchComponent,
+    MoreDetailsComponent
   ],
   imports: [
     BrowserModule,

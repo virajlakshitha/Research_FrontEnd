@@ -39,7 +39,7 @@
       </div>
       <div class="row">
         <div class="col-4">Warranty</div>
-        <div class="col-6">{{ pcPart.warranty }}</div>
+        <!-- <div class="col-6">{{ pcPart.warranty }}</div> -->
       </div>
     </div>
   </div>
@@ -47,9 +47,9 @@
   <div class="container content2">
     <div class="row table_headers">
       <div class="col-3 text-center"><b>Vendor</b></div>
-      <div class="col-3 text-center"><img src=""+{{ vendorPrice[0].image }}+"" class="imgs2"></div>
-      <div class="col-3 text-center"><img src=""+{{ vendorPrice[1].image }}+"" class="imgs2"></div>
-      <div class="col-3 text-center"><img src=""+{{ vendorPrice[2].image }}+"" class="imgs2"></div>
+      <div class="col-3 text-center"><img src="" class="imgs2"></div>
+      <div class="col-3 text-center"><img src="" class="imgs2"></div>
+      <div class="col-3 text-center"><img src="" class="imgs2"></div>
     </div>
     <div class="row">
       <div class="col-3 text-center table_headers"><b>Price</b></div>
@@ -66,15 +66,15 @@
     <div class="row">
       <div class="comment_list">
         <img src="" class="pro_pic">
-        <div class="pro_name"><b>{{ comments[0].name }}</b></div>
-        <div class="comment">{{ comments[0].comment }}</div>
+        <div class="pro_name"><b>{{ comments1[0].user_name }}</b></div>
+        <div class="comment">{{ comments1[0].comment }}</div>
       </div>
     </div>
     <div class="row">
       <div class="comment_list">
         <img src="" class="pro_pic">
-        <div class="pro_name"><b>{{ comments[1].name }}</b></div>
-        <div class="comment">{{ comments[1].comment }}</div>
+        <div class="pro_name"><b>{{ comments1[1].user_name }}</b></div>
+        <div class="comment">{{ comments1[1].comment }}</div>
       </div>
     </div>
   </div>

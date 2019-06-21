@@ -1,5 +1,6 @@
 export class Comments {
     part_name: string;
-    comments: string[];
-    rating: Int32Array;
+    user_name: string;
+    comment: string;
+    rating: string;
 }
