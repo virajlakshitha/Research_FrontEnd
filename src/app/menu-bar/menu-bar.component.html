@@ -46,21 +46,24 @@
                 <a href='browse/laptops'>Laptop Comparison</a>
             </div>
             <!-- <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()"> -->
-                <!-- <div class="col-5 text-center">
+
+            <div class="col-5 text-center">
+                <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
                     <select name="search_type" id="search_type" class="form-control" formControlName="category">
-                        <option value="0">ACCESSORY</option>
-                        <option value="3">MOTHERBOARD</option>
-                        <option value="3">SOCKET</option>
-                        <option value="2">CPU</option>
-                        <option value="3">RAM</option>
-                        <option value="1">VGA</option>
-                        <option value="2">HARD DISK</option>
+                        <option value="">ACCESSORY</option>
+                        <option value="motherboard">MOTHERBOARD</option>
+                        <option value="cpu">CPU</option>
+                        <option value="ram">RAM</option>
+                        <option value="vga">VGA</option>
+                        <option value="hard_disk">HARD DISK</option>
                     </select>
                     <input type="text" class="form-control search_field" formControlName="name" placeholder="Search" />
                     <button type="submit" class="btn btn-primary form-control">
                         <img src="../../assets/img/search.png">
                     </button>
-                </div> -->
+                </form>
+
+            </div>
             <!-- </form> -->
         </div>
     </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Pcpart } from '../model/pcpart';
 import { SearchService } from '../service/search.service';
 import { error } from 'protractor';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -10,28 +11,32 @@ import { error } from 'protractor';
 })
 export class SearchComponent implements OnInit {
 
-  pcpart: Pcpart[];
+  pcpart: Object;
+  pcParts = [];
 
-  constructor(private searchService: SearchService) { }
+  constructor(private searchService: SearchService, private route : ActivatedRoute) { }
 
   ngOnInit() {
-    this.getAllPCPartsByCategory();
+    var category;
+    var name;
+    this.route.params.subscribe(params => {
+      category = 'RAM';
+      name = params["name"];
+    });
+    this.getAllPCPartsByCategory(category, name);
   }
 
-  getAllPCPartsByCategory() {
-    var category = 'RAM';
-    var name = 'Kinston 4GB RAM';
+  getAllPCPartsByCategory(category, name) {
     this.searchService.findByName(category, name).subscribe(data => {
       this.pcpart = data;
+      
     },
       (error: any) => console.log(error),
       () => console.log('Gets all data')
     );
-
-    this.pcpart = [{ id: "0145263", name: "Kingston 4GB RAM", price: "15000.00", category: "RAM", image: "" },
-    { id: "0145263", name: "Kingston 4GB RAM", price: "15000.00", category: "RAM", image: "" },
-    { id: "0145263", name: "Kingston 4GB RAM", price: "15000.00", category: "RAM", image: "" },
-    { id: "0145263", name: "Kingston 4GB RAM", price: "15000.00", category: "RAM", image: "" }];
+    var txt = '[{"name": "Viraj", "price": 2500.00}]';
+    var obj = JSON.parse(txt);
+    console.log(obj);
   }
 
   getSortedProducts(option: string) {

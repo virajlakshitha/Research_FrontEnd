@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-// import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { SearchService } from '../service/search.service';
 import { error } from 'protractor';
 import { Pcpart } from '../model/pcpart';
+import {Router} from "@angular/router"
 
 @Component({
   selector: 'app-menu-bar',
@@ -12,32 +13,21 @@ import { Pcpart } from '../model/pcpart';
 export class MenuBarComponent implements OnInit {
 
   pcpart: Pcpart[];
-  // employeeForm: FormGroup;
+  employeeForm: FormGroup;
 
-  constructor(private searchService: SearchService) { }
+  constructor(private searchService: SearchService, private router: Router) { }
 
   ngOnInit() {
-    // this.employeeForm = new FormGroup({
-    //   category: new FormControl(),
-    //   name: new FormControl()
-    // });
+    this.employeeForm = new FormGroup({
+      category: new FormControl(),
+      name: new FormControl()
+    });
   }
 
   onSubmit(): void {
-    // console.log(this.employeeForm.value);
-    // var category = 'RAM';
-    // var name = 'Kinston 4GB RAM';
-    // this.searchService.findByName(category, name).subscribe(data => {
-    //   this.pcpart = data;
-    // },
-    //   (error: any) => console.log(error),
-    //   () => console.log('Gets all data')
-    // );
-
-    // this.pcpart = [{ id: "0145263", name: "Kingston 4GB RAM", price: "15000.00", category: "RAM", image: "" },
-    // { id: "0145263", name: "Kingston 4GB RAM", price: "15000.00", category: "RAM", image: "" },
-    // { id: "0145263", name: "Kingston 4GB RAM", price: "15000.00", category: "RAM", image: "" },
-    // { id: "0145263", name: "Kingston 4GB RAM", price: "15000.00", category: "RAM", image: "" }];
+    var category = this.employeeForm.value.category;
+    var name = this.employeeForm.value.name;
+    this.router.navigate(['/browse/pcparts/', name])
   }
 
 }

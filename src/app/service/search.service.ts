@@ -23,7 +23,7 @@ export class SearchService {
   }
 
   public findByName(category: string, name: string): Observable<Pcpart[]> {
-    return this.http.get<Pcpart[]>(this.pcpartsUrl+"by_name/"+category+"/"+name);
+    return this.http.get<Pcpart[]>(this.pcpartsUrl+"/"+category+"/by_name/"+name);
   }
 
   public findById(category: string, _id: string): Observable<Pcpart> {
