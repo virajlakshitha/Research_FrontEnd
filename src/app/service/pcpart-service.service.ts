@@ -12,7 +12,7 @@ export class PcpartServiceService {
 
   constructor(private http: HttpClient) { 
     // this.pcpartsUrl = 'http://localhost:8080/api-techRing/pcparts/';
-    this.pcpartsUrl = 'http://localhost:8080/api-techRing/games/';
+    this.pcpartsUrl = 'http://localhost:8080/api-techRing/games';
   }
 
   public findMaximum(): Observable<Pcpart[]> {
@@ -38,7 +38,7 @@ export class PcpartServiceService {
     return this.http.get<Pcpart[]>(this.pcpartsUrl+'different_plan/'+'/'+min+'/'+max);
   }
 
-  public getAllGames() {
-    return this.http.get(this.pcpartsUrl+'getAll/');
+  public getAllGames(): Observable<Pcpart[]> {
+    return this.http.get<Pcpart[]>(this.pcpartsUrl+'/getAll');
   }
 }

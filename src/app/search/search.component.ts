@@ -28,10 +28,10 @@ export class SearchComponent implements OnInit {
       () => console.log('Gets all data')
     );
 
-    this.pcpart = [{ id: "0145263", name: "Kingston 4GB RAM", price: "15000.00", category: "RAM", image: "" },
-    { id: "0145263", name: "Kingston 4GB RAM", price: "15000.00", category: "RAM", image: "" },
-    { id: "0145263", name: "Kingston 4GB RAM", price: "15000.00", category: "RAM", image: "" },
-    { id: "0145263", name: "Kingston 4GB RAM", price: "15000.00", category: "RAM", image: "" }];
+    // this.pcpart = [{ id: "0145263", name: "Kingston 4GB RAM", price: "15000.00", category: "RAM", image: "" },
+    // { id: "0145263", name: "Kingston 4GB RAM", price: "15000.00", category: "RAM", image: "" },
+    // { id: "0145263", name: "Kingston 4GB RAM", price: "15000.00", category: "RAM", image: "" },
+    // { id: "0145263", name: "Kingston 4GB RAM", price: "15000.00", category: "RAM", image: "" }];
   }
 
   getSortedProducts(option: string) {

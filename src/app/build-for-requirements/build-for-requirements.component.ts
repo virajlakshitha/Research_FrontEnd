@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PcpartServiceService } from '../service/pcpart-service.service';
+import { Pcpart } from '../model/pcpart';
 
 @Component({
   selector: 'app-build-for-requirements',
@@ -8,6 +9,9 @@ import { PcpartServiceService } from '../service/pcpart-service.service';
 })
 export class BuildForRequirementsComponent implements OnInit {
 
+  games: Object;
+  game = [];
+
   constructor(private pcpartServiceService: PcpartServiceService) { }
 
   ngOnInit() {
@@ -15,12 +19,13 @@ export class BuildForRequirementsComponent implements OnInit {
   }
 
   getMaximumPCParts() {
-    var data;
-    this.pcpartServiceService.getAllGames().subscribe(data => {
-      data = data;
-    },
-    (error: any) => console.log(error),
-    () => console.log('Gets all data'));
-    console.log(data);
+
+    this.pcpartServiceService.getAllGames().subscribe(
+      data => {
+          this.games = data;
+          this.game = this.games["responseObject"];
+          console.log(this.games["responseObject"][0].id);
+      }
+    );
   }
 }

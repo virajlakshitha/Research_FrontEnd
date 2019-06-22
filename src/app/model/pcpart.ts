@@ -1,7 +1,8 @@
 export class Pcpart {
     id: string;
     name: string;
-    category: String;
-    price: string;
-    image: String;
+    cpu: String;
+    ram: string;
+    gpu: String;
+    storage: String;
 }
