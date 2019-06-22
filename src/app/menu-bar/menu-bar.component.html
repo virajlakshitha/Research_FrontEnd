@@ -15,7 +15,7 @@
                     <a href="" class="nav-link">Contact Us</a>
                 </li>
                 <li id="login_item">
-                    <a href="" class="nav-link">Login/Register</a>
+                    <a href="/login" class="nav-link">Login/Register</a>
                 </li>
             </ul>
         </div>
@@ -23,25 +23,45 @@
     <div class="container-fluid second-nav text-white fixed-top" style="margin-top: 60px;">
         <div class="row">
             <div class="col-2 sec-nav" id="nav1">Browse Products</div>
-            <div class="drop_down1">
-                <a href="">PC Parts</a>
-                <a href="">Laptops</a>
+            <div id="ab">
+                <div class="drop_down1">
+                    <a href="" class="hover_link">PC Parts</a>
+                </div>
+                <div class="drop_down2">
+                    <a href="" class="hover_link">Laptops</a>
+                </div>
             </div>
+
             <div class="col-2 sec-nav" id="nav2">System Build</div>
-            <div class="col-2 sec-nav" id="nav3">Laptop Comparison</div>
-            <div class="col-5 text-center">
-                <select name="search_type" id="search_type" class="form-control">
-                    <option value="0">ACCESSORY</option>
-                    <option value="3">MOTHERBOARD</option>
-                    <option value="3">SOCKET</option>
-                    <option value="2">CPU</option>
-                    <option value="3">RAM</option>
-                    <option value="1">VGA</option>
-                    <option value="2">HARD DISK</option>
-                </select>
-                <input type="text" class="form-control search_field" placeholder="Search" />
-                <button type="button" class="btn btn-primary form-control"><img src="../../assets/img/search.png"></button>
+            <div id="bc">
+                <div class="drop_down3">
+                    <a href="" class="hover_link">Build For Price</a>
+                </div>
+                <div class="drop_down4">
+                    <a href="" class="hover_link">Build For Gaming Requirements</a>
+                </div>
             </div>
+
+            <div class="col-2 sec-nav" id="nav3">
+                <a href='browse/laptops'>Laptop Comparison</a>
+            </div>
+            <!-- <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()"> -->
+                <!-- <div class="col-5 text-center">
+                    <select name="search_type" id="search_type" class="form-control" formControlName="category">
+                        <option value="0">ACCESSORY</option>
+                        <option value="3">MOTHERBOARD</option>
+                        <option value="3">SOCKET</option>
+                        <option value="2">CPU</option>
+                        <option value="3">RAM</option>
+                        <option value="1">VGA</option>
+                        <option value="2">HARD DISK</option>
+                    </select>
+                    <input type="text" class="form-control search_field" formControlName="name" placeholder="Search" />
+                    <button type="submit" class="btn btn-primary form-control">
+                        <img src="../../assets/img/search.png">
+                    </button>
+                </div> -->
+            <!-- </form> -->
         </div>
     </div>
 

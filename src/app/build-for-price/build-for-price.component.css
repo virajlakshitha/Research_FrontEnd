@@ -7,6 +7,7 @@ body{
 a{
     text-decoration: none;
 }
+
 @media only screen and (max-width:576px){
 
 }
@@ -41,7 +42,7 @@ a{
     }
     #container{
         margin-top: 125px;
-        margin-bottom: 35px;
+        margin-bottom: 20px;
     }
     .item_list{
         margin-top: 10px;

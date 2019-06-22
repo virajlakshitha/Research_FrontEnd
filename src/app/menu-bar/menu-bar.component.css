@@ -109,13 +109,71 @@ a{
         clear: both;
         width: 100%;
     }
-
-    .drop_down1{
+    #ab {
         display: none;
-        position: absolute;
-        min-width: 400px;
-        z-index: 1;
+        margin-left: -100px;
     }
+    #bc {
+        display: none;
+    }
+    .drop_down1{
+        
+        position: absolute;
+        z-index: 5;
+        margin-top: 35px;
+        background-color: #314152;
+        text-align: center;
+        width: 225px;
+        border: 1px solid white;
+    }
+    
+    .drop_down2{
+        position: absolute;
+        z-index: 5;
+        margin-top: 60px;
+        background-color: #314152;
+        text-align: center;
+        width: 225px;
+        border: 1px solid white;
+    }
+    .drop_down3{
+        position: absolute;
+        z-index: 5;
+        margin-top: 35px;
+        margin-left: 225px;
+        background-color: #314152;
+        text-align: center;
+        width: 225px;
+        border: 1px solid white;
+    }
+    .drop_down4{
+        position: absolute;
+        z-index: 5;
+        margin-top: 60px;
+        margin-left: 225px;
+        background-color: #314152;
+        text-align: center;
+        width: 225px;
+        border: 1px solid white;
+    }
+    .drop_down1:hover{
+        background-color: cornflowerblue;
+    }
+    .drop_down2:hover{
+        background-color: cornflowerblue;
+    }
+    .drop_down3:hover{
+        background-color: cornflowerblue;
+    }
+    .drop_down4:hover{
+        background-color: cornflowerblue;
+    }
+    #nav1:hover + #ab {
+        display: block;
+    } 
+    #nav2:hover #bc {
+        display: block;
+    } 
 }
 @media(min-width: 992px){
 

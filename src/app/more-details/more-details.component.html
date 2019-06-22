@@ -19,7 +19,7 @@
     </div>
     <div class="col-8">
       <div class="row">
-        <div class="col-12 pro_name"><b>Product Name</b></div>
+        <div class="col-12 pro_name"><b>{{ pcPart.name }}</b></div>
       </div>
       <div class="row">
         <div class="col-4">Brand Name</div>
@@ -38,20 +38,8 @@
         <div class="col-6">Black</div>
       </div>
       <div class="row">
-        <div class="col-4">Graphics Coprocessor</div>
-        <div class="col-6">NVidia</div>
-      </div>
-      <div class="row">
-        <div class="col-4">Graphics Chipset Brand</div>
-        <div class="col-6">nVidia</div>
-      </div>
-      <div class="row">
-        <div class="col-4">Waltage</div>
-        <div class="col-6">600 walts</div>
-      </div>
-      <div class="row">
         <div class="col-4">Warranty</div>
-        <div class="col-6">2 years</div>
+        <!-- <div class="col-6">{{ pcPart.warranty }}</div> -->
       </div>
     </div>
   </div>
@@ -65,9 +53,9 @@
     </div>
     <div class="row">
       <div class="col-3 text-center table_headers"><b>Price</b></div>
-      <div class="col-3 text-center">Rs. 35,000.00</div>
-      <div class="col-3 text-center">Rs. 45,000.00</div>
-      <div class="col-3 text-center">Rs. 15,000.00</div>
+      <div class="col-3 text-center">{{ vendorPrice[0].price }}</div>
+      <div class="col-3 text-center">{{ vendorPrice[1].price }}</div>
+      <div class="col-3 text-center">{{ vendorPrice[2].price }}</div>
     </div>
   </div>
   <!--Comment Section-->
@@ -78,15 +66,15 @@
     <div class="row">
       <div class="comment_list">
         <img src="" class="pro_pic">
-        <div class="pro_name"><b>Name</b></div>
-        <div class="comment">Comment</div>
+        <div class="pro_name"><b>{{ comments1[0].user_name }}</b></div>
+        <div class="comment">{{ comments1[0].comment }}</div>
       </div>
     </div>
     <div class="row">
       <div class="comment_list">
         <img src="" class="pro_pic">
-        <div class="pro_name"><b>Name</b></div>
-        <div class="comment">Comment</div>
+        <div class="pro_name"><b>{{ comments1[1].user_name }}</b></div>
+        <div class="comment">{{ comments1[1].comment }}</div>
       </div>
     </div>
   </div>
