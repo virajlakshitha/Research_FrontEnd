@@ -10,6 +10,7 @@ import { RegisterCustomersComponent } from './register-customers/register-custom
 import { SearchComponent } from './search/search.component';
 import { BuildForPriceComponent } from './build-for-price/build-for-price.component';
 import { BuildForRequirementsComponent } from './build-for-requirements/build-for-requirements.component';
+import { CompatiblePcPartListComponent } from './build-for-requirements/compatible-pc-part-list/compatible-pc-part-list.component';
 import { MoreDetailsComponent } from './more-details/more-details.component';
 import { LoginComponent } from './login/login.component';
 import { LaptopComparisonComponent } from './laptop-comparison/laptop-comparison.component';
@@ -36,7 +37,7 @@ const routes: Routes = [
     component: LaptopProductsComponent
   },
   {
-    path: "browse/pcparts/:name",
+    path: "browse/pcparts",
     component: SearchComponent
   },
   {
@@ -54,6 +55,10 @@ const routes: Routes = [
   {
     path: "laptop_comparison",
     component: LaptopComparisonComponent
+  },
+  {
+    path: "build_for_gaming/pc-part-list",
+    component: CompatiblePcPartListComponent
   }
 ];
 
