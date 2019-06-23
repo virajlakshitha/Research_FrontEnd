@@ -8,7 +8,6 @@
     background-color: #335b87;
     color: white;
     border-radius: 5px;
-    margin-bottom: 5px;
 }
 .search{
     margin-left: 50px;
@@ -44,13 +43,3 @@
 .lower_part_list .row .col-10{
     padding-left: 50px;
 }
-.game_image {
-    margin-left: 250px;
-}
-.game_name {
-    font-size: 20px;
-}
-
-a {
-    color: white;
-  }
