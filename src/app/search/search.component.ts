@@ -25,6 +25,7 @@ export class SearchComponent implements OnInit {
       name = params["name"];
     });
     this.getAllPCPartsByCategory(category, name);
+    console.log(name);
   }
 
   redirect(_id): void {
@@ -33,15 +34,14 @@ export class SearchComponent implements OnInit {
 
   getAllPCPartsByCategory(category, name) {
     this.searchService.findByName(category, name).subscribe(data => {
-      this.pcpart = data; 
+      this.pcpart = data;
+      this.pcParts = this.pcpart["responseObject"];
       console.log(data);
     },
       (error: any) => console.log(error),
       () => console.log('Gets all data')
     );
-    var txt = '[{"_id": "141151", "name": "Viraj", "price": 2500.00},{"_id": "44874","name": "Viraj", "price": 2500.00}]';
-    this.pcParts = JSON.parse(txt);
-    console.log(this.pcParts);
+    
   }
 
   getSortedProducts(option: string) {
@@ -51,9 +51,9 @@ export class SearchComponent implements OnInit {
       (error: any) => console.log(error),
       () => console.log('Gets all data')
     );
-    var txt = '[{"_id": "141151","name": "Viraj", "price": 2500.00}]';
-    this.pcParts = JSON.parse(txt);
-    console.log(this.pcParts);
+    // var txt = '[{"_id": "141151","name": "Viraj", "price": 2500.00}]';
+    // this.pcParts = JSON.parse(txt);
+    // console.log(this.pcParts);
   }
 
 }

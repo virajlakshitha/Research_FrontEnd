@@ -10,36 +10,36 @@ export class PcpartServiceService {
 
   private pcpartsUrl: string;
   private gamesUrl: string;
+  private buildForPriceUrl: string;
 
   constructor(private http: HttpClient) { 
     this.pcpartsUrl = 'http://localhost:8080/api-techRing/pcparts/';
-    // this.gamesUrl = 'http://localhost:8080/api-techRing/games';
+    this.buildForPriceUrl = 'http://localhost:8080/api-techRing/build_for_price/';
+    this.gamesUrl = 'http://localhost:8080/api-techRing/games';
   }
 
-  public findMaximum(): Observable<Pcpart[]> {
-    let headers = new HttpHeaders().set('Authorization', 'auth-token');
+  public findMaximum() {
 
-    return this.http.get<Pcpart[]>(this.pcpartsUrl, {headers});
-    // return this.http.get<Pcpart[]>(this.pcpartsUrl);
+    return this.http.get(this.pcpartsUrl);
   }
 
   public findById(_id: string): Observable<Pcpart> {
     return this.http.get<Pcpart>(this.pcpartsUrl+_id);
   }
 
-  public findByPriceRange(min, max): Observable<Pcpart[]> {
-    return this.http.get<Pcpart[]>(this.pcpartsUrl+'build_for_price/'+min+'/'+max);
+  public findByPriceRange(min, max) {
+    return this.http.get(this.buildForPriceUrl+min+'/'+max);
   }
 
   public changePCPart(category, id, min, max) {
-    return this.http.get<Pcpart[]>(this.pcpartsUrl+'change/'+category+'/'+id+'/'+min+'/'+max);
+    return this.http.get(this.buildForPriceUrl+'change/'+category+'/'+id+'/'+min+'/'+max);
   }
 
   public differentPlan(min, max) {
-    return this.http.get<Pcpart[]>(this.pcpartsUrl+'different_plan/'+'/'+min+'/'+max);
+    return this.http.get(this.buildForPriceUrl+'different_plan/'+min+'/'+max);
   }
 
   public getAllGames(){
-    return this.http.get(this.pcpartsUrl+'/getAll');
+    return this.http.get(this.gamesUrl+'/getAll');
   }
 }

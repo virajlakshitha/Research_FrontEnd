@@ -18,8 +18,8 @@ export class SearchService {
     this.commentsUrl = 'http://localhost:8080/api-techRing/comments/';
   }
 
-  public findAll(): Observable<Pcpart[]> {
-    return this.http.get<Pcpart[]>(this.pcpartsUrl);
+  public findAll() {
+    return this.http.get(this.pcpartsUrl);
   }
 
   public findByName(category: string, name: string) {
@@ -30,15 +30,15 @@ export class SearchService {
     return this.http.get<Pcpart>(this.pcpartsUrl+category+"/byId/"+name);
   }
 
-  public sortProducts(option: string): Observable<Pcpart[]> {
-    return this.http.get<Pcpart[]>(this.pcpartsUrl+'sort_by/'+option);
+  public sortProducts(option: string) {
+    return this.http.get(this.pcpartsUrl+'sort_by/'+option);
   }
 
-  public getComments(name: string): Observable<Comments[]> {
-    return this.http.get<Comments[]>(this.commentsUrl+'comments/'+name);
+  public getComments(name: string) {
+    return this.http.get(this.commentsUrl+'comments/'+name);
   }
 
-  public getVendorPrices(name: string): Observable<VendorPrice[]> {
-    return this.http.get<VendorPrice[]>(this.pcpartsUrl+"vendor_prices/"+name);
+  public getVendorPrices(name: string) {
+    return this.http.get(this.pcpartsUrl+"vendor_prices/"+name);
   }
 }

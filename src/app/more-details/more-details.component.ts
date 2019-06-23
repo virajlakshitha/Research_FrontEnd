@@ -4,6 +4,8 @@ import { Comments } from '../model/comments';
 import { VendorPrice } from '../model/vendor-price';
 import { SearchService } from '../service/search.service';
 import { error } from 'protractor';
+import {Router} from "@angular/router";
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-more-details',
@@ -12,21 +14,30 @@ import { error } from 'protractor';
 })
 export class MoreDetailsComponent implements OnInit {
 
-  pcPart: Pcpart;
-  comments1: Comments[];
-  vendorPrice: VendorPrice[];
+  pcpart: Object;
+  pcPart = [];
+  comments1: Object;
+  vendorPrice: Object;
 
-  constructor(private searchService: SearchService) { }
+  constructor(private searchService: SearchService, private route : ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this.getPartDetails('RAM','15151A0154');
+    // this.getPartDetails('RAM','15151A0154');
     this.getComments('4GB Kingston RAM');
     this.getVendorPrices('4GB Kingston RAM');
+
+    var category;
+    var id;
+    this.route.params.subscribe(params => {
+      category = 'RAM';
+      id = params["_id"];
+    });
+    this.getPartDetails(category,id);
   }
 
   getPartDetails(category: string, id: string) {
     this.searchService.findById(category, id).subscribe(data => {
-      this.pcPart = data;
+      this.pcpart = data;
     },
       (error: any) => console.log(error),
       () => console.log('Gets all data')

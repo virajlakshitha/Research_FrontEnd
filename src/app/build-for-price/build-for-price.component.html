@@ -12,8 +12,9 @@
       <div class="col-6 content_topic">Build PC for your Budget</div>
       <div class="col-5">
         <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
-          <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options" formControlName="ranger"></ng5-slider>
-          <button type="submit" class="btn btn-primary">Go</button>
+          <!-- <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options" formControlName="ranger"></ng5-slider> -->
+          <input type="range" name="points" min="0" max="25000" formControlName="min"><input type="range" name="points" min="25000" max="200000" formControlName="max">
+          &nbsp;&nbsp;<button type="submit" class="btn btn-primary">Go</button>
         </form>
       </div>
     </div>

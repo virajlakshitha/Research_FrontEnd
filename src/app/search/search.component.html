@@ -42,11 +42,11 @@
           <div class="item_list">
             <div class="row">
               <div class="col-2">
-                <img src="../../assets/img/cpu.png" height="75px" width="75px">
+                <img src="{{ p.image }}" height="75px" width="75px">
               </div>
               <div class="col-10 text-white">
                 <div class="row"><span (click)="redirect('')">{{ p.name }}</span></div>
-                <div class="row">ABCD</div>
+                <div class="row">{{ p.speed }}</div>
                 <div class="row">{{ p.price }}</div>
                 <div class="row">
                   <span class="fa fa-star checked"></span>
