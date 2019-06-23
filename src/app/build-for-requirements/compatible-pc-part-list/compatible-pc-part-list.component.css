@@ -1,0 +1,45 @@
+.content{
+    margin-top: 130px;
+    margin-bottom: 35px;
+}
+.upper_part{
+    padding: 20px;
+    border: 1px solid cadetblue;
+    background-color: #335b87;
+    color: white;
+    border-radius: 5px;
+}
+.search{
+    margin-left: 50px;
+    width: 200px;
+    display: inline;
+}
+.srch_btn{
+    margin-left: 25px;
+}
+.topic1{
+    padding: 10px;
+}
+.lower_part{
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid cadetblue;
+    background-color: #335b87;
+    color: white;
+    border-radius: 5px;
+}
+.lower_part_list{
+    margin-left: 50px;
+}
+.header{
+    background-color: darkslateblue;
+    margin-bottom: 25px;
+    border-radius: 5px;
+    padding: 10px 40px;
+}
+.lower_part_list .row .col-2{
+    border-right: 1px solid white;
+}
+.lower_part_list .row .col-10{
+    padding-left: 50px;
+}
