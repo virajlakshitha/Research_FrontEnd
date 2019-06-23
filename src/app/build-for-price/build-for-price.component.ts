@@ -35,10 +35,10 @@ export class BuildForPriceComponent implements OnInit {
     (error: any) => console.log(error),
     () => console.log('Gets all data'));
 
-    this.ram = { id: "0145263", name: "Kingston 4GB RAM", price: "15000.00", category: "RAM", image: "" };
-    this.vga = { id: "0145263", name: "1GB VGA", price: "15000.00", category: "VGA", image: "" };
-    this.motherboard = { id: "0145263", name: "Motherboard", price: "15000.00", category: "Motherboard", image: "" };
-    this.cpu = { id: "0145263", name: "CPU", price: "15000.00", category: "CPU", image: "" };
+    // this.ram = { id: "0145263", name: "Kingston 4GB RAM", price: "15000.00", category: "RAM", image: "" };
+    // this.vga = { id: "0145263", name: "1GB VGA", price: "15000.00", category: "VGA", image: "" };
+    // this.motherboard = { id: "0145263", name: "Motherboard", price: "15000.00", category: "Motherboard", image: "" };
+    // this.cpu = { id: "0145263", name: "CPU", price: "15000.00", category: "CPU", image: "" };
 
   }
 

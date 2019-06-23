@@ -4,7 +4,7 @@ import { Pcpart } from '../model/pcpart';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root'  
 })
 export class PcpartServiceService {
 

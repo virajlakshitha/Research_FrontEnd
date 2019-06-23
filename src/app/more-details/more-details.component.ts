@@ -32,7 +32,7 @@ export class MoreDetailsComponent implements OnInit {
       () => console.log('Gets all data')
     );
 
-    this.pcPart = { id: "0145263", name: "Kingston 4GB RAM", price: "15000.00", category: "RAM", image: "" };
+    // this.pcPart = { id: "0145263", name: "Kingston 4GB RAM", price: "15000.00", category: "RAM", image: "" };
   }
 
   getComments(name: string) {

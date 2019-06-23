@@ -22,17 +22,25 @@
     </nav>
     <div class="container-fluid second-nav text-white fixed-top" style="margin-top: 60px;">
         <div class="row">
-            <div class="col-2 sec-nav" id="nav1">Browse Products</div>
-            <div id="ab">
-                <div class="drop_down1">
-                    <a href="" class="hover_link">PC Parts</a>
+                <div class="dropdown">
+                    <button class="dropbtn">Browse Products</button>
+                    <div class="dropdown-content">
+                        <a href="browse/pcparts">PC Parts</a>
+                        <a href="browse/laptops">Laptop</a>
+                    </div>
                 </div>
-                <div class="drop_down2">
-                    <a href="" class="hover_link">Laptops</a>
+                <div class="dropdown">
+                    <button class="dropbtn">System Build</button>
+                    <div class="dropdown-content">
+                        <a href="build_for_gaming">Build For Requirement</a>
+                        <a href="build_for_price">Build For Price</a> 
+                    </div>
                 </div>
-            </div>
-
-            <div class="col-2 sec-nav" id="nav2">System Build</div>
+                <div class="dropdown">
+                    <button class="dropbtn"><a href='laptop_comparison'>Laptop Comparison</a></button>
+                </div> 
+            
+            <!-- <div class="col-2 sec-nav" id="nav2">System Build</div>
             <div id="bc">
                 <div class="drop_down3">
                     <a href="" class="hover_link">Build For Price</a>
@@ -44,7 +52,7 @@
 
             <div class="col-2 sec-nav" id="nav3">
                 <a href='browse/laptops'>Laptop Comparison</a>
-            </div>
+            </div> -->
             <!-- <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()"> -->
                 <!-- <div class="col-5 text-center">
                     <select name="search_type" id="search_type" class="form-control" formControlName="category">
