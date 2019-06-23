@@ -22,12 +22,12 @@ export class SearchService {
     return this.http.get<Pcpart[]>(this.pcpartsUrl);
   }
 
-  public findByName(category: string, name: string): Observable<Pcpart[]> {
-    return this.http.get<Pcpart[]>(this.pcpartsUrl+"/"+category+"/by_name/"+name);
+  public findByName(category: string, name: string) {
+    return this.http.get(this.pcpartsUrl+category+"/byName/"+name);
   }
 
   public findById(category: string, _id: string): Observable<Pcpart> {
-    return this.http.get<Pcpart>(this.pcpartsUrl+"by_id/"+category+"/"+_id);
+    return this.http.get<Pcpart>(this.pcpartsUrl+category+"/byId/"+name);
   }
 
   public sortProducts(option: string): Observable<Pcpart[]> {

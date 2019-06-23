@@ -3,7 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { SearchService } from '../service/search.service';
 import { error } from 'protractor';
 import { Pcpart } from '../model/pcpart';
-import {Router} from "@angular/router"
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-menu-bar',

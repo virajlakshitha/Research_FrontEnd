@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 import { Pcpart } from '../model/pcpart';
 import { PcpartServiceService } from '../service/pcpart-service.service';
 import { Options } from 'ng5-slider';
@@ -16,10 +17,18 @@ export class BuildForPriceComponent implements OnInit {
     ceil: 250
   };
 
-  ram: Pcpart;
-  vga: Pcpart;
-  motherboard: Pcpart;
-  cpu: Pcpart;
+  ram: Object;
+  Ram = [];
+  vga: Object;
+  Vga = [];
+  motherboard: Object;
+  Motherboard = [];
+  cpu: Object;
+  Cpu = [];
+  hard_disk: Object;
+  Hard_Disk = [];
+
+  employeeForm: FormGroup;
 
   constructor(private pcpartServiceService: PcpartServiceService) { }
 
@@ -35,10 +44,25 @@ export class BuildForPriceComponent implements OnInit {
     (error: any) => console.log(error),
     () => console.log('Gets all data'));
 
-    this.ram = { id: "0145263", name: "Kingston 4GB RAM", price: "15000.00", category: "RAM", image: "" };
-    this.vga = { id: "0145263", name: "1GB VGA", price: "15000.00", category: "VGA", image: "" };
-    this.motherboard = { id: "0145263", name: "Motherboard", price: "15000.00", category: "Motherboard", image: "" };
-    this.cpu = { id: "0145263", name: "CPU", price: "15000.00", category: "CPU", image: "" };
+    var txt = '{"name": "Viraj", "price": 2500.00}';
+    this.Ram = JSON.parse(txt);
+    console.log(this.Ram);
+
+    var txt = '{"name": "Viraj", "price": 2500.00}';
+    this.Vga = JSON.parse(txt);
+    console.log(this.Vga);
+
+    var txt = '{"name": "Viraj", "price": 2500.00}';
+    this.Motherboard = JSON.parse(txt);
+    console.log(this.Motherboard);
+
+    var txt = '{"name": "Viraj", "price": 2500.00}';
+    this.Cpu = JSON.parse(txt);
+    console.log(this.Cpu);
+
+    var txt = '{"name": "Viraj", "price": 2500.00}';
+    this.Hard_Disk = JSON.parse(txt);
+    console.log(this.Hard_Disk);
 
   }
 

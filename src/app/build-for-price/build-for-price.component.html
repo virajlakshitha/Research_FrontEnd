@@ -10,9 +10,11 @@
   <div class="container" id="container">
     <div class="row" id="content_head">
       <div class="col-6 content_topic">Build PC for your Budget</div>
-      <div class="col-6">
-          <!-- <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider> -->
-          <!-- <ng5-slider [options]="options" [formControl]="sliderControl"></ng5-slider> -->
+      <div class="col-5">
+        <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+          <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options" formControlName="ranger"></ng5-slider>
+          <button type="submit" class="btn btn-primary">Go</button>
+        </form>
       </div>
     </div>
     <div class="row item_list">
@@ -29,13 +31,13 @@
             <div class="col-5">
               <div class="row">
                 <!-- <span>Intel Core i7 8100 3.6GHz 4-core/4-thread</span> -->
-                <span>{{ motherboard.name }}</span>
+                <span>{{ Motherboard.name }}</span>
               </div>
               <div class="row text-center">
                 <button class="btn btn-info">Replace</button>
               </div>
             </div>
-            <div class="col-3">Rs. {{ motherboard.price }} /=</div>
+            <div class="col-3">Rs. {{ Motherboard.price }} /=</div>
             <div class="col-2">
               <span class="fa fa-star checked"></span>
               <span class="fa fa-star checked"></span>
@@ -48,36 +50,7 @@
       </div>
 
     </div>
-    <div class="row item_list">
-      <div class="col-2 text-center">
-        <div class="component">SOCKET</div>
-      </div>
-      <div class="col-10 content text-white">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-2">
-              <img src="../../assets/img/cpu.png" height="80px" width="80px">
-            </div>
-            <div class="col-5">
-              <div class="row">
-                <span>Intel Core i7 8100 3.6GHz 4-core/4-thread</span>
-              </div>
-              <div class="row text-center">
-                <button class="btn btn-info">Replace</button>
-              </div>
-            </div>
-            <div class="col-3">Rs. 25,000.00 /=</div>
-            <div class="col-2">
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+
     <div class="row item_list">
       <div class="col-2 text-center">
         <div class="component">CPU</div>
@@ -90,13 +63,13 @@
             </div>
             <div class="col-5">
               <div class="row">
-                <span>{{ cpu.name }}</span>
+                <span>{{ Cpu.name }}</span>
               </div>
               <div class="row text-center">
                 <button class="btn btn-info">Replace</button>
               </div>
             </div>
-            <div class="col-3">Rs. {{ cpu.price }} /=</div>
+            <div class="col-3">Rs. {{ Cpu.price }} /=</div>
             <div class="col-2">
               <span class="fa fa-star checked"></span>
               <span class="fa fa-star checked"></span>
@@ -120,13 +93,13 @@
             </div>
             <div class="col-5">
               <div class="row">
-                <span>{{ ram.name }}</span>
+                <span>{{ Ram.name }}</span>
               </div>
               <div class="row text-center">
                 <button class="btn btn-info">Replace</button>
               </div>
             </div>
-            <div class="col-3">Rs. {{ ram.price }} /=</div>
+            <div class="col-3">Rs. {{ Ram.price }} /=</div>
             <div class="col-2">
               <span class="fa fa-star checked"></span>
               <span class="fa fa-star checked"></span>
@@ -150,13 +123,13 @@
             </div>
             <div class="col-5">
               <div class="row">
-                <span>{{ vga.name }}</span>
+                <span>{{ Vga.name }}</span>
               </div>
               <div class="row text-center">
                 <button class="btn btn-info">Replace</button>
               </div>
             </div>
-            <div class="col-3">Rs. {{ vga.price }} /=</div>
+            <div class="col-3">Rs. {{ Vga.price }} /=</div>
             <div class="col-2">
               <span class="fa fa-star checked"></span>
               <span class="fa fa-star checked"></span>
@@ -170,7 +143,7 @@
     </div>
     <div class="row item_list">
       <div class="col-2 text-center">
-        <div class="component">PROCESSOR</div>
+        <div class="component">Hard Disk</div>
       </div>
       <div class="col-10 content text-white">
         <div class="container-fluid">
@@ -180,13 +153,13 @@
             </div>
             <div class="col-5">
               <div class="row">
-                <span>Intel Core i7 8100 3.6GHz 4-core/4-thread</span>
+                <span>{{ Hard_disk.name }}</span>
               </div>
               <div class="row text-center">
                 <button class="btn btn-info">Replace</button>
               </div>
             </div>
-            <div class="col-3">Rs. 25,000.00 /=</div>
+            <div class="col-3">Rs. {{ Hard_disk.name }} /=</div>
             <div class="col-2">
               <span class="fa fa-star checked"></span>
               <span class="fa fa-star checked"></span>

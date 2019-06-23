@@ -3,6 +3,7 @@ import { Pcpart } from '../model/pcpart';
 import { SearchService } from '../service/search.service';
 import { error } from 'protractor';
 import {ActivatedRoute} from '@angular/router';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-search',
@@ -14,7 +15,7 @@ export class SearchComponent implements OnInit {
   pcpart: Object;
   pcParts = [];
 
-  constructor(private searchService: SearchService, private route : ActivatedRoute) { }
+  constructor(private searchService: SearchService, private route : ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     var category;
@@ -26,17 +27,21 @@ export class SearchComponent implements OnInit {
     this.getAllPCPartsByCategory(category, name);
   }
 
+  redirect(_id): void {
+    this.router.navigate(['/product_details/', _id]);
+  }
+
   getAllPCPartsByCategory(category, name) {
     this.searchService.findByName(category, name).subscribe(data => {
-      this.pcpart = data;
-      
+      this.pcpart = data; 
+      console.log(data);
     },
       (error: any) => console.log(error),
       () => console.log('Gets all data')
     );
-    var txt = '[{"name": "Viraj", "price": 2500.00}]';
-    var obj = JSON.parse(txt);
-    console.log(obj);
+    var txt = '[{"_id": "141151", "name": "Viraj", "price": 2500.00},{"_id": "44874","name": "Viraj", "price": 2500.00}]';
+    this.pcParts = JSON.parse(txt);
+    console.log(this.pcParts);
   }
 
   getSortedProducts(option: string) {
@@ -46,6 +51,9 @@ export class SearchComponent implements OnInit {
       (error: any) => console.log(error),
       () => console.log('Gets all data')
     );
+    var txt = '[{"_id": "141151","name": "Viraj", "price": 2500.00}]';
+    this.pcParts = JSON.parse(txt);
+    console.log(this.pcParts);
   }
 
 }
