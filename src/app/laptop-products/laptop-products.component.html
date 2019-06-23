@@ -12,12 +12,7 @@
         <div class="row">
           <div class="left_bar text-white">
             <div class="left_topic1"><b>BRANDS</b></div>
-            <div class="left_bar_names" id="left1">ASUS</div>
-            <div class="left_bar_names" id="left2">ACER</div>
-            <div class="left_bar_names" id="left3">DELL</div>
-            <div class="left_bar_names" id="left4">HP</div>
-            <div class="left_bar_names" id="left5">MAC BOOK</div>
-            <div class="left_bar_names" id="left5">Lenovo</div>
+              <option class="left_bar_names" [value]="brand" *ngFor="let brand of lapBrandList" (click)="myFunc(brand.lapBrandName)">{{brand.lapBrandName}}</option>   
           </div>
         </div>
       </div>
@@ -25,66 +20,13 @@
       <!--Right Side Item List-->
       <div class="col-9 right_side text-white">
         <div class="row item_line">
-          <div class="item_list">
-            <img src="../../assets/img/lap1.png" class="imgs">
-            <div class="text-center">Dell XSP 15</div>
-            <button class="btn btn-info btn_lap">View</button>
-            <button class="btn btn-primary btn_lap">Compare</button>
-          </div>
-          <div class="item_list">
-            <img src="../../assets/img/lap2.png" class="imgs">
-            <div class="text-center">Dell Inspiron ChromeBook</div>
-            <button class="btn btn-info btn_lap">View</button>
-            <button class="btn btn-primary btn_lap">Compare</button>
-          </div>
-          <div class="item_list">
-            <img src="../../assets/img/lap3.webp" class="imgs">
-            <div class="text-center">Dell Inspiron</div>
-            <button class="btn btn-info btn_lap">View</button>
+          <div class="item_list" *ngFor = "let lapTop of laptopList">
+            <img src="{{lapTop.imageSource}}" class="imgs">
+            <div class="text-center">{{lapTop.lapName}}</div>
+            <button class="btn btn-info btn_lap" data-toggle="modal" data-target="#createModel" (click)="findLaptopById(lapTop.id)">View</button>
             <button class="btn btn-primary btn_lap">Compare</button>
           </div>
         </div>
-        <div class="row item_line">
-          <div class="item_list">
-            <img src="../../assets/img/lap2.png" class="imgs">
-            <div class="text-center">Dell XSP 15</div>
-            <button class="btn btn-info btn_lap">View</button>
-            <button class="btn btn-primary btn_lap">Compare</button>
-          </div>
-          <div class="item_list">
-            <img src="../../assets/img/lap1.png" class="imgs">
-            <div class="text-center">Dell Inspiron ChromeBook</div>
-            <button class="btn btn-info btn_lap">View</button>
-            <button class="btn btn-primary btn_lap">Compare</button>
-          </div>
-          <div class="item_list">
-            <img src="../../assets/img/lap3.webp" class="imgs">
-            <div class="text-center">Dell Inspiron</div>
-            <button class="btn btn-info btn_lap">View</button>
-            <button class="btn btn-primary btn_lap">Compare</button>
-          </div>
-        </div>
-        <div class="row item_line">
-          <div class="item_list">
-            <img src="../../assets/img/lap3.webp" class="imgs">
-            <div class="text-center">Dell XSP 15</div>
-            <button class="btn btn-info btn_lap">View</button>
-            <button class="btn btn-primary btn_lap">Compare</button>
-          </div>
-          <div class="item_list">
-            <img src="../../assets/img/lap2.png" class="imgs">
-            <div class="text-center">Dell Inspiron ChromeBook</div>
-            <button class="btn btn-info btn_lap">View</button>
-            <button class="btn btn-primary btn_lap">Compare</button>
-          </div>
-          <div class="item_list">
-            <img src="../../assets/img/lap1.png" class="imgs">
-            <div class="text-center">Dell Inspiron</div>
-            <button class="btn btn-info btn_lap">View</button>
-            <button class="btn btn-primary btn_lap">Compare</button>
-          </div>
-        </div>
-        <!--Pagination-->
         <div class="row item_line">
           <div class="col-12">
             <div id="pagination">
@@ -100,6 +42,75 @@
       <!------------------>
     </div>
   </div>
+
+  <div class="modal fade" id="createModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div *ngIf="oneLaptop" class="modal-body">
+              <table class="table table-borderless lapTable">
+                  <tbody>
+                      <tr id="detail">
+                        <th><b>Brand</b></th>
+                        <td>{{oneLaptop.lapBrand}}</td>
+                      </tr>
+                      <tr>
+                        <th><b>Lap Name</b></th>
+                        <td>{{oneLaptop.lapName}}</td>
+                      </tr>
+                     
+                      <tr id="detail">
+                        <th><b>Processor</b></th>
+                        <td>{{oneLaptop.cpuModel}}</td>
+                      </tr>
+                      <tr>
+                        <th><b>Cores</b></th>
+                        <td>{{oneLaptop.cpuCoresSize}}</td>
+                      </tr>
+                      <tr>
+                        <th><b>Cash Size</b></th>
+                        <td>{{oneLaptop.cpuCachSize}}</td>
+                      </tr>
+                      <tr>
+                        <th><b>Boost Speed</b></th>
+                        <td>{{oneLaptop.cpuBoostSpeed}}</td>
+                      </tr>
+
+                      <tr id="detail">
+                        <th><b>Ram Type</b></th>
+                        <td>{{oneLaptop.ramType}}</td>
+                      </tr>
+                      <tr>
+                        <th><b>Ram Size</b></th>
+                        <td>{{oneLaptop.ramSize}}</td>
+                      </tr>
+
+                      <tr id="detail">
+                        <th><b>Storage Type</b></th>
+                        <td>{{oneLaptop.storageType}}</td>
+                      </tr>
+                      <tr>
+                        <th><b>Storage Size</b></th>
+                        <td>{{oneLaptop.storageSize}}</td>
+                      </tr>
+
+                      <tr id="detail">
+                        <th><b>Gpu Size</b></th>
+                        <td>{{oneLaptop.gpuMemorySize}}</td>
+                      </tr>
+                      <tr>
+                        <th><b>Gpu Speed</b></th>
+                        <td>{{oneLaptop.gpuBooStSpeed}}</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+  </div>
+
 </body>
 <!--------------------->
 

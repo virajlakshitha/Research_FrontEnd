@@ -4,7 +4,7 @@ import { Pcpart } from '../model/pcpart';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root'  
 })
 export class PcpartServiceService {
 
@@ -39,7 +39,7 @@ export class PcpartServiceService {
     return this.http.get<Pcpart[]>(this.pcpartsUrl+'different_plan/'+'/'+min+'/'+max);
   }
 
-  public getAllGames(): Observable<Pcpart[]> {
-    return this.http.get<Pcpart[]>(this.pcpartsUrl+'/getAll');
+  public getAllGames(){
+    return this.http.get(this.pcpartsUrl+'/getAll');
   }
 }
