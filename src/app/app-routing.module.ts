@@ -37,7 +37,7 @@ const routes: Routes = [
     component: LaptopProductsComponent
   },
   {
-    path: "browse/pcparts/:name",
+    path: "browse/pcparts",
     component: SearchComponent
   },
   {
