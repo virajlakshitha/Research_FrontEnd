@@ -27,7 +27,7 @@ export class MenuBarComponent implements OnInit {
   onSubmit(): void {
     var category = this.employeeForm.value.category;
     var name = this.employeeForm.value.name;
-    this.router.navigate(['/browse/pcparts/',category, name])
+    this.router.navigate(['/browse/pcparts/', name]);
   }
 
 }

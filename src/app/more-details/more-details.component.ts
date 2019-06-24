@@ -23,13 +23,13 @@ export class MoreDetailsComponent implements OnInit {
 
   ngOnInit() {
     // this.getPartDetails('RAM','15151A0154');
-    this.getComments('4GB Kingston RAM');
-    this.getVendorPrices('4GB Kingston RAM');
+    this.getComments('Kingston');
+    this.getVendorPrices('Kingston');
 
     var category;
     var id;
     this.route.params.subscribe(params => {
-      category = 'RAM';
+      category = 'ram';
       id = params["_id"];
     });
     this.getPartDetails(category,id);
@@ -38,6 +38,7 @@ export class MoreDetailsComponent implements OnInit {
   getPartDetails(category: string, id: string) {
     this.searchService.findById(category, id).subscribe(data => {
       this.pcpart = data;
+      this.pcPart = this.pcpart["responseObject"];
     },
       (error: any) => console.log(error),
       () => console.log('Gets all data')

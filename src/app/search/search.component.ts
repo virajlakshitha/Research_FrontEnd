@@ -21,11 +21,10 @@ export class SearchComponent implements OnInit {
     var category;
     var name;
     this.route.params.subscribe(params => {
-      category = 'RAM';
+      category = 'ram';
       name = params["name"];
     });
     this.getAllPCPartsByCategory(category, name);
-    console.log(name);
   }
 
   redirect(_id): void {

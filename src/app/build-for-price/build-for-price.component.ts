@@ -10,13 +10,7 @@ import { Options } from 'ng5-slider';
   styleUrls: ['./build-for-price.component.css']
 })
 export class BuildForPriceComponent implements OnInit {
-  minValue: number = 50;
-  maxValue: number = 200;
-  options: Options = {
-    floor: 0,
-    ceil: 250
-  };
-
+  
   ram: Object;
   Ram = [];
   vga: Object;
@@ -33,34 +27,73 @@ export class BuildForPriceComponent implements OnInit {
   constructor(private pcpartServiceService: PcpartServiceService) { }
 
   ngOnInit() {
-    this.getMaximumPCParts();
+    this.employeeForm = new FormGroup({
+      min: new FormControl(),
+      max: new FormControl()
+    });
+    this.getMaximumPCParts(0, 200000);
+  }
+
+  onSubmit(): void {
+    var min = this.employeeForm.value.min;
+    var max = this.employeeForm.value.max;
+    this.getMaximumPCParts(min, max);
   }
 
   //Default method gets pc parts which have maximum prices
-  getMaximumPCParts() {
-    this.pcpartServiceService.findMaximum().subscribe(data => {
-      this.ram = data[0];
+  getMaximumPCParts(min, max) {
+    this.pcpartServiceService.changePCPart('ram', '00', min, max).subscribe(data => {
+      this.ram = data;
+      this.Ram = this.ram["responseObject"][0];
     },
     (error: any) => console.log(error),
     () => console.log('Gets all data'));
 
-    var txt = '{"name": "Viraj", "price": 2500.00}';
+    this.pcpartServiceService.changePCPart('vga', '00', min, max).subscribe(data => {
+      this.vga = data;
+      this.Vga = this.vga["responseObject"][0];
+    },
+    (error: any) => console.log(error),
+    () => console.log('Gets all data'));
+
+    this.pcpartServiceService.changePCPart('cpu', '00', min, max).subscribe(data => {
+      this.cpu = data;
+      this.Cpu = this.cpu["responseObject"][0];
+    },
+    (error: any) => console.log(error),
+    () => console.log('Gets all data'));
+
+    this.pcpartServiceService.changePCPart('motherboard', '00', min, max).subscribe(data => {
+      this.motherboard = data[0];
+      this.Motherboard = this.motherboard["responseObject"][0];
+    },
+    (error: any) => console.log(error),
+    () => console.log('Gets all data'));
+
+    this.pcpartServiceService.changePCPart('hard_disk', '00', min, max).subscribe(data => {
+      this.hard_disk = data[0];
+      this.Hard_Disk = this.hard_disk["responseObject"][0];
+    },
+    (error: any) => console.log(error),
+    () => console.log('Gets all data'));
+
+    var txt = '{"name": "4GB Kingston RAM", "price": 10500.00}';
     this.Ram = JSON.parse(txt);
     console.log(this.Ram);
 
-    var txt = '{"name": "Viraj", "price": 2500.00}';
+    var txt = '{"name": "MSI N740-1GD5 VGA", "price": 25000.00}';
     this.Vga = JSON.parse(txt);
     console.log(this.Vga);
 
-    var txt = '{"name": "Viraj", "price": 2500.00}';
+    var txt = '{"name": "Asus H110M-C Motherboard", "price": 12500.00}';
     this.Motherboard = JSON.parse(txt);
     console.log(this.Motherboard);
 
-    var txt = '{"name": "Viraj", "price": 2500.00}';
+    var txt = '{"name": "CPU", "price": 12500.00}';
     this.Cpu = JSON.parse(txt);
     console.log(this.Cpu);
 
-    var txt = '{"name": "Viraj", "price": 2500.00}';
+    var txt = '{"name": "External HDD", "price": 7500.00}';
     this.Hard_Disk = JSON.parse(txt);
     console.log(this.Hard_Disk);
 

@@ -14,8 +14,8 @@ export class SearchService {
   private commentsUrl: string;
 
   constructor(private http: HttpClient) { 
-    this.pcpartsUrl = 'http://localhost:8080/api-techRing/pcparts/';
-    this.commentsUrl = 'http://localhost:8080/api-techRing/comments/';
+    this.pcpartsUrl = 'http://localhost:8080/api-techRing/pcparts';
+    this.commentsUrl = 'http://localhost:8080/api-techRing/comments';
   }
 
   public findAll() {
@@ -23,22 +23,22 @@ export class SearchService {
   }
 
   public findByName(category: string, name: string) {
-    return this.http.get(this.pcpartsUrl+category+"/byName/"+name);
+    return this.http.get(this.pcpartsUrl+'/'+category+"/byName/"+name);
   }
 
-  public findById(category: string, _id: string): Observable<Pcpart> {
-    return this.http.get<Pcpart>(this.pcpartsUrl+category+"/byId/"+name);
+  public findById(category: string, _id: string) {
+    return this.http.get(this.pcpartsUrl+'/'+category+"/byId/"+_id);
   }
 
   public sortProducts(option: string) {
-    return this.http.get(this.pcpartsUrl+'sort_by/'+option);
+    return this.http.get(this.pcpartsUrl+'/sort_by/'+option);
   }
 
   public getComments(name: string) {
-    return this.http.get(this.commentsUrl+'comments/'+name);
+    return this.http.get(this.commentsUrl+'/comments/'+name);
   }
 
   public getVendorPrices(name: string) {
-    return this.http.get(this.pcpartsUrl+"vendor_prices/"+name);
+    return this.http.get(this.pcpartsUrl+"/vendor_prices/"+name);
   }
 }
