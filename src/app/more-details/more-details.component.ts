@@ -15,7 +15,6 @@ import {ActivatedRoute} from '@angular/router';
 export class MoreDetailsComponent implements OnInit {
 
   pcpart: Object;
-  pcPart = [];
   comments1: Object;
   vendorPrice: Object;
 
@@ -37,8 +36,8 @@ export class MoreDetailsComponent implements OnInit {
 
   getPartDetails(category: string, id: string) {
     this.searchService.findById(category, id).subscribe(data => {
-      this.pcpart = data;
-      this.pcPart = this.pcpart["responseObject"];
+      this.pcpart = data["responseObject"];
+      console.log(this.pcpart);
     },
       (error: any) => console.log(error),
       () => console.log('Gets all data')

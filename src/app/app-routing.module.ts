@@ -13,6 +13,7 @@ import { BuildForRequirementsComponent } from './build-for-requirements/build-fo
 import { MoreDetailsComponent } from './more-details/more-details.component';
 import { LoginComponent } from './login/login.component';
 import { LaptopComparisonComponent } from './laptop-comparison/laptop-comparison.component';
+import { CompatiblePcPartListComponent } from './build-for-requirements/compatible-pc-part-list/compatible-pc-part-list.component';
 
 const routes: Routes = [
   {
@@ -54,6 +55,10 @@ const routes: Routes = [
   {
     path: "laptop_comparison",
     component: LaptopComparisonComponent
+  },
+  {
+    path: "build_for_gaming/pc-part-list",
+    component: CompatiblePcPartListComponent
   }
 ];
 

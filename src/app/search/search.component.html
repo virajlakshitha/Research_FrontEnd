@@ -45,7 +45,7 @@
                 <img src="{{ p.image }}" height="75px" width="75px">
               </div>
               <div class="col-10 text-white">
-                <div class="row"><span (click)="redirect('5cfa95601f62c7be8a573d92')">{{ p.name }}</span></div>
+                <div class="row" id="pc_part_name"><span (click)="redirect(p.id)">{{ p.name }}</span></div>
                 <div class="row">{{ p.speed }}</div>
                 <div class="row">Rs. {{ p.price }} /=</div>
                 <div class="row">

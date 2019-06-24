@@ -7,10 +7,10 @@
 <!--PC Part Details-->
 
 <div class="container content">
-  <!-- <div *ngFor="let p of pcPart; let i=index;"> -->
+  <div *ngIf="pcpart">
     <div class="row">
       <div class="col-4 left_images">
-        <img src="{{ p.image }}" class="imgs">
+        <img src="{{ pcpart.image }}" class="imgs">
         <div class="rating">
           <span class="fa fa-star checked"></span>
           <span class="fa fa-star checked"></span>
@@ -22,12 +22,12 @@
       <div class="col-8">
         <div class="row">
           <div class="col-12 pro_name">
-            <b>{{ p.name }}</b>
+            <b>{{ pcpart.name }}</b>
           </div>
         </div>
         <div class="row">
           <div class="col-4">Speed</div>
-          <div class="col-6">{{ p.speed }}</div>
+          <div class="col-6">{{ pcpart.speed }}</div>
         </div>
         <div class="row">
           <div class="col-4">Item Weight</div>
@@ -43,19 +43,19 @@
         </div>
         <div class="row">
           <div class="col-4">Warranty</div>
-          <div class="col-6">{{ p.warranty }}</div>
+          <div class="col-6">{{ pcpart.warranty }}</div>
         </div>
         <div class="row">
           <div class="col-4">Price</div>
-          <div class="col-6">{{ p.price }}</div>
+          <div class="col-6">{{ pcpart.price }}</div>
         </div>
         <div class="row">
           <div class="col-4">Type</div>
-          <div class="col-6">{{ p.type }}</div>
+          <div class="col-6">{{ pcpart.type }}</div>
         </div>
       </div>
     </div>
-  <!-- </div> -->
+  </div>
 
 
   <div class="container content2">
