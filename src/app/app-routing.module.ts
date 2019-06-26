@@ -37,7 +37,7 @@ const routes: Routes = [
     component: LaptopProductsComponent
   },
   {
-    path: "browse/pcparts/:name",
+    path: "browse/pcparts",
     component: SearchComponent
   },
   {
@@ -59,6 +59,10 @@ const routes: Routes = [
   {
     path: "build_for_gaming/pc-part-list",
     component: CompatiblePcPartListComponent
+  },
+  {
+    path: '**', 
+    component: HomeComponent
   }
 ];
 
