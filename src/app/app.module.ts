@@ -19,6 +19,7 @@ import { MoreDetailsComponent } from './more-details/more-details.component';
 import { LoginComponent } from './login/login.component';
 import { LaptopComparisonComponent } from './laptop-comparison/laptop-comparison.component';
 import { CompatiblePcPartListComponent } from './build-for-requirements/compatible-pc-part-list/compatible-pc-part-list.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { CompatiblePcPartListComponent } from './build-for-requirements/compatib
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    Ng5SliderModule
+    Ng5SliderModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
