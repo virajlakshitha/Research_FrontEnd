@@ -16,6 +16,7 @@ import { LaptopComparisonComponent } from './laptop-comparison/laptop-comparison
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactComponent } from "./contact/contact.component";
 import { UserProfileComponent } from "./user-profile/user-profile.component";
+import { CompatiblePcPartListComponent } from './build-for-requirements/compatible-pc-part-list/compatible-pc-part-list.component';
 
 const routes: Routes = [
   {
@@ -69,6 +70,14 @@ const routes: Routes = [
   {
     path: "user_profile",
     component: UserProfileComponent
+  },
+  {
+    path: "build_for_gaming/pc-part-list",
+    component: CompatiblePcPartListComponent
+  },
+  {
+    path: '**', 
+    component: HomeComponent
   }
 ];
 

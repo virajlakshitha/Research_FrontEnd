@@ -12,7 +12,14 @@ a{
 .checked{
     color: orange;
 }
+<<<<<<< HEAD
 /* @media only screen and (max-width:576px){
+=======
+#pc_part_name{
+    cursor: pointer;
+}
+@media only screen and (max-width:576px){
+>>>>>>> 34e7a82877746047e923129b8771af86c9735adf
 
     .content{
         margin-top: 75px;

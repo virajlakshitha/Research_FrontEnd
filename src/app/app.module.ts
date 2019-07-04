@@ -19,9 +19,13 @@ import { MoreDetailsComponent } from './more-details/more-details.component';
 import { LoginComponent } from './login/login.component';
 import { LaptopComparisonComponent } from './laptop-comparison/laptop-comparison.component';
 import { CompatiblePcPartListComponent } from './build-for-requirements/compatible-pc-part-list/compatible-pc-part-list.component';
+<<<<<<< HEAD
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactComponent } from './contact/contact.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+=======
+import {NgxPaginationModule} from 'ngx-pagination';
+>>>>>>> 34e7a82877746047e923129b8771af86c9735adf
 
 @NgModule({
   declarations: [
@@ -49,7 +53,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    Ng5SliderModule
+    Ng5SliderModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

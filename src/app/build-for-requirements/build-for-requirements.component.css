@@ -45,10 +45,14 @@
     padding-left: 50px;
 }
 .game_image {
-    margin-left: 250px;
+    margin-left: 75px;
 }
 .game_name {
     font-size: 20px;
+}
+
+.get_parts_btn {
+    margin-left: 75px;
 }
 
 a {
