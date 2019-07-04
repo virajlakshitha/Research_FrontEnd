@@ -1,0 +1,45 @@
+.topic1{
+    background-color: darkslateblue;
+    border-radius: 5px;
+}
+.content{
+    margin: 120px;
+}
+.content1{
+    margin-top: 25px;
+}
+.pro_pic{
+    height: 250px;
+    width: 100%;
+}
+.pro_details{
+    line-height: 2;
+}
+.pro_details .btn{
+    margin-top: 10px;
+    width: 100%;
+}
+.pro_details .col-3{
+    background-color: lightsteelblue;
+    border-right: 1px solid cadetblue;
+    border-bottom: 1px solid cadetblue;
+}
+.pro_details .col-9{
+    border-bottom: 1px solid cadetblue;
+}
+#change_pro_pic{
+    margin-top: 25px;
+}
+.product_details{
+    margin-top: 30px;
+}
+.pro_list{
+    padding: 10px;
+    background-color: lightsteelblue;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+.pro_img{
+    width: 100px;
+    height: 100px;
+}

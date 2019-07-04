@@ -1,7 +1,4 @@
-.content1{
-    margin-top: 120px;
-    margin-bottom: 35px;
-}
+
 .content2{
     margin-top: 25px;
 }
@@ -15,4 +12,101 @@
     border-radius: 5px;
     padding: 12px;
     margin-top: 25px;
+}
+.item_list:hover{
+    background-color: lavender;
+    cursor: pointer;
+}
+
+@media only screen and (max-width:576px){
+    .content1{
+        margin-top: 20px;
+        margin-bottom: 25px;
+    }
+    .img_slider{
+        height: 250px;
+        width: 100%;
+    }
+    .pro_pic{
+        height: 75px;
+        width: 75px;
+    }
+    .item_list{
+        width: 35%;
+        display: inline-block;
+        font-size: 12px;
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+@media only screen and (max-width:768px){
+    .content1{
+        margin-top: 120px;
+        margin-bottom: 35px;
+    }
+    .img_slider{
+        height: 375px;
+        width: 100%;
+    }
+    .pro_pic{
+        height: 105px;
+        width: 105px;
+    }
+    .item_list{
+        width: 25%;
+        display: inline-block;
+        font-size: 15px;
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+@media only screen and (max-width:1024px){
+    .content1{
+        margin-top: 120px;
+        margin-bottom: 35px;
+    }
+    .img_slider{
+        height: 450px;
+        width: 100%;
+    }
+    .pro_pic{
+        height: 105px;
+        width: 105px;
+    }
+    .item_list{
+        width: 25%;
+        display: inline-block;
+        font-size: 15px;
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+@media only screen and (min-width:1024px){
+
+    .content1{
+        margin-top: 120px;
+        margin-bottom: 35px;
+    }
+    .img_slider{
+        height: 500px;
+        width: 100%;
+    }
+    .pro_pic{
+        height: 125px;
+        width: 125px;
+    }
+    .item_list{
+        width: 20%;
+        display: inline-block;
+        font-size: 15px;
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
 }

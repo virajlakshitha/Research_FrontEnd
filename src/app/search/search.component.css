@@ -12,8 +12,25 @@ a{
 .checked{
     color: orange;
 }
-@media only screen and (max-width:576px){
+/* @media only screen and (max-width:576px){
 
+    .content{
+        margin-top: 75px;
+    }
+    .left_bar{
+        display: none;
+    }
+    #right_side{
+        padding-top: 10px;
+    }
+    #right_topic{
+        height: 40px;
+        background: darkslateblue;
+        color: white;
+        border-radius: 5px;
+        padding-left: 20px;
+        padding-top: 5px;
+    }
 }
 
 @media only screen and (max-width:768px){
@@ -48,7 +65,7 @@ a{
     .left_bar_last{
         margin-top: 40px;
     }
-    #left1:hover, #left2:hover, #left3:hover, #left4:hover, #left5:hover {
+    .left_nav:hover {
         background: steelblue;
         cursor: pointer;
     }
@@ -88,4 +105,27 @@ a{
         padding: 10px 0 20px 0;
         text-align: center;
     }
+} */
+
+@media only screen and (max-width:576px){
+
+    .content{
+        margin-top: 75px;
+    }
+}
+
+@media only screen and (max-width:768px){
+
+}
+
+@media only screen and (max-width:992px){
+
+}
+
+@media only screen and (max-width:1200px){
+
+}
+
+@media only screen and (min-width:1200px){
+
 }

@@ -1,64 +1,51 @@
 <header>
     <nav class="navbar fixed-top navbar-expand">
-        <a class="navbar-brand" href="">
+        <a class="navbar-brand" routerLink="" routerLinkActive="active">
             <img src="assets/img/logo.png">
         </a>
         <div class="collapse navbar-collapse" id="navbar_content">
             <ul class="navbar-nav text-center ml-auto mr-lg-6">
                 <li>
-                    <a class="nav-link" href="">Home</a>
+                    <a class="nav-link" routerLink="" routerLinkActive="active">Home</a>
                 </li>
                 <li>
-                    <a href="" class="nav-link">About Us</a>
+                    <a routerLink="/about_us" routerLinkActive="active" class="nav-link">About Us</a>
                 </li>
                 <li>
-                    <a href="" class="nav-link">Contact Us</a>
+                    <a routerLink="/contact" routerLinkActive="active" class="nav-link">Contact Us</a>
                 </li>
                 <li id="login_item">
-                    <a href="/login" class="nav-link">Login/Register</a>
+                    <a routerLink="/login" routerLinkActive="active" class="nav-link">Login/Register</a>
                 </li>
             </ul>
         </div>
     </nav>
     <div class="container-fluid second-nav text-white fixed-top" style="margin-top: 60px;">
         <div class="row">
-                <div class="dropdown">
-                    <button class="dropbtn">Browse Products</button>
-                    <div class="dropdown-content">
-                        <a [routerLink]="['browse/pcparts', 'all']">PC Parts</a>
-                        <a href="browse/laptops">Laptop</a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <button class="dropbtn">System Build</button>
-                    <div class="dropdown-content">
-                        <a href="build_for_gaming">Build For Requirement</a>
-                        <a href="build_for_price">Build For Price</a> 
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <button class="dropbtn"><a href='laptop_comparison'>Laptop Comparison</a></button>
-                </div> 
-            
-            <!-- <div class="col-2 sec-nav" id="nav2">System Build</div>
-            <div id="bc">
-                <div class="drop_down3">
-                    <a href="" class="hover_link">Build For Price</a>
-                </div>
-                <div class="drop_down4">
-                    <a href="" class="hover_link">Build For Gaming Requirements</a>
+            <div class="dropdown">
+                <button class="dropbtn">Browse Products</button>
+                <div class="dropdown-content">
+                    <a routerLink="/browse/pcparts/ram/all" routerLinkActive="active">PC Parts</a>
+                    <a routerLink="/browse/laptops" routerLinkActive="active">Laptop</a>
                 </div>
             </div>
-
-            <div class="col-2 sec-nav" id="nav3">
-                <a href='browse/laptops'>Laptop Comparison</a>
-            </div> -->
-            <!-- <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()"> -->
+            <div class="dropdown">
+                <button class="dropbtn">System Build</button>
+                <div class="dropdown-content">
+                    <a routerLink="/build_for_gaming" routerLinkActive="active">Build For Requirement</a>
+                    <a routerLink="/build_for_price" routerLinkActive="active">Build For Price</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">
+                    <a routerLink="/laptop_comparison" routerLinkActive="active">Laptop Comparison</a>
+                </button>
+            </div>
 
             <div class="col-5 text-center" id="abcd">
                 <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
                     <select name="search_type" id="search_type" class="form-control" formControlName="category">
-                        <option value="">ACCESSORY</option>
+                        <option value="all">ACCESSORY</option>
                         <option value="motherboard">MOTHERBOARD</option>
                         <option value="cpu">CPU</option>
                         <option value="ram">RAM</option>

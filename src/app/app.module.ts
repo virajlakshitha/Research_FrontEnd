@@ -19,6 +19,9 @@ import { MoreDetailsComponent } from './more-details/more-details.component';
 import { LoginComponent } from './login/login.component';
 import { LaptopComparisonComponent } from './laptop-comparison/laptop-comparison.component';
 import { CompatiblePcPartListComponent } from './build-for-requirements/compatible-pc-part-list/compatible-pc-part-list.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { ContactComponent } from './contact/contact.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import { CompatiblePcPartListComponent } from './build-for-requirements/compatib
     MoreDetailsComponent,
     LoginComponent,
     LaptopComparisonComponent,
-    CompatiblePcPartListComponent
+    CompatiblePcPartListComponent,
+    AboutUsComponent,
+    ContactComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

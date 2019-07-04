@@ -11,19 +11,19 @@
     <div class="row" id="forms">
         <div class="col-6">
             <div class="login_form">
-                <form method="POST" action="" id="log">
+                <!-- <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" method="POST" id="log"> -->
                     <div class="row">
                         <div class="col-12 topic1"><b>Sign In</b></div>
                     </div>
                     <div class="form-group">
-                        <label class="font-weight-bold">USERNAME / EMAIL</label>
+                        <label class="font-weight-bold">USERNAME</label>
                         <input type="text" name="username" id="username" class="form-control fields"
-                            placeholder="Username" required>
+                            placeholder="Username" formControlName="email" required>
                     </div>
                     <div class="form-group">
                         <label class="font-weight-bold">PASSWORD</label>
                         <input type="password" name="password" id="password" class="form-control fields"
-                            placeholder="Password" required>
+                            placeholder="Password" formControlName="password" required>
                     </div>
                     <div class="form-group">
                         <input type="checkbox" name="signin" id="signin">
@@ -36,7 +36,7 @@
                         <div class="text-center"><a href="">Forgot Password ?</a></div>
                         <a href="/register/customer" class="reg">Don't Have an Account ?</a>
                     </div>
-                </form>
+                <!-- </form> -->
                 <div class="social_media text-center">
                     <img src="assets/img/facebook.png" id="fb">&nbsp;&nbsp;
                     <img src="assets/img/twitter.png" id="twitter">&nbsp;&nbsp;

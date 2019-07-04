@@ -109,71 +109,7 @@ a{
         clear: both;
         width: 100%;
     }
-    #ab {
-        display: none;
-        margin-left: -100px;
-    }
-    #bc {
-        display: none;
-    }
-    .drop_down1{
-        
-        position: absolute;
-        z-index: 5;
-        margin-top: 35px;
-        background-color: #314152;
-        text-align: center;
-        width: 225px;
-        border: 1px solid white;
-    }
     
-    .drop_down2{
-        position: absolute;
-        z-index: 5;
-        margin-top: 60px;
-        background-color: #314152;
-        text-align: center;
-        width: 225px;
-        border: 1px solid white;
-    }
-    .drop_down3{
-        position: absolute;
-        z-index: 5;
-        margin-top: 35px;
-        margin-left: 225px;
-        background-color: #314152;
-        text-align: center;
-        width: 225px;
-        border: 1px solid white;
-    }
-    .drop_down4{
-        position: absolute;
-        z-index: 5;
-        margin-top: 60px;
-        margin-left: 225px;
-        background-color: #314152;
-        text-align: center;
-        width: 225px;
-        border: 1px solid white;
-    }
-    .drop_down1:hover{
-        background-color: cornflowerblue;
-    }
-    .drop_down2:hover{
-        background-color: cornflowerblue;
-    }
-    .drop_down3:hover{
-        background-color: cornflowerblue;
-    }
-    .drop_down4:hover{
-        background-color: cornflowerblue;
-    }
-    #nav1:hover + #ab {
-        display: block;
-    } 
-    #nav2:hover #bc {
-        display: block;
-    } 
 }
 @media(min-width: 992px){
 
@@ -191,18 +127,21 @@ a{
     padding: 8px 16px;
     font-size: 16px;
     border: none;
+    width: 200px;
   }
   
   .dropdown {
     position: relative;
     display: inline-block;
+    border-top: 1px solid white;
+    border-right: 1px solid white;
   }
   
   .dropdown-content {
     display: none;
     position: absolute;
     background-color: #4C96D7;
-    min-width: 160px;
+    min-width: 200px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
   }
@@ -218,7 +157,10 @@ a{
   
   .dropdown:hover .dropdown-content {display: block;}
   
-  .dropdown:hover .dropbtn {background-color: #4C96D7;}
+  .dropdown:hover .dropbtn {
+      background-color: #4C96D7;
+      cursor: pointer;
+    }
 
   #abcd{
       margin-left: 100px;

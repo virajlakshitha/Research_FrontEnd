@@ -15,7 +15,6 @@ export class PcpartServiceService {
   constructor(private http: HttpClient) { 
     this.pcpartsUrl = 'http://localhost:8080/api-techRing/pcparts/';
     this.buildForPriceUrl = 'http://localhost:8080/api-techRing/build_for_price/';
-    this.gamesUrl = 'http://localhost:8080/api-techRing/games';
   }
 
   public findMaximum() {
@@ -37,9 +36,5 @@ export class PcpartServiceService {
 
   public differentPlan(min, max) {
     return this.http.get(this.buildForPriceUrl+'different_plan/'+min+'/'+max);
-  }
-
-  public getAllGames(){
-    return this.http.get(this.gamesUrl+'/getAll');
   }
 }

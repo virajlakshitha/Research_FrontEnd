@@ -22,7 +22,7 @@ export class LoginService {
     return this.http.get<User>(this.userUrl+_id);
   }
 
-  public findByUserUsername(username: string): Observable<User> {
-    return this.http.get<User>(this.userUrl+username);
+  public findByUser(username: string, password) {
+    return this.http.get(this.userUrl+username+'/'+password);
   }
 }
