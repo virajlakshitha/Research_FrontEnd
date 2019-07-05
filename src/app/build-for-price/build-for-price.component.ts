@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Pcpart } from '../model/pcpart';
 import { PcpartServiceService } from '../service/pcpart-service.service';
-import { Options } from 'ng5-slider';
 
 @Component({
   selector: 'app-build-for-price',

@@ -10,24 +10,24 @@ import {Router} from "@angular/router";
 })
 export class RegisterCustomersComponent implements OnInit {
 
-  employeeForm: FormGroup;
+  customerForm: FormGroup;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
-    this.employeeForm = new FormGroup({
+    this.customerForm = new FormGroup({
       username: new FormControl(),
       email: new FormControl(),
       password: new FormControl(),
       re_password: new FormControl()
-    });
+    })
   }
 
   onSubmit(): void {
-    var username = this.employeeForm.value.username;
-    var email = this.employeeForm.value.email;
-    var password = this.employeeForm.value.password;
-    var re_password = this.employeeForm.value.re_password;
+    var username = this.customerForm.value.username;
+    var email = this.customerForm.value.email;
+    var password = this.customerForm.value.password;
+    var re_password = this.customerForm.value.re_password;
   }
 
 }

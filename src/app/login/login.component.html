@@ -5,25 +5,29 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12 topic text-white"><b>Your Account</b></div>
+        <div class="col-12 topic text-white">
+            <b>Your Account</b>
+        </div>
     </div>
     <div class="row" style="height: 20px;"></div>
     <div class="row" id="forms">
         <div class="col-6">
             <div class="login_form">
-                <!-- <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" method="POST" id="log"> -->
-                    <div class="row">
-                        <div class="col-12 topic1"><b>Sign In</b></div>
+                <div class="row">
+                    <div class="col-12 topic1">
+                        <b>Sign In</b>
                     </div>
+                </div>
+                <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
                     <div class="form-group">
                         <label class="font-weight-bold">USERNAME</label>
-                        <input type="text" name="username" id="username" class="form-control fields"
-                            placeholder="Username" formControlName="email" required>
+                        <input type="text" name="username" id="username" class="form-control fields" placeholder="Username" formControlName="username"
+                            required>
                     </div>
                     <div class="form-group">
                         <label class="font-weight-bold">PASSWORD</label>
-                        <input type="password" name="password" id="password" class="form-control fields"
-                            placeholder="Password" formControlName="password" required>
+                        <input type="password" name="password" id="password" class="form-control fields" placeholder="Password" formControlName="password"
+                            required>
                     </div>
                     <div class="form-group">
                         <input type="checkbox" name="signin" id="signin">
@@ -32,11 +36,13 @@
                     <div class="form-group">
                         <button type="submit" name="submit" id="submit" class="btn btn-success">Sign In</button>
                     </div>
-                    <div class="bottom_line1">
-                        <div class="text-center"><a routerLink="" routerLinkActive="active">Forgot Password ?</a></div>
-                        <a routerLink="/register/customer" routerLinkActive="active" class="reg">Don't Have an Account ?</a>
+                </form>
+                <div class="bottom_line1">
+                    <div class="text-center">
+                        <a routerLink="" routerLinkActive="active">Forgot Password ?</a>
                     </div>
-                <!-- </form> -->
+                    <a routerLink="/register/customer" routerLinkActive="active" class="reg">Don't Have an Account ?</a>
+                </div>
                 <div class="social_media text-center">
                     <img src="assets/img/facebook.png" id="fb">&nbsp;&nbsp;
                     <img src="assets/img/twitter.png" id="twitter">&nbsp;&nbsp;

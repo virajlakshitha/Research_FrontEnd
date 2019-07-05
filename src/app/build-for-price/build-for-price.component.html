@@ -12,7 +12,6 @@
       <div class="col-6 content_topic">Build PC for your Budget</div>
       <div class="col-5">
         <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
-          <!-- <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options" formControlName="ranger"></ng5-slider> -->
           <input type="range" name="points" min="0" max="25000" formControlName="min"><input type="range" name="points" min="25000" max="200000" formControlName="max">
           &nbsp;&nbsp;<button type="submit" class="btn btn-primary">Go</button>
         </form>
@@ -31,7 +30,6 @@
             </div>
             <div class="col-5">
               <div class="row">
-                <!-- <span>Intel Core i7 8100 3.6GHz 4-core/4-thread</span> -->
                 <span>{{ Motherboard.name }}</span>
               </div>
               <div class="row text-center">
@@ -190,9 +188,6 @@
       </div>
     </div>
   </div>
-
-
-
 
 </body>
 <!------------------------>

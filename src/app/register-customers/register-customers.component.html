@@ -22,30 +22,41 @@
       </div>
       <div class="row">
         <div class="col-12 register_content2">
-          <!-- <form method="POST" [FormGroup]="employeeForm" (ngSubmit)="onSubmit()" id="reg"> -->
+          <div [formGroup]="CustomerForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
-              <input type="username" name="username" id="username" class="form-control fields" placeholder="Username" formControlName="username" required>
+              <input type="username" name="username" id="username" class="form-control fields" placeholder="Username" formControlName="username"
+                required>
             </div>
             <div class="form-group">
               <input type="email" name="email" id="email" class="form-control fields" placeholder="Email" formControlName="email" required>
             </div>
             <div class="form-group">
-              <input type="password" name="password" id="password" class="form-control fields" placeholder="Password" formControlName="password" required>
+              <input type="password" name="password" id="password" class="form-control fields" placeholder="Password" formControlName="password"
+                required>
             </div>
             <div class="form-group">
-              <input type="password" name="re_password" id="re_password" class="form-control fields" placeholder="Re-Password" formControlName="re_password" required>
+              <input type="password" name="re_password" id="re_password" class="form-control fields" placeholder="Re-Password" formControlName="re_password"
+                required>
             </div>
             <div class="form-group">
               <input type="submit" name="submit1" id="submit1" class="btn btn-success" value="Register">
             </div>
-          <!-- </form> -->
+          </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-12 topic text-white"><b><a routerLink="/login" routerLinkActive="active">Already a Member ?</a></b></div>
+        <div class="col-12 topic text-white">
+          <b>
+            <a routerLink="/login" routerLinkActive="active">Already a Member ?</a>
+          </b>
+        </div>
       </div>
       <div class="row vendor_link">
-        <div class="col-12 text-white"><b><a routerLink="/register/vendor" routerLinkActive="active">Do You Own A Business? Register Here !</a></b></div>
+        <div class="col-12 text-white">
+          <b>
+            <a routerLink="/register/vendor" routerLinkActive="active">Do You Own A Business? Register Here !</a>
+          </b>
+        </div>
       </div>
       <div class="row social_media">
         <div class="col-12 text-center">

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup,FormControl } from '@angular/forms';
 import { SearchService } from '../service/search.service';
 import { error } from 'protractor';
 import {Router} from "@angular/router";
@@ -11,22 +11,32 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
 
-  employeeForm: FormGroup;
+  customerForm: FormGroup;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
-    this.employeeForm = new FormGroup({
-      email: new FormControl(),
+    this.customerForm = new FormGroup({
+      username: new FormControl(),
       password: new FormControl()
     });
   }
 
   onSubmit(): void {
-    var email = this.employeeForm.value.email;
-    var password = this.employeeForm.value.password;
-    console.log(email+"/"+password);
-    this.router.navigate(['/']);
+    var username = this.customerForm.value.username;
+    var password = this.customerForm.value.password;
+    if(this.checkLogin(username, password) == true){
+      this.router.navigate(['/']);
+    }
+  }
+
+  checkLogin(username, password): boolean {
+    if(username == "abc" && password == "123"){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 
 }
