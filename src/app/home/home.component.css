@@ -18,6 +18,7 @@
     cursor: pointer;
 }
 
+
 @media only screen and (max-width:576px){
     .content1{
         margin-top: 20px;
@@ -108,5 +109,47 @@
         margin-left: 20px;
         margin-right: 20px;
         margin-bottom: 20px;
+    }
+    .build_price{
+        height: 325px;
+        padding: 25px 25px 25px 25px;
+        color: white;
+        font-size: 30px;
+        margin-left: 25px;
+    }
+    .build_game{
+        height: 325px;
+        padding: 25px 25px 25px 25px;
+        margin: 0 0 0 25px;
+        font-size: 30px;
+    }
+    .build_price button{
+        width: 200px;
+        margin-left: 50px;
+        font-size: 18px;
+    }
+    .build_game button{
+        width: 200px;
+        margin-left: 50px;
+        font-size: 18px;
+    }
+    .pc_img{
+        height: 250px;
+        width: 300px;
+        margin-top: 15px;
+    }
+    .build_price label{
+        margin-top: 75px;
+    }
+    .build_price p{
+        margin-top: 75px;
+        font-size: 20px;
+    }
+    .build_game label{
+        margin-top: 75px;
+    }
+    .build_game p{
+        margin-top: 75px;
+        font-size: 20px;
     }
 }

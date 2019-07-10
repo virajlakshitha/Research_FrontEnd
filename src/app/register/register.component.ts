@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { error } from 'protractor';
 import {Router} from "@angular/router";
+import { UserAccessService } from '../service/user-access.service';
 
 @Component({
   selector: 'app-register',
@@ -10,12 +11,13 @@ import {Router} from "@angular/router";
 })
 export class RegisterComponent implements OnInit {
 
-  employeeForm: FormGroup;
+  vendorForm: FormGroup;
+  user: Object;
 
-  constructor(private router: Router) { }
+  constructor(private userAccessService: UserAccessService, private router: Router) { }
 
   ngOnInit() {
-    this.employeeForm = new FormGroup({
+    this.vendorForm = new FormGroup({
       username: new FormControl(),
       email: new FormControl(),
       password: new FormControl(),
@@ -31,17 +33,24 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    var username = this.employeeForm.value.username;
-    var email = this.employeeForm.value.email;
-    var password = this.employeeForm.value.password;
-    var re_password = this.employeeForm.value.re_password;
-    var street1 = this.employeeForm.value.street1;
-    var street2 = this.employeeForm.value.street2;
-    var city = this.employeeForm.value.city;
-    var province = this.employeeForm.value.province;
-    var tel = this.employeeForm.value.tel;
-    var mobile = this.employeeForm.value.mobile;
-    var card_number = this.employeeForm.value.card_number;
+    var username = this.vendorForm.value.username;
+    var email = this.vendorForm.value.email;
+    var password = this.vendorForm.value.password;
+    var re_password = this.vendorForm.value.re_password;
+    var street1 = this.vendorForm.value.street1;
+    var street2 = this.vendorForm.value.street2;
+    var city = this.vendorForm.value.city;
+    var province = this.vendorForm.value.province;
+    var tel = this.vendorForm.value.tel;
+    var mobile = this.vendorForm.value.mobile;
+
+    this.userAccessService.saveVendor(username, email, password, street1, street2, city, province, tel, mobile).subscribe(data => {
+      this.user = data;
+      console.log(data);
+    },
+      (error: any) => console.log(error),
+      () => console.log('Gets all data')
+    );
   }
 
 }

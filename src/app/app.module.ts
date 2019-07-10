@@ -22,6 +22,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactComponent } from './contact/contact.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     CompatiblePcPartListComponent,
     AboutUsComponent,
     ContactComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

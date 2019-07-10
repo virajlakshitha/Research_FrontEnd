@@ -3,6 +3,7 @@ import { FormGroup,FormControl } from '@angular/forms';
 import { SearchService } from '../service/search.service';
 import { error } from 'protractor';
 import {Router} from "@angular/router";
+import { UserAccessService } from '../service/user-access.service';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +13,9 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit {
 
   customerForm: FormGroup;
+  user: Object;
 
-  constructor(private router: Router) { }
+  constructor(private userAccessService: UserAccessService, private router: Router) { }
 
   ngOnInit() {
     this.customerForm = new FormGroup({
@@ -31,12 +33,14 @@ export class LoginComponent implements OnInit {
   }
 
   checkLogin(username, password): boolean {
-    if(username == "abc" && password == "123"){
-      return true;
-    }
-    else{
-      return false;
-    }
+    this.userAccessService.login(username, password).subscribe(data => {
+      this.user = data;
+      console.log(data);
+    },
+      (error: any) => console.log(error),
+      () => console.log('Gets all data')
+    );
+    return true;
   }
 
 }

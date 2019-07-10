@@ -17,6 +17,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactComponent } from "./contact/contact.component";
 import { UserProfileComponent } from "./user-profile/user-profile.component";
 import { CompatiblePcPartListComponent } from './build-for-requirements/compatible-pc-part-list/compatible-pc-part-list.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -77,7 +78,11 @@ const routes: Routes = [
   },
   {
     path: '**', 
-    component: HomeComponent
+    component: NotFoundComponent
+  },
+  {
+    path: '404', 
+    component: NotFoundComponent
   }
 ];
 

@@ -28,6 +28,7 @@ export class MenuBarComponent implements OnInit {
     var category = this.employeeForm.value.category;
     var name = this.employeeForm.value.name;
     this.router.navigate(['/browse/pcparts/'+category+'/'+name]);
+    console.log(category);
   }
 
 }

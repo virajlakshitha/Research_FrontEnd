@@ -12,7 +12,7 @@
     <div class="col-12">
       <button class="text-white btn_h"><b>Register</b></button>
       <div class="login_form">
-        <!-- <form method="POST" [FormGroup]="employeeForm" (ngSubmit)="onSubmit()" id="reg"> -->
+        <form [formGroup]="vendorForm" (ngSubmit)="onSubmit()">
           <div class="row">
             <div class="col-6">
               <div class="form-group">
@@ -73,7 +73,7 @@
               </div>
             </div>
           </div>
-        <!-- </form> -->
+        </form>
       </div>
     </div>
   </div>

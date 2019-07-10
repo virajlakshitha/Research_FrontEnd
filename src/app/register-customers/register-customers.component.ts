@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { error } from 'protractor';
-import {Router} from "@angular/router";
+import { Router } from "@angular/router";
+import { UserAccessService } from '../service/user-access.service';
 
 @Component({
   selector: 'app-register-customers',
@@ -11,8 +12,9 @@ import {Router} from "@angular/router";
 export class RegisterCustomersComponent implements OnInit {
 
   customerForm: FormGroup;
+  user: Object;
 
-  constructor(private router: Router) { }
+  constructor(private userAccessService: UserAccessService, private router: Router) { }
 
   ngOnInit() {
     this.customerForm = new FormGroup({
@@ -20,7 +22,7 @@ export class RegisterCustomersComponent implements OnInit {
       email: new FormControl(),
       password: new FormControl(),
       re_password: new FormControl()
-    })
+    });
   }
 
   onSubmit(): void {
@@ -28,6 +30,14 @@ export class RegisterCustomersComponent implements OnInit {
     var email = this.customerForm.value.email;
     var password = this.customerForm.value.password;
     var re_password = this.customerForm.value.re_password;
+
+    this.userAccessService.saveCustomer(username, email, password).subscribe(data => {
+      this.user = data;
+      console.log(data);
+    },
+      (error: any) => console.log(error),
+      () => console.log('Gets all data')
+    );
   }
 
 }
