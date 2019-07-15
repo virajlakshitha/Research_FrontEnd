@@ -8,23 +8,25 @@
 
 <body>
   <div class="container-fluid content">
-    
+
   </div>
 </body>
 
-<!-- <body>
+<body>
   <div class="container-fluid content">
-    <div class="row"> -->
+    <div class="row">
       <!--Left Bar-->
-      <!-- <div class="col-3">
+      <div class="col-3">
         <div class="row">
           <div class="left_bar text-white">
-            <div class="left_topic1"><b>CATEGORIES</b></div>
-            <div class="left_bar_names" class="left_nav">RAM</div>
-            <div class="left_bar_names" class="left_nav">VGA</div>
-            <div class="left_bar_names" class="left_nav">CPU</div>
-            <div class="left_bar_names" class="left_nav">MOTHERBOARD</div>
-            <div class="left_bar_names" class="left_nav">HARD DISK</div>
+            <div class="left_topic1">
+              <b>CATEGORIES</b>
+            </div>
+            <div class="left_bar_names left_nav" routerLink="/browse/pcparts/ram/all" routerLinkActive="active">RAM</div>
+            <div class="left_bar_names left_nav" routerLink="/browse/pcparts/vga/all" routerLinkActive="active">VGA</div>
+            <div class="left_bar_names left_nav" routerLink="/browse/pcparts/cpu/all" routerLinkActive="active">CPU</div>
+            <div class="left_bar_names left_nav" routerLink="/browse/pcparts/motherboard/all" routerLinkActive="active">MOTHERBOARD</div>
+            <div class="left_bar_names left_nav" routerLink="/browse/pcparts/hard_disk/all" routerLinkActive="active">HARD DISK</div>
             <div class="left_bar_last">
               <div class="text-center">Sort By</div>
               <div class="text-center">
@@ -38,36 +40,39 @@
             </div>
           </div>
         </div>
-      </div> -->
+      </div>
       <!-------------->
       <!--Right Side-->
-      <!-- <div class="col-9" id="right_side">
-        <div id="right_topic">Product Name</div>
+      <ng-template [ngIf]="he" [ngIfElse]="elseBlock">
+        <div class="col-9 he" id="right_side">
+          <div id="right_topic">Searched Product {{ name }}</div>
 
-        <div *ngFor="let p of pcParts; let i=index;">
-          <div class="item_list">
-            <div class="row">
-              <div class="col-2">
-                <img src="{{ p.image }}" height="75px" width="75px">
-              </div>
-              <div class="col-10 text-white">
-                <div class="row" id="pc_part_name"><span (click)="redirect(p.id)">{{ p.name }}</span></div>
-                <div class="row">{{ p.speed }}</div>
-                <div class="row">Rs. {{ p.price }} /=</div>
-                <div class="row">
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star"></span>
-                  <span class="fa fa-star"></span>
+          <div *ngFor="let p of pcParts; let i=index;">
+            <div class="item_list">
+              <div class="row">
+                <div class="col-2">
+                  <img src="{{ p.image }}" height="75px" width="75px">
+                </div>
+                <div class="col-10 text-white">
+                  <div class="row" id="pc_part_name">
+                    <span (click)="redirect(p.id)">{{ p.name }}</span>
+                  </div>
+                  <div class="row">{{ p.speed }}</div>
+                  <div class="row">Rs. {{ p.price }} /=</div>
+                  <div class="row">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div> -->
 
-        <!--Pagination-->
-        <!-- <div class="row">
+          <!--Pagination-->
+          <!-- <div class="row">
           <div class="col-12">
             <div id="pagination">
               <span class="pages">1</span>
@@ -77,12 +82,20 @@
             </div>
           </div>
         </div> -->
-        <!-------------->
-      <!-- </div> -->
+          <!-------------->
+        </div>
+      </ng-template>
+
+      <ng-template #elseBlock>
+        <div class="col-9 he" id="right_side">
+          <div id="right_topic">Searched Product {{ name }}</div>
+          <div class="no_data text-center">No Data Available</div>
+        </div>
+      </ng-template>
       <!-------------->
-    <!-- </div>
+    </div>
   </div>
-</body> -->
+</body>
 <!------------------------------->
 
 <!--Footer-->

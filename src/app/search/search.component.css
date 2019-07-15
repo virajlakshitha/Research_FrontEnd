@@ -12,14 +12,11 @@ a{
 .checked{
     color: orange;
 }
-<<<<<<< HEAD
-/* @media only screen and (max-width:576px){
-=======
 #pc_part_name{
     cursor: pointer;
 }
+
 @media only screen and (max-width:576px){
->>>>>>> 34e7a82877746047e923129b8771af86c9735adf
 
     .content{
         margin-top: 75px;
@@ -75,6 +72,8 @@ a{
     .left_nav:hover {
         background: steelblue;
         cursor: pointer;
+        width: 115%;
+        margin-left: -20px;
     }
     #right_side{
         padding-top: 10px;
@@ -112,7 +111,10 @@ a{
         padding: 10px 0 20px 0;
         text-align: center;
     }
-} */
+    .no_data{
+        padding: 25px;
+    }
+}
 
 @media only screen and (max-width:576px){
 

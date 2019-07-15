@@ -14,17 +14,17 @@ export class SearchComponent implements OnInit {
 
   pcpart: Object;
   pcParts = [];
+  name;
+  category;
 
   constructor(private searchService: SearchService, private route : ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    var category;
-    var name;
     this.route.params.subscribe(params => {
-      category = 'ram';
-      name = params["name"];
+      this.category = params["category"];
+      this.name = params["name"];
     });
-    this.getAllPCPartsByCategory(category, name);
+    this.getAllPCPartsByCategory(this.category, this.name);
   }
 
   redirect(_id): void {
