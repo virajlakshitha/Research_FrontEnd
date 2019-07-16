@@ -9,6 +9,7 @@ import { GameService } from '../service/game.service';
 })
 export class BuildForRequirementsComponent implements OnInit {
 
+  search_game = '';
   games: Object;
   game = [];
 
@@ -18,8 +19,11 @@ export class BuildForRequirementsComponent implements OnInit {
     this.getGames();
   }
 
-  getGames() {
+  searchGame() {
+    console.log('game name' + this.search_game);
+  } 
 
+  getGames() {
     this.gameService.getAllGames().subscribe(
       data => {
           this.games = data;
@@ -29,4 +33,12 @@ export class BuildForRequirementsComponent implements OnInit {
       }
     );
   }
+
+  scrapeGame() {
+    this.gameService.scarpeGame(this.search_game).subscribe(
+      data => { 
+      }
+    )
+  }
+
 }
