@@ -21,17 +21,15 @@ export class MoreDetailsComponent implements OnInit {
   constructor(private searchService: SearchService, private route : ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    // this.getPartDetails('RAM','15151A0154');
-    this.getComments('Kingston');
-    this.getVendorPrices('Kingston');
-
     var category;
     var id;
     this.route.params.subscribe(params => {
-      category = 'ram';
+      category = params["category"];
       id = params["_id"];
     });
     this.getPartDetails(category,id);
+    this.getComments('Kingston');
+    this.getVendorPrices('Kingston');
   }
 
   getPartDetails(category: string, id: string) {

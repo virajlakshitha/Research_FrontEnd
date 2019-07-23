@@ -25,10 +25,13 @@ export class SearchComponent implements OnInit {
       this.name = params["name"];
     });
     this.getAllPCPartsByCategory(this.category, this.name);
+    if(this.category == "ram"){
+      
+    }
   }
 
   redirect(_id): void {
-    this.router.navigate(['/product_details/', _id]);
+    this.router.navigate(['/product_details/'+this.category+'/'+_id]);
   }
 
   getAllPCPartsByCategory(category, name) {
