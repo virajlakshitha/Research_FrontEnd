@@ -10,11 +10,15 @@ export class GameService {
   private gameurl: string;
 
   constructor(private http: HttpClient) { 
-    this.gameurl = 'http://localhost:8080/api-techRing/games';  
+    this.gameurl = 'http://localhost:8080/api-techRing/games/';  
   }
 
   public getAllGames() {
-    return this.http.get(this.gameurl+'/getAll');
+    return this.http.get(this.gameurl+'getAll');
   }
+
+  public scarpeGame(game:string) {
+    return this.http.get(this.gameurl+ game +'/getgame');
+  } 
 
 }
