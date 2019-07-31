@@ -42,37 +42,64 @@
         </div>
       </div>
       <!-------------->
-      <!--Right Side-->
-      <ng-template [ngIf]="he" [ngIfElse]="elseBlock">
-        <div class="col-9 he" id="right_side">
-          <div id="right_topic">Searched Product {{ name }}</div>
-
-          <div *ngFor="let p of pcParts; let i=index;">
-            <div class="item_list">
-              <div class="row">
-                <div class="col-2">
-                  <img src="{{ p.image }}" height="75px" width="75px">
-                </div>
-                <div class="col-10 text-white">
-                  <div class="row" id="pc_part_name">
-                    <span (click)="redirect(p.id)">{{ p.name }}</span>
-                  </div>
-                  <div class="row">{{ p.speed }}</div>
-                  <div class="row">Rs. {{ p.price }} /=</div>
-                  <div class="row">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
+       <!----------------->
+      <!--Right Side Item List-->
+      <div class="col-9 right_side text-white">
+        <div class="row item_line">
+          <div class="item_list">
+            <img src="http://www.pngmart.com/files/7/RAM-Transparent-Images-PNG.png" class="imgs">
+            <div class="text-center">Kingston RAM 8GB</div>
+            <button class="btn btn-primary btn_lap" routerLink="/product_details" routerLinkActive="active">More Details</button>
           </div>
+          <div class="item_list">
+            <img src="http://www.pngmart.com/files/7/Motherboard-Background-PNG.png" class="imgs">
+            <div class="text-center">Gigabyte G45 Motherboard</div>
+            <button class="btn btn-primary btn_lap" routerLink="/product_details" routerLinkActive="active">More Details</button>
+          </div>
+          <div class="item_list">
+            <img src="http://www.pngmart.com/files/7/Graphics-Card-Transparent-Background.png" class="imgs">
+            <div class="text-center">Nvidia 1050 VGA</div>
+            <button class="btn btn-primary btn_lap" routerLink="/product_details" routerLinkActive="active">More Details</button>
+          </div>
+        </div>
+        <div class="row item_line">
+          <div class="item_list">
+            <img src="http://www.pngmart.com/files/7/Graphics-Card-PNG-Transparent-HD-Photo.png" class="imgs">
+            <div class="text-center">ASUS ROG 1080ti VGA</div>
+            <button class="btn btn-primary btn_lap" routerLink="/product_details" routerLinkActive="active">More Details</button>
+          </div>
+          <div class="item_list">
+            <img src="http://www.pngmart.com/files/7/Motherboard-PNG-Image.png" class="imgs">
+            <div class="text-center">ASUS z270f Motherboard</div>
+            <button class="btn btn-primary btn_lap" routerLink="/product_details" routerLinkActive="active">More Details</button>
+          </div>
+          <div class="item_list">
+            <img src="http://www.pngmart.com/files/7/SSD-PNG-Transparent-Picture.png" class="imgs">
+            <div class="text-center">Samsung SSD 2TB</div>
+            <button class="btn btn-primary btn_lap" routerLink="/product_details" routerLinkActive="active">More Details</button>
+          </div>
+        </div>
+        <div class="row item_line">
+          <div class="item_list">
+            <img src="http://www.pngmart.com/files/7/SSD-PNG-Background-Image.png" class="imgs">
+            <div class="text-center">Sanddisk SSD 1TB</div>
+            <button class="btn btn-primary btn_lap" routerLink="/product_details" routerLinkActive="active">More Details</button>
+          </div>
+          <div class="item_list">
+            <img src="http://www.pngmart.com/files/4/CPU-Processor-PNG-Image.png" class="imgs"> 
+            <div class="text-center">Core i3 interl 3300</div>
+            <button class="btn btn-primary btn_lap" routerLink="/product_details" routerLinkActive="active">More Details</button>
 
-          <!--Pagination-->
-          <!-- <div class="row">
+          </div>
+          <div class="item_list">
+            <img src="http://www.pngmart.com/files/4/CPU-Processor-PNG-File.png" class="imgs">
+            <div class="text-center">Intel Xeon processor</div> 
+            <button class="btn btn-primary btn_lap" routerLink="/product_details" routerLinkActive="active">More Details</button>
+          </div>
+           
+        </div>
+        <!--Pagination-->
+        <div class="row item_line">
           <div class="col-12">
             <div id="pagination">
               <span class="pages">1</span>
@@ -81,10 +108,9 @@
               <span class="pages">4</span>
             </div>
           </div>
-        </div> -->
-          <!-------------->
         </div>
-      </ng-template>
+        <!-------------->
+       
 
       <ng-template #elseBlock>
         <div class="col-9 he" id="right_side">
@@ -95,7 +121,7 @@
       <!-------------->
     </div>
   </div>
-</body>
+ 
 <!------------------------------->
 
 <!--Footer-->

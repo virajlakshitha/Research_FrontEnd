@@ -53,7 +53,7 @@ const routes: Routes = [
     component: BuildForRequirementsComponent
   },
   {
-    path: "product_details/:_id",
+    path: "product_details",
     component: MoreDetailsComponent
   },
   {
