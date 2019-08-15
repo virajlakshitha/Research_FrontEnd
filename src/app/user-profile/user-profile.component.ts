@@ -14,6 +14,7 @@ export class UserProfileComponent implements OnInit {
   pcpart: Pcpart[];
   user: User[];
   user_object: User;
+  type = 'vendor';
 
   constructor(private userProfileService: UserProfileService) { }
 

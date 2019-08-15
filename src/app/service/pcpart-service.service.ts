@@ -30,8 +30,8 @@ export class PcpartServiceService {
     return this.http.get(this.buildForPriceUrl+min+'/'+max);
   }
 
-  public changePCPart(category, id, min, max) {
-    return this.http.get(this.buildForPriceUrl+'change/'+category+'/'+id+'/'+min+'/'+max);
+  public changePCPart(category, min, max) {
+    return this.http.get(this.buildForPriceUrl+'change/'+category+'/'+min+'/'+max);
   }
 
   public differentPlan(min, max) {

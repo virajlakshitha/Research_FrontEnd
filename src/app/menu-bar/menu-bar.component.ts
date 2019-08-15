@@ -14,6 +14,7 @@ export class MenuBarComponent implements OnInit {
 
   pcpart: Pcpart[];
   employeeForm: FormGroup;
+  logged = 'false';
 
   constructor(private searchService: SearchService, private router: Router) { }
 

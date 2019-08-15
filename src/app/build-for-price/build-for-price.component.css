@@ -53,4 +53,7 @@ a{
     .component{
         margin-top: 40px;
     }
+    form button{
+        margin-top: -10px;
+    }
 }

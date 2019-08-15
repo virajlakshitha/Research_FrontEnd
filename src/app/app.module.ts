@@ -23,6 +23,7 @@ import { ContactComponent } from './contact/contact.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AboutUsComponent,
     ContactComponent,
     UserProfileComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

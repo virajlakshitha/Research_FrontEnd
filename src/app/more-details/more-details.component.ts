@@ -4,8 +4,8 @@ import { Comments } from '../model/comments';
 import { VendorPrice } from '../model/vendor-price';
 import { SearchService } from '../service/search.service';
 import { error } from 'protractor';
-import {Router} from "@angular/router";
-import {ActivatedRoute} from '@angular/router';
+import { Router } from "@angular/router";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-more-details',
@@ -16,7 +16,8 @@ export class MoreDetailsComponent implements OnInit {
 
   pcpart: Object;
   comments1: Object;
-  vendorPrice: Object;
+  vendorPrice = [];
+  vendorDetails: Object;
 
   constructor(private searchService: SearchService, private route : ActivatedRoute, private router: Router) { }
 
@@ -58,7 +59,7 @@ export class MoreDetailsComponent implements OnInit {
 
   getVendorPrices(name: string) {
     this.searchService.getVendorPrices(name).subscribe(data => {
-      this.vendorPrice = data;
+      this.vendorPrice = data["responseObject"];
     },
       (error: any) => console.log(error),
       () => console.log('Gets all data')
@@ -67,4 +68,12 @@ export class MoreDetailsComponent implements OnInit {
     this.vendorPrice = [{ name: "RedLine", price: "15000.00" },
                       { name: "Nanotech", price: "14000.00" }];
   }
+
+  getVendorDetails(pro_name: string, category: string) {
+    this.searchService.getVendorDetailsForProducts(pro_name, category).subscribe(data => {
+      this.vendorDetails = data;
+    },
+    (error: any) => console.log(error));
+  }
+
 }

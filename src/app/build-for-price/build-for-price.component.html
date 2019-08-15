@@ -12,164 +12,168 @@
       <div class="col-6 content_topic">Build PC for your Budget</div>
       <div class="col-5">
         <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
-          <input type="range" name="points" min="0" max="25000" formControlName="min"><input type="range" name="points" min="25000" max="200000" formControlName="max">
-          &nbsp;&nbsp;<button type="submit" class="btn btn-primary">Go</button>
+          <input type="range" name="points" min="0" max="25000" formControlName="min" class="content_topic">
+          <input type="range" name="points" min="25000" max="200000" formControlName="max" class="content_topic"> &nbsp;&nbsp;
+          <button type="submit" class="btn btn-primary">Go</button>
         </form>
       </div>
     </div>
-    <div class="row item_list">
-      <div class="col-2 text-center">
-        <div class="component">MOTHERBOARD</div>
+    <ng-template [ngIf]="loading=='false'" [ngIfElse]="elseBlock">
+      <div class="row item_list">
+        <div class="col-2 text-center">
+          <div class="component">MOTHERBOARD</div>
+        </div>
+
+        <div class="col-10 content text-white" ng-repeat="x in pcpart">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-2">
+                <img src="https://cdn.takas.lk/media/catalog/product/cache/1/small_image/250x/9df78eab33525d08d6e5fb8d27136e95/h/1/h110m-c.png"
+                  height="80px" width="80px">
+              </div>
+              <div class="col-5">
+                <div class="row">
+                  <span>{{ Motherboard.name }}</span>
+                </div>
+                <div class="row text-center">
+                  <button class="btn btn-info" (OnClick)="changePCPart('motherboard')">Replace</button>
+                </div>
+              </div>
+              <div class="col-3">Rs. {{ Motherboard.price }} /=</div>
+              <div class="col-2">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      <div class="col-10 content text-white" ng-repeat="x in pcpart">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-2">
-              <img src="https://cdn.takas.lk/media/catalog/product/cache/1/small_image/250x/9df78eab33525d08d6e5fb8d27136e95/h/1/h110m-c.png" height="80px" width="80px">
-            </div>
-            <div class="col-5">
-              <div class="row">
-                <span>{{ Motherboard.name }}</span>
+      <div class="row item_list">
+        <div class="col-2 text-center">
+          <div class="component">CPU</div>
+        </div>
+        <div class="col-10 content text-white">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-2">
+                <img src="https://cdn.takas.lk/media/catalog/product/cache/1/small_image/250x/9df78eab33525d08d6e5fb8d27136e95/b/l/black_ops.png"
+                  height="80px" width="80px">
               </div>
-              <div class="row text-center">
-                <button class="btn btn-info">Replace</button>
+              <div class="col-5">
+                <div class="row">
+                  <span>{{ Cpu.name }}</span>
+                </div>
+                <div class="row text-center">
+                  <button class="btn btn-info">Replace</button>
+                </div>
               </div>
-            </div>
-            <div class="col-3">Rs. {{ Motherboard.price }} /=</div>
-            <div class="col-2">
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
+              <div class="col-3">Rs. {{ Cpu.price }} /=</div>
+              <div class="col-2">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-    </div>
-
-    <div class="row item_list">
-      <div class="col-2 text-center">
-        <div class="component">CPU</div>
-      </div>
-      <div class="col-10 content text-white">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-2">
-              <img src="https://cdn.takas.lk/media/catalog/product/cache/1/small_image/250x/9df78eab33525d08d6e5fb8d27136e95/b/l/black_ops.png" height="80px" width="80px">
-            </div>
-            <div class="col-5">
-              <div class="row">
-                <span>{{ Cpu.name }}</span>
+      <div class="row item_list">
+        <div class="col-2 text-center">
+          <div class="component">RAM</div>
+        </div>
+        <div class="col-10 content text-white">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-2">
+                <img src="https://i.ebayimg.com/thumbs/images/g/QlwAAOSwu3ZcLFeI/s-l225.webp" height="80px" width="80px">
               </div>
-              <div class="row text-center">
-                <button class="btn btn-info">Replace</button>
+              <div class="col-5">
+                <div class="row">
+                  <span>{{ Ram.name }}</span>
+                </div>
+                <div class="row text-center">
+                  <button class="btn btn-info">Replace</button>
+                </div>
               </div>
-            </div>
-            <div class="col-3">Rs. {{ Cpu.price }} /=</div>
-            <div class="col-2">
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
+              <div class="col-3">Rs. {{ Ram.price }} /=</div>
+              <div class="col-2">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="row item_list">
-      <div class="col-2 text-center">
-        <div class="component">RAM</div>
-      </div>
-      <div class="col-10 content text-white">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-2">
-              <img src="https://i.ebayimg.com/thumbs/images/g/QlwAAOSwu3ZcLFeI/s-l225.webp" height="80px" width="80px">
-            </div>
-            <div class="col-5">
-              <div class="row">
-                <span>{{ Ram.name }}</span>
+      <div class="row item_list">
+        <div class="col-2 text-center">
+          <div class="component">VGA</div>
+        </div>
+        <div class="col-10 content text-white">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-2">
+                <img src="https://i.ebayimg.com/thumbs/images/g/aDkAAOSw0npc2lOr/s-l225.webp" height="80px" width="80px">
               </div>
-              <div class="row text-center">
-                <button class="btn btn-info">Replace</button>
+              <div class="col-5">
+                <div class="row">
+                  <span>{{ Vga.name }}</span>
+                </div>
+                <div class="row text-center">
+                  <button class="btn btn-info">Replace</button>
+                </div>
               </div>
-            </div>
-            <div class="col-3">Rs. {{ Ram.price }} /=</div>
-            <div class="col-2">
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
+              <div class="col-3">Rs. {{ Vga.price }} /=</div>
+              <div class="col-2">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="row item_list">
-      <div class="col-2 text-center">
-        <div class="component">VGA</div>
-      </div>
-      <div class="col-10 content text-white">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-2">
-              <img src="https://i.ebayimg.com/thumbs/images/g/aDkAAOSw0npc2lOr/s-l225.webp" height="80px" width="80px">
-            </div>
-            <div class="col-5">
-              <div class="row">
-                <span>{{ Vga.name }}</span>
+      <div class="row item_list">
+        <div class="col-2 text-center">
+          <div class="component">Hard Disk</div>
+        </div>
+        <div class="col-10 content text-white">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-2">
+                <img src="https://i.ebayimg.com/thumbs/images/m/mwWN7MFmqUgVz4K6HxVJAkA/s-l225.webp" height="80px" width="80px">
               </div>
-              <div class="row text-center">
-                <button class="btn btn-info">Replace</button>
+              <div class="col-5">
+                <div class="row">
+                  <span>{{ Hard_Disk.name }}</span>
+                </div>
+                <div class="row text-center">
+                  <button class="btn btn-info">Replace</button>
+                </div>
               </div>
-            </div>
-            <div class="col-3">Rs. {{ Vga.price }} /=</div>
-            <div class="col-2">
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
+              <div class="col-3">Rs. {{ Hard_Disk.name }} /=</div>
+              <div class="col-2">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="row item_list">
-      <div class="col-2 text-center">
-        <div class="component">Hard Disk</div>
-      </div>
-      <div class="col-10 content text-white">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-2">
-              <img src="https://i.ebayimg.com/thumbs/images/m/mwWN7MFmqUgVz4K6HxVJAkA/s-l225.webp" height="80px" width="80px">
-            </div>
-            <div class="col-5">
-              <div class="row">
-                <span>{{ Hard_Disk.name }}</span>
-              </div>
-              <div class="row text-center">
-                <button class="btn btn-info">Replace</button>
-              </div>
-            </div>
-            <div class="col-3">Rs. {{ Hard_Disk.name }} /=</div>
-            <div class="col-2">
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <div class="row">
       <div class="col-6"></div>
@@ -180,6 +184,10 @@
         <span>Rs. 88,000.00 /=</span>
       </div>
     </div>
+    </ng-template>
+    <ng-template #elseBlock>
+      <app-loading></app-loading>
+    </ng-template>
 
     <div class="row">
       <div class="col-10"></div>

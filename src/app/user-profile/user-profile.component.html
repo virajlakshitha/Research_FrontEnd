@@ -11,8 +11,10 @@
   <div class="row content1">
     <div class="col-3">
       <img src="" class="pro_pic">
-      <div class="text-center"><button class="btn btn-primary" id="change_pro_pic" name="change_pro_pic">Change Profile
-          Picture</button></div>
+      <div class="text-center">
+        <button class="btn btn-primary" id="change_pro_pic" name="change_pro_pic">Change Profile Picture
+        </button>
+      </div>
     </div>
     <div class="col-1"></div>
     <div class="col-8">
@@ -43,55 +45,63 @@
         </div>
         <div class="row">
           <div class="col-8">
-            <div><button name="edit_pro" id="edit_pro" class="btn btn-success">Edit Profile</button></div>
-            <div><button name="upload_csv" id="upload_csv" class="btn btn-info">Upload Product CSV</button></div>
+            <div>
+              <button name="edit_pro" id="edit_pro" class="btn btn-success">Edit Profile</button>
+            </div>
+            <ng-template [ngIf]="type=='vendor'">
+              <div>
+                <button name="upload_csv" id="upload_csv" class="btn btn-info">Upload Product CSV</button>
+              </div>
+            </ng-template>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="row product_details">
-    <div class="col-12">
-      <div class="row">
-        <div class="col-12 topic1">
-          <h3 class="text-center text-white">Product Details</h3>
+  <ng-template [ngIf]="type=='vendor'">
+    <div class="row product_details">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-12 topic1">
+            <h3 class="text-center text-white">Product Details</h3>
+          </div>
         </div>
-      </div>
-      <div class="row pro_list">
-        <div class="col-2">
-          <img src="" class="pro_img">
+        <div class="row pro_list">
+          <div class="col-2">
+            <img src="" class="pro_img">
+          </div>
+          <div class="col-1"></div>
+          <div class="col-9">
+            <div>Product Name</div>
+            <div>Price</div>
+            <div>URL</div>
+          </div>
         </div>
-        <div class="col-1"></div>
-        <div class="col-9">
-          <div>Product Name</div>
-          <div>Price</div>
-          <div>URL</div>
+        <div class="row pro_list">
+          <div class="col-2">
+            <img src="" class="pro_img">
+          </div>
+          <div class="col-1"></div>
+          <div class="col-9">
+            <div>Product Name</div>
+            <div>Price</div>
+            <div>URL</div>
+          </div>
         </div>
-      </div>
-      <div class="row pro_list">
-        <div class="col-2">
-          <img src="" class="pro_img">
-        </div>
-        <div class="col-1"></div>
-        <div class="col-9">
-          <div>Product Name</div>
-          <div>Price</div>
-          <div>URL</div>
-        </div>
-      </div>
-      <div class="row pro_list">
-        <div class="col-2">
-          <img src="" class="pro_img">
-        </div>
-        <div class="col-1"></div>
-        <div class="col-9">
-          <div>Product Name</div>
-          <div>Price</div>
-          <div>URL</div>
+        <div class="row pro_list">
+          <div class="col-2">
+            <img src="" class="pro_img">
+          </div>
+          <div class="col-1"></div>
+          <div class="col-9">
+            <div>Product Name</div>
+            <div>Price</div>
+            <div>URL</div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </ng-template>
 </div>
 
 <!--Footer-->
