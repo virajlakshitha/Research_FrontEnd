@@ -23,6 +23,7 @@ import { ContactComponent } from './contact/contact.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { NotFoundComponent } from './not-found/not-found.component';
+import {LaptopStore} from './laptop-products/laptop.store';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     ReactiveFormsModule,
     NgxPaginationModule
   ],
-  providers: [],
+  providers: [LaptopStore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
