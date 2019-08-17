@@ -22,11 +22,12 @@
             <div class="left_topic1">
               <b>CATEGORIES</b>
             </div>
-            <div class="left_bar_names left_nav" routerLink="/browse/pcparts/ram/all" routerLinkActive="active">RAM</div>
-            <div class="left_bar_names left_nav" routerLink="/browse/pcparts/vga/all" routerLinkActive="active">VGA</div>
-            <div class="left_bar_names left_nav" routerLink="/browse/pcparts/cpu/all" routerLinkActive="active">CPU</div>
-            <div class="left_bar_names left_nav" routerLink="/browse/pcparts/motherboard/all" routerLinkActive="active">MOTHERBOARD</div>
-            <div class="left_bar_names left_nav" routerLink="/browse/pcparts/hard_disk/all" routerLinkActive="active">HARD DISK</div>
+            <!-- <ng-template [ngIf]="" -->
+            <div class="left_bar_names left_nav a" routerLink="/browse/pcparts/ram/all" routerLinkActive="active">RAM</div>
+            <div class="left_bar_names left_nav a" routerLink="/browse/pcparts/vga/all" routerLinkActive="active">VGA</div>
+            <div class="left_bar_names left_nav a" routerLink="/browse/pcparts/cpu/all" routerLinkActive="active">CPU</div>
+            <div class="left_bar_names left_nav a" routerLink="/browse/pcparts/motherboard/all" routerLinkActive="active">MOTHERBOARD</div>
+            <div class="left_bar_names left_nav a" routerLink="/browse/pcparts/hard_disk/all" routerLinkActive="active">HARD DISK</div>
             <div class="left_bar_last">
               <div class="text-center">Sort By</div>
               <div class="text-center">
@@ -43,7 +44,7 @@
       </div>
       <!-------------->
       <!--Right Side-->
-      <ng-template [ngIf]="he" [ngIfElse]="elseBlock">
+      <ng-template [ngIf]="pcParts" [ngIfElse]="elseBlock">
         <div class="col-9 he" id="right_side">
           <div id="right_topic">Searched Product {{ name }}</div>
 
