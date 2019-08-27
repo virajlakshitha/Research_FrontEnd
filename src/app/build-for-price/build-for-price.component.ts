@@ -32,6 +32,8 @@ export class BuildForPriceComponent implements OnInit {
 
   min;
   max;
+  min_val;
+  max_val;
   ram_loop = 0;
   vga_loop = 0;
   cpu_loop = 0;
@@ -58,8 +60,17 @@ export class BuildForPriceComponent implements OnInit {
       hard_disk_min: new FormControl(),
       hard_disk_max: new FormControl()
     });
-    this.getMinMaxBudget();
-    this.budgetPlan(this.min, this.max);
+
+    this.pcpartServiceService.getMaxMinBudget().subscribe(data => {
+      if(data["responseCode"] == "111"){
+        this.min_val = data["responseObject"]["min"];
+        this.max_val = data["responseObject"]["max"];
+        this.budgetPlan(this.min_val, this.max_val);
+      }
+    },
+    (error: any) => console.log(error),
+    () => console.log('Gets all Data'));
+    console.log(this.min_val);
   }
 
   onSubmit(): void {
@@ -162,14 +173,25 @@ export class BuildForPriceComponent implements OnInit {
     this.router.navigate(['/product_details/' + category + '/' + _id]);
   }
 
-  getMinMaxBudget() {
+  getMinBudget() {
     this.pcpartServiceService.getMaxMinBudget().subscribe(data => {
       if(data["responseCode"] == "111"){
-        this.min = data["responseObject"]["min"];
-        this.max = data["responseObject"]["max"];
+        return data["responseObject"]["min"];
       }
     },
     (error: any) => console.log(error),
     () => console.log('Gets all Data'));
+    
+  }
+
+  getMaxBudget() {
+    this.pcpartServiceService.getMaxMinBudget().subscribe(data => {
+      if(data["responseCode"] == "111"){
+        return data["responseObject"]["max"];
+      }
+    },
+    (error: any) => console.log(error),
+    () => console.log('Gets all Data'));
+    
   }
 }

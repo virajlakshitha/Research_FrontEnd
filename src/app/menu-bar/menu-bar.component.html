@@ -1,18 +1,19 @@
+
 <header>
     <nav class="navbar fixed-top navbar-expand">
         <a class="navbar-brand" routerLink="" routerLinkActive="active">
             <img src="assets/img/logo.png">
         </a>
-        <div class="collapse navbar-collapse" id="navbar_content">
+        <div class="collapse navbar-collapse" id="navbar_content" data-spy="scroll">
             <ul class="navbar-nav text-center ml-auto mr-lg-6">
                 <li>
                     <a class="nav-link" routerLink="" routerLinkActive="active">Home</a>
                 </li>
                 <li>
-                    <a routerLink="/about_us" routerLinkActive="active" class="nav-link">About Us</a>
+                    <a href="#about" routerLinkActive="active" class="nav-link scroll">About Us</a>
                 </li>
                 <li>
-                    <a routerLink="/contact" routerLinkActive="active" class="nav-link">Contact Us</a>
+                    <a href="#contact" routerLinkActive="active" class="nav-link scroll">Contact Us</a>
                 </li>
                 <ng-template [ngIf]="logged=='false'" [ngIfElse]="elseBlock">
                     <li id="login_item">
@@ -90,3 +91,4 @@
     </div>
 
 </header>
+

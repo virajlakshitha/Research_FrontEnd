@@ -1,6 +1,8 @@
 import { Component, OnInit }  from '@angular/core';
 import {LaptopBrandService}   from '../service/laptop-brand.service';
 import {LaptopService}        from '../service/laptop.service';
+import {LaptopStore}          from './laptop.store';
+import {LaptopCompareService} from '../service/laptop-compare.service';
 
 
 @Component({
@@ -16,12 +18,25 @@ export class LaptopProductsComponent implements OnInit {
   private lapBrandList: [];
   private laptopList: [];
   private defaulsLaptop = "Dell";
+  private boxDisplay: boolean = false;
+  private enableCompare = false;
   
-  constructor(private laptopBrandService: LaptopBrandService, private laptopService:LaptopService) {}
+
+  /**
+   * 
+   * 
+   */
+  private comLap1 = new Array();
+
+
+  list:LaptopStore;
+  
+  constructor(private laptopBrandService: LaptopBrandService, private laptopService:LaptopService, private laptopCompareService:LaptopCompareService) {}
 
   ngOnInit() {
     this.getLapBrad();
     this.myFunc(this.defaulsLaptop);
+    
   }
 
   /* Get All Laptop Brands From TechRing API */
@@ -59,5 +74,25 @@ export class LaptopProductsComponent implements OnInit {
           console.log(this.oneLaptop);
       }
     )
+  }
+
+  /**
+   * 
+   * Add Laptops for comparing list
+   */
+  addToCompare(laptop1){
+
+    this.boxDisplay = true;
+
+    this.comLap1.push(laptop1);
+
+    if(this.comLap1.length == 2){
+      this.enableCompare = true;
+    }
+  }
+
+  compare(x){
+    console.log(x);
+    this.laptopCompareService.getAllLaptopBrandWise(x);
   }
 }

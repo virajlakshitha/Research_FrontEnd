@@ -25,6 +25,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoadingComponent } from './loading/loading.component';
+import {LaptopStore} from './laptop-products/laptop.store';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,7 @@ import { LoadingComponent } from './loading/loading.component';
       apiKey: 'AIzaSyDHRyL4DvYGHgH_7a3sDKtBEy8KfMPI6aw'
     })
   ],
-  providers: [],
+  providers: [LaptopStore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
