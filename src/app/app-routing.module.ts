@@ -13,8 +13,6 @@ import { BuildForRequirementsComponent } from './build-for-requirements/build-fo
 import { MoreDetailsComponent } from './more-details/more-details.component';
 import { LoginComponent } from './login/login.component';
 import { LaptopComparisonComponent } from './laptop-comparison/laptop-comparison.component';
-import { AboutUsComponent } from './about-us/about-us.component';
-import { ContactComponent } from "./contact/contact.component";
 import { UserProfileComponent } from "./user-profile/user-profile.component";
 import { CompatiblePcPartListComponent } from './build-for-requirements/compatible-pc-part-list/compatible-pc-part-list.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -59,14 +57,6 @@ const routes: Routes = [
   {
     path: "laptop_comparison",
     component: LaptopComparisonComponent
-  },
-  {
-    path: "about_us",
-    component: AboutUsComponent
-  },
-  {
-    path: "contact",
-    component: ContactComponent
   },
   {
     path: "user_profile",

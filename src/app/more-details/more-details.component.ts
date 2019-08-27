@@ -18,6 +18,7 @@ export class MoreDetailsComponent implements OnInit {
   comments1: Object;
   vendorPrice = [];
   vendorDetails: Object;
+  logged_in = 'false';
 
   constructor(private searchService: SearchService, private route : ActivatedRoute, private router: Router) { }
 
@@ -74,6 +75,15 @@ export class MoreDetailsComponent implements OnInit {
       this.vendorDetails = data;
     },
     (error: any) => console.log(error));
+  }
+
+  notify() {
+    if(this.logged_in == 'false') {
+      
+    }
+    else if(this.logged_in == 'true') {
+      
+    }
   }
 
 }

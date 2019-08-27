@@ -47,6 +47,6 @@ export class SearchService {
   }
   
   public pushNotification(user_id: string, product: string, price: string) {
-    return this.http.get(this.pcpartsUrl+"/notify/"+user_id+'/'+product+'/'+price);
+    return this.http.post(this.pcpartsUrl+"/notify",[user_id,product,price]);
   }
 }

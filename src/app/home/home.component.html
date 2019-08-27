@@ -162,6 +162,95 @@
       </div>
     </div>
   </div>
+
+  <div class="container" id="container">
+    <div class="row">
+      <div class="col-12">
+        <h3 class="text-center">About Us</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="members text-center">
+          <img src="../../assets/img/sajith.jpg" class="mem_img">
+        </div>
+        <div class="members text-center">
+          <img src="../../assets/img/dilhara.jpg" class="mem_img">
+        </div>
+        <div class="members text-center">
+          <img src="../../assets/img/member3.jpg" class="mem_img">
+        </div>
+        <div class="members text-center">
+          <img src="../../assets/img/sachith.jpg" class="mem_img">
+        </div>
+      </div>
+    </div>
+    <div class="row pt-3">
+      <div class="col-12">
+        <p>4 Sri Lanka Institute of Information Technology(SLIIT) undergraduates came up with an idea of making a web solution for PC assemblers, pc parts and laptop seekers as well as vendors who sell those items.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" >
+          <agm-marker [latitude]="lat" [longitude]="lng" [label]="label"></agm-marker>
+        </agm-map>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 m-5">
+        <div class="text-center"><h4>Where Can You Find Us</h4></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-5">
+        <h5>Address</h5>
+      </div>
+      <div class="col-1"></div>
+      <div class="col-5">
+        <h5>Additional Details</h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-5">
+        <p>Address: SLIIT Malabe Campus, New Kandy Rd, Malabe 10115</p>
+        <p>Phone: 0117 544 801</p>
+      </div>
+      <div class="col-1"></div>
+      <div class="col-5">
+        <p>The Sri Lanka Institute of Information Technology is a private university in Sri Lanka specializing in technology, engineering and business. It is an autonomous non state university in Sri Lanka, awarding undergraduate and taught- and research postgraduate degrees</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" id="container">
+    <div class="row">
+      <div class="col-12">
+        <h3 class="text-center"><b>Contact Us</b></h3>
+      </div>
+    </div>
+    <div class="row mt-10">
+      <div class="col-6">
+        <h6>More Details</h6>
+
+      </div>
+      <div class="col-6">
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+              <label>Email</label>
+              <input type="text" placeholder="abc@gmail.com" id="email" name="email" formControlName="email" class="form-control">
+          </div>
+          <div class="form-group">
+              <label>Message</label>
+              <textarea type="text" placeholder="Message" name="message" id="message" formControlName="message" class="form-control"></textarea>
+          </div>
+          <div class="form-group">
+              <input type="submit" class="btn btn-success form-control" value="Submit">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </body>
 
 <!--Footer-->

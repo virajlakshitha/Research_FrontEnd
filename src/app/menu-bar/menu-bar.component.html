@@ -60,7 +60,12 @@
             </div>
             <div class="dropdown">
                 <button class="dropbtn">
-                    <a routerLink="/laptop_comparison" routerLinkActive="active">Laptop Comparison</a>
+                    <ng-template [ngIf]="laptop_comparison=='true'" [ngIfElse]="elseBlockLaptop">
+                        <a routerLink="/laptop_comparison" routerLinkActive="active">Laptop Comparison</a>
+                    </ng-template>
+                    <ng-template #elseBlockLaptop>
+                        <a [swal]="['Oops!', 'You should select 2 Laptops to compare :/', 'warning']">Laptop Comparison</a>
+                    </ng-template>
                 </button>
             </div>
 

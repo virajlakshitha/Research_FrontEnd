@@ -14,8 +14,10 @@
         <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
           <input type="range" name="points" min="0" max="25000" formControlName="min" class="content_topic">
           <input type="range" name="points" min="25000" max="200000" formControlName="max" class="content_topic"> &nbsp;&nbsp;
-          <button type="submit" class="btn btn-primary">Go</button>
+          <button type="submit" class="btn btn-primary buttons">Go</button>
+          <button type="button" class="btn btn-info buttons" data-toggle="modal" data-target="#createModel">Set Prices</button>
         </form>
+        
       </div>
     </div>
     <ng-template [ngIf]="loading=='false'" [ngIfElse]="elseBlock">
@@ -24,19 +26,19 @@
           <div class="component">MOTHERBOARD</div>
         </div>
 
-        <div class="col-10 content text-white" ng-repeat="x in pcpart">
+        <div class="col-10 content text-white">
           <div class="container-fluid">
             <div class="row">
               <div class="col-2">
-                <img src="https://cdn.takas.lk/media/catalog/product/cache/1/small_image/250x/9df78eab33525d08d6e5fb8d27136e95/h/1/h110m-c.png"
+                <img src="{{ Motherboard.image }}"
                   height="80px" width="80px">
               </div>
               <div class="col-5">
                 <div class="row">
-                  <span>{{ Motherboard.name }}</span>
+                  <span class="redirect" (click)="redirect('motherboard', Motherboard.id)">{{ Motherboard.name }}</span>
                 </div>
                 <div class="row text-center">
-                  <button class="btn btn-info" (OnClick)="changePCPart('motherboard')">Replace</button>
+                  <button class="btn btn-info" (click)="changePCPart('motherboard')">Replace</button>
                 </div>
               </div>
               <div class="col-3">Rs. {{ Motherboard.price }} /=</div>
@@ -59,9 +61,9 @@
         </div>
         <div class="col-10 content text-white">
           <div class="container-fluid">
-            <div class="row">
+            <div class="row redirect" (click)="redirect('cpu', Cpu.id)">
               <div class="col-2">
-                <img src="https://cdn.takas.lk/media/catalog/product/cache/1/small_image/250x/9df78eab33525d08d6e5fb8d27136e95/b/l/black_ops.png"
+                <img src="{{ Cpu.image }}"
                   height="80px" width="80px">
               </div>
               <div class="col-5">
@@ -69,7 +71,7 @@
                   <span>{{ Cpu.name }}</span>
                 </div>
                 <div class="row text-center">
-                  <button class="btn btn-info">Replace</button>
+                  <button class="btn btn-info" (click)="changePCPart('cpu')">Replace</button>
                 </div>
               </div>
               <div class="col-3">Rs. {{ Cpu.price }} /=</div>
@@ -90,16 +92,16 @@
         </div>
         <div class="col-10 content text-white">
           <div class="container-fluid">
-            <div class="row">
+            <div class="row redirect" (click)="redirect('ram', Ram.id)">
               <div class="col-2">
-                <img src="https://i.ebayimg.com/thumbs/images/g/QlwAAOSwu3ZcLFeI/s-l225.webp" height="80px" width="80px">
+                <img src="{{ Ram.image }}" height="80px" width="80px">
               </div>
               <div class="col-5">
                 <div class="row">
                   <span>{{ Ram.name }}</span>
                 </div>
                 <div class="row text-center">
-                  <button class="btn btn-info">Replace</button>
+                  <button class="btn btn-info" (click)="changePCPart('ram')">Replace</button>
                 </div>
               </div>
               <div class="col-3">Rs. {{ Ram.price }} /=</div>
@@ -120,16 +122,16 @@
         </div>
         <div class="col-10 content text-white">
           <div class="container-fluid">
-            <div class="row">
+            <div class="row redirect" (click)="redirect('vga', Vga.id )">
               <div class="col-2">
-                <img src="https://i.ebayimg.com/thumbs/images/g/aDkAAOSw0npc2lOr/s-l225.webp" height="80px" width="80px">
+                <img src="{{ Vga.image }}" height="80px" width="80px">
               </div>
               <div class="col-5">
                 <div class="row">
                   <span>{{ Vga.name }}</span>
                 </div>
                 <div class="row text-center">
-                  <button class="btn btn-info">Replace</button>
+                  <button class="btn btn-info" (click)="changePCPart('vga')">Replace</button>
                 </div>
               </div>
               <div class="col-3">Rs. {{ Vga.price }} /=</div>
@@ -150,19 +152,19 @@
         </div>
         <div class="col-10 content text-white">
           <div class="container-fluid">
-            <div class="row">
+            <div class="row redirect" (click)="redirect('hard_disk', Hard_Disk.id )">
               <div class="col-2">
-                <img src="https://i.ebayimg.com/thumbs/images/m/mwWN7MFmqUgVz4K6HxVJAkA/s-l225.webp" height="80px" width="80px">
+                <img src="{{ Hard_Disk.image }}" height="80px" width="80px">
               </div>
               <div class="col-5">
                 <div class="row">
                   <span>{{ Hard_Disk.name }}</span>
                 </div>
                 <div class="row text-center">
-                  <button class="btn btn-info">Replace</button>
+                  <button class="btn btn-info" (click)="changePCPart('hard_disk')">Replace</button>
                 </div>
               </div>
-              <div class="col-3">Rs. {{ Hard_Disk.name }} /=</div>
+              <div class="col-3">Rs. {{ Hard_Disk.price }} /=</div>
               <div class="col-2">
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
@@ -175,15 +177,15 @@
         </div>
       </div>
 
-    <div class="row">
-      <div class="col-6"></div>
-      <div class="col-2">
-        <span>Total Budget</span>
+      <div class="row">
+        <div class="col-6"></div>
+        <div class="col-2">
+          <span>Total Budget</span>
+        </div>
+        <div class="col-2">
+          <span>Rs. {{ total_price }} /=</span>
+        </div>
       </div>
-      <div class="col-2">
-        <span>Rs. 88,000.00 /=</span>
-      </div>
-    </div>
     </ng-template>
     <ng-template #elseBlock>
       <app-loading></app-loading>
@@ -192,7 +194,74 @@
     <div class="row">
       <div class="col-10"></div>
       <div class="col-2">
-        <a href="">Try it different</a>
+        <span class="a_link" (click)="differentPlan()">Try it different</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="createModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <table class="table table-borderless">
+            <tbody [formGroup]="settingsForm">
+              <h3 class="text-center">Add Price Limitations</h3>
+              <tr>
+                <th>
+                  <b>RAM</b>
+                </th>
+                <td>
+                  <input type="text" class="form-control text_box" formControlName="ram_min" name="ram_min" placeholder="Minimum Value">&nbsp;
+                  <input type="text" class="form-control text_box" formControlName="ram_max" name="ram_max" placeholder="Maximum Value">
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <b>VGA</b>
+                </th>
+                <td>
+                  <input type="text" class="form-control text_box" formControlName="vga_min" name="vga_min" placeholder="Minimum Value">&nbsp;
+                  <input type="text" class="form-control text_box" formControlName="vga_max" name="vga_max" placeholder="Maximum Value">
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <b>CPU</b>
+                </th>
+                <td>
+                  <input type="text" class="form-control text_box" formControlName="cpu_min" name="cpu_min" placeholder="Minimum Value">&nbsp;
+                  <input type="text" class="form-control text_box" formControlName="cpu_max" name="cpu_max" placeholder="Maximum Value">
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <b>Motherboard</b>
+                </th>
+                <td>
+                  <input type="text" class="form-control text_box" formControlName="motherboard_min" name="motherboard_min" placeholder="Minimum Value">&nbsp;
+                  <input type="text" class="form-control text_box" formControlName="motherboard_max" name="motherboard_max" placeholder="Maximum Value">
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <b>Hard Disk</b>
+                </th>
+                <td>
+                  <input type="text" class="form-control text_box" formControlName="hard_disk_min" name="hard_disk_min" placeholder="Minimum Value">&nbsp;
+                  <input type="text" class="form-control text_box" formControlName="hard_disk_max" name="hard_disk_max" placeholder="Maximum Value">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <button type="submit" class="btn btn-success" data-dismiss="modal" (click)="settingsSubmit()">Submit</button>
+                  &nbsp;
+                  <button type="reset" class="btn btn-info">Clear</button>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
