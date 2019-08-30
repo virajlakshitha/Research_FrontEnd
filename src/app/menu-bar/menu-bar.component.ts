@@ -14,6 +14,8 @@ export class MenuBarComponent implements OnInit {
 
   pcpart: Pcpart[];
   employeeForm: FormGroup;
+  logged = 'false';
+  laptop_comparison = 'false';
 
   constructor(private searchService: SearchService, private router: Router) { }
 

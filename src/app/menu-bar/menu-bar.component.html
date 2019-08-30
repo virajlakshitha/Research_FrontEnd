@@ -1,22 +1,33 @@
+
 <header>
     <nav class="navbar fixed-top navbar-expand">
         <a class="navbar-brand" routerLink="" routerLinkActive="active">
             <img src="assets/img/logo.png">
         </a>
-        <div class="collapse navbar-collapse" id="navbar_content">
+        <div class="collapse navbar-collapse" id="navbar_content" data-spy="scroll">
             <ul class="navbar-nav text-center ml-auto mr-lg-6">
                 <li>
                     <a class="nav-link" routerLink="" routerLinkActive="active">Home</a>
                 </li>
                 <li>
-                    <a routerLink="/about_us" routerLinkActive="active" class="nav-link">About Us</a>
+                    <a href="#about" routerLinkActive="active" class="nav-link scroll">About Us</a>
                 </li>
                 <li>
-                    <a routerLink="/contact" routerLinkActive="active" class="nav-link">Contact Us</a>
+                    <a href="#contact" routerLinkActive="active" class="nav-link scroll">Contact Us</a>
                 </li>
-                <li id="login_item">
-                    <a routerLink="/login" routerLinkActive="active" class="nav-link">Login/Register</a>
-                </li>
+                <ng-template [ngIf]="logged=='false'" [ngIfElse]="elseBlock">
+                    <li id="login_item">
+                        <a routerLink="/login" routerLinkActive="active" class="nav-link">Login/Register</a>
+                    </li>
+                </ng-template>
+                <ng-template #elseBlock>
+                    <li id="login_item" class="vv">
+                        <img src="../../assets/img/profile.png" class="profile">
+                        <div class="vv-drop">
+                            <div>aaaaaaaa</div>
+                        </div>
+                    </li>
+                </ng-template>
             </ul>
         </div>
     </nav>
@@ -25,31 +36,43 @@
             <div class="dropdown">
                 <button class="dropbtn">Browse Products</button>
                 <div class="dropdown-content">
-                    <div routerLink="/browse/pcparts/cpu/all" routerLinkActive="active" class="drop_icons"><img src="assets/img/cpu.png" class="drop_pic">CPU</div>
-                    <div routerLink="/browse/pcparts/motherboard/all" routerLinkActive="active" class="drop_icons"><img src="assets/img/motherboard.png" class="drop_pic">MOTHERBOARD</div>
-                    <div routerLink="/browse/pcparts/ram/all" routerLinkActive="active" class="drop_icons"><img src="assets/img/ram.png"class="drop_pic">RAM</div>
-                    <div routerLink="/browse/pcparts/vga/all" routerLinkActive="active" class="drop_icons"><img src="assets/img/vga.png" class="drop_pic">VGA</div>
-                    <div routerLink="/browse/pcparts/hard_disk/all" routerLinkActive="active" class="drop_icons"><img src="assets/img/hard_disk.png" class="drop_pic">HARD DISK</div>
-                    <div routerLink="/browse/laptops" routerLinkActive="active" class="drop_icons"><img src="assets/img/laptop.png" class="drop_pic">LAPTOPS</div>
+                    <div routerLink="/browse/pcparts/cpu/all" routerLinkActive="active" class="drop_icons">
+                        <img src="assets/img/cpu.png" class="drop_pic">CPU</div>
+                    <div routerLink="/browse/pcparts/motherboard/all" routerLinkActive="active" class="drop_icons">
+                        <img src="assets/img/motherboard.png" class="drop_pic">MOTHERBOARD</div>
+                    <div routerLink="/browse/pcparts/ram/all" routerLinkActive="active" class="drop_icons">
+                        <img src="assets/img/ram.png" class="drop_pic">RAM</div>
+                    <div routerLink="/browse/pcparts/vga/all" routerLinkActive="active" class="drop_icons">
+                        <img src="assets/img/vga.png" class="drop_pic">VGA</div>
+                    <div routerLink="/browse/pcparts/hard_disk/all" routerLinkActive="active" class="drop_icons">
+                        <img src="assets/img/hard_disk.png" class="drop_pic">HARD DISK</div>
+                    <div routerLink="/browse/laptops" routerLinkActive="active" class="drop_icons">
+                        <img src="assets/img/laptop.png" class="drop_pic">LAPTOPS</div>
                 </div>
             </div>
             <div class="dropdown">
                 <button class="dropbtn">System Build</button>
                 <div class="dropdown-content">
-                    <div routerLink="/build_for_gaming" routerLinkActive="active" class="drop_icons2"><img src="assets/img/gaming-pc.png"  class="drop_pic2">Build For Requirement</div>
-                    <div routerLink="/build_for_price" routerLinkActive="active" class="drop_icons2"><img src="assets/img/build_price.png"  class="drop_pic2">Build For Price</div>
+                    <div routerLink="/build_for_gaming" routerLinkActive="active" class="drop_icons2">
+                        <img src="assets/img/gaming-pc.png" class="drop_pic2">Build For Requirement</div>
+                    <div routerLink="/build_for_price" routerLinkActive="active" class="drop_icons2">
+                        <img src="assets/img/build_price.png" class="drop_pic2">Build For Price</div>
                 </div>
             </div>
             <div class="dropdown">
                 <button class="dropbtn">
-                    <a routerLink="/laptop_comparison" routerLinkActive="active">Laptop Comparison</a>
+                    <ng-template [ngIf]="laptop_comparison=='true'" [ngIfElse]="elseBlockLaptop">
+                        <a routerLink="/laptop_comparison" routerLinkActive="active">Laptop Comparison</a>
+                    </ng-template>
+                    <ng-template #elseBlockLaptop>
+                        <a [swal]="['Oops!', 'You should select 2 Laptops to compare :/', 'warning']">Laptop Comparison</a>
+                    </ng-template>
                 </button>
             </div>
 
             <div class="col-5 text-center" id="abcd">
                 <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
                     <select name="search_type" id="search_type" class="form-control" formControlName="category">
-                        <option value="all">ACCESSORY</option>
                         <option value="motherboard">MOTHERBOARD</option>
                         <option value="cpu">CPU</option>
                         <option value="ram">RAM</option>
@@ -68,3 +91,4 @@
     </div>
 
 </header>
+

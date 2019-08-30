@@ -7,6 +7,10 @@ body{
 a{
     text-decoration: none;
 }
+.a_link{
+    color: #335b87;
+    cursor: pointer;
+}
 
 @media only screen and (max-width:576px){
 
@@ -52,5 +56,18 @@ a{
     }
     .component{
         margin-top: 40px;
+    }
+    form button{
+        margin-top: -10px;
+    }
+    .text_box{
+        width: 200px;
+        display: inline;
+    }
+    .buttons{
+        display: inline;
+    }
+    .redirect{
+        cursor: pointer;
     }
 }

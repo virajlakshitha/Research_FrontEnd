@@ -30,6 +30,7 @@
             </ng-template>
           </div>
         </div>
+        
         <ng-template [ngIf]="pcpart.speed">
           <div class="row">
             <div class="col-4">Speed</div>
@@ -124,6 +125,11 @@
     </div>
   </div>
 
+  <div class="row">
+      <div class="col-12">
+        <input type="checkbox" id="notification" name="notification" [swal]="{ title: 'Login Here', input: 'email' }">&nbsp;&nbsp;&nbsp;I want to track down the price of the product
+      </div>
+    </div>
 
   <div class="container content2">
     <div class="row table_headers">

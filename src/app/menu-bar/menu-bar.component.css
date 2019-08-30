@@ -109,6 +109,26 @@ a{
         clear: both;
         width: 100%;
     }
+
+    .profile{
+        height: 50px;
+        width: 50px;
+        cursor: pointer;
+    }
+    .vv{
+        position: relative;
+        display: inline-block;
+    }
+    .vv-drop{
+        display: none;
+        position: absolute;
+        color: white;
+        background-color: blue;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 5;
+        margin-left: -100px;
+    }
+    .vv:hover .vv-drop{ display: block; }
     
 }
 @media(min-width: 992px){

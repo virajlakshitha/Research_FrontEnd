@@ -41,4 +41,12 @@ export class SearchService {
   public getVendorPrices(name: string) {
     return this.http.get(this.pcpartsUrl+"/vendor_prices/"+name);
   }
+
+  public getVendorDetailsForProducts(pro_name: string, category: string) {
+    return this.http.get(this.pcpartsUrl+"/vendors/"+category+'/'+pro_name);
+  }
+  
+  public pushNotification(user_id: string, product: string, price: string) {
+    return this.http.post(this.pcpartsUrl+"/notify",[user_id,product,price]);
+  }
 }
