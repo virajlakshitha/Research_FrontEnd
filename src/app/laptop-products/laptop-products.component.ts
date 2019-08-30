@@ -3,6 +3,8 @@ import {LaptopBrandService}   from '../service/laptop-brand.service';
 import {LaptopService}        from '../service/laptop.service';
 import {LaptopStore}          from './laptop.store';
 import {LaptopCompareService} from '../service/laptop-compare.service';
+import { Point }              from '../model/point'
+import {Router}               from "@angular/router";
 
 
 @Component({
@@ -31,7 +33,7 @@ export class LaptopProductsComponent implements OnInit {
 
   list:LaptopStore;
   
-  constructor(private laptopBrandService: LaptopBrandService, private laptopService:LaptopService, private laptopCompareService:LaptopCompareService) {}
+  constructor(private laptopBrandService: LaptopBrandService, private laptopService:LaptopService, private laptopCompareService:LaptopCompareService,private router: Router) {}
 
   ngOnInit() {
     this.getLapBrad();
@@ -91,8 +93,33 @@ export class LaptopProductsComponent implements OnInit {
     }
   }
 
-  compare(x){
-    console.log(x);
-    this.laptopCompareService.getAllLaptopBrandWise(x);
+   private point2:Point = null;
+   private point1:Point = null;
+
+   private x=0;
+
+  compare(laptops){
+
+    this.laptopCompareService.getLaptopPoint(laptops[0]).subscribe(data => {
+      this.point2 = new Point(data);
+      console.log("Second Laptop "+this.point2.Point);
+      this.x = this.point2.Point;
+    })
+
+    this.laptopCompareService.getLaptopPoint(laptops[1]).toPromise().then(data => {
+        this.point2 = new Point(data);
+        console.log("Second Laptop "+this.point2.Point);
+        this.print(this.point2.Point);
+    })
+
   }
+
+  print(y){
+    
+    if(this.x != null){
+      this.router.navigate(['/laptop_comparison']);
+    }
+    
+  }
+
 }
