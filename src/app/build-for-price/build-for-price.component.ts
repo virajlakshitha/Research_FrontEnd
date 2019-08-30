@@ -40,6 +40,10 @@ export class BuildForPriceComponent implements OnInit {
   motherboard_loop = 0;
   hardDisk_loop = 0;
   budget_loop = 0;
+  total_loop = 0;
+  arr = {};
+
+  a;b;c;d;e;
                   
   constructor(private pcpartServiceService: PcpartServiceService, private route: ActivatedRoute, private router: Router) { }
 
@@ -65,12 +69,12 @@ export class BuildForPriceComponent implements OnInit {
       if(data["responseCode"] == "111"){
         this.min_val = data["responseObject"]["min"];
         this.max_val = data["responseObject"]["max"];
-        this.budgetPlan(this.min_val, this.max_val);
       }
     },
     (error: any) => console.log(error),
     () => console.log('Gets all Data'));
-    console.log(this.min_val);
+    // this.changePCPart('ram');
+    this.budgetPlan(0, 0);
   }
 
   onSubmit(): void {
@@ -93,26 +97,68 @@ export class BuildForPriceComponent implements OnInit {
 
   //When the user clicks replace button to replace an item
   changePCPart(category) {
-    this.loading = 'true';
-
+    this.arr = { "motherboard": this.Motherboard["id"], "cpu": this.Cpu["id"], "ram": this.Ram["id"], "vga": this.Vga["id"], "hard_disk": this.Hard_Disk["id"] };
     
+    this.pcpartServiceService.changePCPart(category, this.arr).subscribe(data => {
+      if(data["responseCode"] == "111"){
+        if(category == "ram"){
+          this.Ram = data["responseObject"];
+        }
+        else if(category == "vga"){
+          this.Vga = data["responseObject"];
+        }
+        else if(category == "cpu"){
+          this.Cpu = data["responseObject"];
+          this.a = this.Cpu["id"];
+        }
+        else if(category == "motherboard"){
+          this.Motherboard = data["responseObject"];
+        }
+        else if(category == "hard_disk"){
+          this.Hard_Disk = data["responseObject"];
+        }
+        console.log(data["responseObject"]);
+      }
+      else{
+        console.log("error -> Change PC Part");
+      }
+    },
+    (error: any) => console.log(error)); 
+
+    this.loading = 'false';
   }
 
   budgetPlan(min, max) {
+    console.log(this.max_val);
     this.pcpartServiceService.budgetPlan(min, max).subscribe(data => {
       if(data["responseCode"] == "111"){
         this.budget_pro = data;
         this.Budget_Pro = data["responseObject"];
+        this.total_loop = data["responseObject"].length;
         this.Ram = this.Budget_Pro[this.budget_loop]["ram"];
-        this.total_price = this.total_price + parseFloat(this.Ram["price"]);
+        if(this.Ram["price"] != null){
+          this.total_price = this.total_price + parseFloat(this.Ram["price"]);
+        }
         this.Vga = this.Budget_Pro[this.budget_loop]["vga"];
-        this.total_price = this.total_price + parseFloat(this.Vga["price"]);
+        if(this.Vga["price"] != null){
+          this.total_price = this.total_price + parseFloat(this.Vga["price"]);
+        }
         this.Cpu = this.Budget_Pro[this.budget_loop]["cpu"];
-        this.total_price = this.total_price + parseFloat(this.Cpu["price"]);
+        if(this.Cpu["price"] != null){
+          this.total_price = this.total_price + parseFloat(this.Cpu["price"]);
+        }
         this.Motherboard = this.Budget_Pro[this.budget_loop]["motherboard"];
-        this.total_price = this.total_price + parseFloat(this.Motherboard["price"]);
+        if(this.Motherboard["price"] != null){
+          this.total_price = this.total_price + parseFloat(this.Motherboard["price"]);
+        }
         this.Hard_Disk = this.Budget_Pro[this.budget_loop]["hard_disk"];
-        this.total_price = this.total_price + parseFloat(this.Hard_Disk["price"]);
+        if(this.Hard_Disk["price"] != null){
+          this.total_price = this.total_price + parseFloat(this.Hard_Disk["price"]);
+        }
+        
+      }
+      else{
+        console.log("error -> budget plan");
       }
     },
     (error: any) => console.log(error),
@@ -121,23 +167,37 @@ export class BuildForPriceComponent implements OnInit {
 
   //Differrent budget plan
   differentPlan() {
-    this.loading = 'true';
+    // this.loading = 'true';
 
-    this.total_price = 0;
-    this.budget_loop++;
-
+    if(this.total_loop-1 != this.budget_loop){
+        this.total_price = 0;
+        this.budget_loop++;
+        console.log(this.budget_loop);
         this.Ram = this.Budget_Pro[this.budget_loop]["ram"];
-        this.total_price = this.total_price + parseFloat(this.Ram["price"]);
+        if(this.Ram["price"] != null){
+          this.total_price = this.total_price + parseFloat(this.Ram["price"]);
+        }
         this.Vga = this.Budget_Pro[this.budget_loop]["vga"];
-        this.total_price = this.total_price + parseFloat(this.Vga["price"]);
+        if(this.Vga["price"] != null){
+          this.total_price = this.total_price + parseFloat(this.Vga["price"]);
+        }
         this.Cpu = this.Budget_Pro[this.budget_loop]["cpu"];
-        this.total_price = this.total_price + parseFloat(this.Cpu["price"]);
+        if(this.Cpu["price"] != null){
+          this.total_price = this.total_price + parseFloat(this.Cpu["price"]);
+        }
         this.Motherboard = this.Budget_Pro[this.budget_loop]["motherboard"];
-        this.total_price = this.total_price + parseFloat(this.Motherboard["price"]);
+        if(this.Motherboard["price"] != null){
+          this.total_price = this.total_price + parseFloat(this.Motherboard["price"]);
+        }
         this.Hard_Disk = this.Budget_Pro[this.budget_loop]["hard_disk"];
-        this.total_price = this.total_price + parseFloat(this.Hard_Disk["price"]);
-
-    this.loading = 'false';
+        if(this.Hard_Disk["price"] != null){
+          this.total_price = this.total_price + parseFloat(this.Hard_Disk["price"]);
+        }
+      }
+      else{
+        alert("No more budget plans available");
+      }
+    // this.loading = 'false';
   }
 
   settingsSubmit() {
@@ -154,16 +214,27 @@ export class BuildForPriceComponent implements OnInit {
     var hard_disk_max = this.settingsForm.value.hard_disk_max;
 
     this.pcpartServiceService.settingsSubmit(ram_min, ram_max, vga_min, vga_max, cpu_min, cpu_max, motherboard_min, motherboard_max, hard_disk_min, hard_disk_max).subscribe(data => {
-      this.Ram = data["responseObject"][this.budget_loop]["ram"];
-      this.total_price = this.total_price + this.Ram["price"];
+        
+        this.Ram = data["responseObject"][this.budget_loop]["ram"];
+        if(this.Ram["price"] != null){
+          this.total_price = this.total_price + parseFloat(this.Ram["price"]);
+        }
         this.Vga = data["responseObject"][this.budget_loop]["vga"];
-        this.total_price = this.total_price + this.Vga["price"];
+        if(this.Vga["price"] != null){
+          this.total_price = this.total_price + parseFloat(this.Vga["price"]);
+        }
         this.Cpu = data["responseObject"][this.budget_loop]["cpu"];
-        this.total_price = this.total_price + this.Cpu["price"];
+        if(this.Cpu["price"] != null){
+          this.total_price = this.total_price + parseFloat(this.Cpu["price"]);
+        }
         this.Motherboard = data["responseObject"][this.budget_loop]["motherboard"];
-        this.total_price = this.total_price + this.Motherboard["price"];
+        if(this.Motherboard["price"] != null){
+          this.total_price = this.total_price + parseFloat(this.Motherboard["price"]);
+        }
         this.Hard_Disk = data["responseObject"][this.budget_loop]["hard_disk"];
-        this.total_price = this.total_price + this.Hard_Disk["price"];
+        if(this.Hard_Disk["price"] != null){
+          this.total_price = this.total_price + parseFloat(this.Hard_Disk["price"]);
+        }
     },
     (error: any) => console.log(error),
     () => console.log('Gets all Data'));
@@ -173,25 +244,4 @@ export class BuildForPriceComponent implements OnInit {
     this.router.navigate(['/product_details/' + category + '/' + _id]);
   }
 
-  getMinBudget() {
-    this.pcpartServiceService.getMaxMinBudget().subscribe(data => {
-      if(data["responseCode"] == "111"){
-        return data["responseObject"]["min"];
-      }
-    },
-    (error: any) => console.log(error),
-    () => console.log('Gets all Data'));
-    
-  }
-
-  getMaxBudget() {
-    this.pcpartServiceService.getMaxMinBudget().subscribe(data => {
-      if(data["responseCode"] == "111"){
-        return data["responseObject"]["max"];
-      }
-    },
-    (error: any) => console.log(error),
-    () => console.log('Gets all Data'));
-    
-  }
 }
