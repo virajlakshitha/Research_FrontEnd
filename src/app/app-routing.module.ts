@@ -55,7 +55,7 @@ const routes: Routes = [
     component: MoreDetailsComponent
   },
   {
-    path: "laptop_comparison",
+    path: "laptop_comparison/:firstPoint/:firstId/:secondPoint/:secondId",
     component: LaptopComparisonComponent
   },
   {

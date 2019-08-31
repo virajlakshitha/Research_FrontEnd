@@ -2,17 +2,111 @@
 <app-menu-bar></app-menu-bar>
 <!------------>
 <div class="container content">
-  <div class="row">
-    <!--Left Side Laptop section-->
-    <div class="col-6 left_side">
-      <div>
-        <h5 *ngFor = "let x of lapBrandList">{{x}}</h5>
+    <div class="row">
+      <!--Left Side Laptop section-->
+      <div class="col-6 left_side" *ngIf="oneLaptop">
+        <img src="{{oneLaptop.imageSource}}" class="imgs">
+        <div class="text-center pro_name">{{oneLaptop.lapName}}</div>
+        <div class="row">
+          <div class="col-5">
+            <div>CPU</div>
+          </div>
+          <div class="col-7">
+            <div>{{oneLaptop.cpuModel}}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-5">
+            <div>Storage</div>
+          </div>
+          <div class="col-7">
+            <div>{{oneLaptop.storageSize}} , {{oneLaptop.storageType}}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-5">
+            <div>RAM</div>
+          </div>
+          <div class="col-7">
+            <div>{{oneLaptop.ramSize}} , {{oneLaptop.ramType}}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-5">
+            <div>Graphics Memory</div>
+          </div>
+          <div class="col-7">
+            <div>{{oneLaptop.gpuMemorySize}}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-5">
+            <div>CPU Boost Speed</div>
+          </div>
+          <div class="col-7">
+            <div>{{oneLaptop.cpuBoostSpeed}}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="text-center choice"></div>
+          </div>
+        </div>
       </div>
-      <h1>{{point1}}</h1>
+      <!---------------------------->
+      <!--Right Side Laptop section-->
+      <div class="col-6 right_side" *ngIf="twoLaptop">
+        <img src="{{twoLaptop.imageSource}}" class="imgs">
+        <div class="text-center pro_name">{{twoLaptop.lapName}}</div>
+        <div class="row">
+          <div class="col-5">
+            <div>CPU</div>
+          </div>
+          <div class="col-7">
+            <div>{{twoLaptop.cpuModel}}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-5">
+            <div>Storage</div>
+          </div>
+          <div class="col-7">
+            <div>{{twoLaptop.storageSize}} , {{twoLaptop.storageType}}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-5">
+            <div>RAM</div>
+          </div>
+          <div class="col-7">
+            <div>{{twoLaptop.ramSize}} , {{twoLaptop.ramType}}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-5">
+            <div>Graphics Memory</div>
+          </div>
+          <div class="col-7">
+            <div>{{twoLaptop.gpuMemorySize}}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-5">
+            <div>CPU Boost Speed</div>
+          </div>
+          <div class="col-7">
+            <div>{{twoLaptop.cpuBoostSpeed}}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="text-center choice"></div>
+          </div>
+        </div>
+      </div>
+      <!----------------------------->
     </div>
-    <!----------------------------->
   </div>
-</div>
 <!--Footer-->
 <app-footer></app-footer>
 <!---------->
