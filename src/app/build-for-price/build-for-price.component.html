@@ -5,22 +5,44 @@
 <!------------>
 
 <!--Build For Price-->
+<script>
+  var slider = document.getElementById("myRange");
+  var output = document.getElementById("demo");
+  output.innerHTML = slider.value;
+  console.log(document.getElementById("myRange").value);
+  slider.oninput = function () {
+    output.innerHTML = this.value;
+  }
+</script>
 
 <body>
   <div class="container" id="container">
     <div class="row" id="content_head">
-      <div class="col-6 content_topic">Build PC for your Budget</div>
-      <div class="col-5">
+      <div class="col-4 content_topic">Build PC for your Budget</div>
+      <div class="col-8">
         <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
-          <input type="range" name="points" min="0" max="25000" formControlName="min" class="content_topic">
-          <input type="range" name="points" min="25000" max="200000" formControlName="max" class="content_topic"> &nbsp;&nbsp;
-          <button type="submit" class="btn btn-primary buttons">Go</button>
-          <button type="button" class="btn btn-info buttons" data-toggle="modal" data-target="#createModel">Set Prices</button>
+        <p style="display: inline;"> Min:
+          <span id="demo"></span>
+        </p>&nbsp;
+        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+        <!-- <input type="range" min="0" max="25000" value="10000" class="content_topic slider" id="myRange"> -->
+        <input type="range" min="25000" max="200000" value="75000" id="myRange1" class="content_topic slider"> &nbsp;
+        <p style="display: inline;"> Max:
+          <span id="demo1"></span>
+        </p>&nbsp;
+        <button type="submit" class="btn btn-primary buttons">Go</button>&nbsp;&nbsp;
+        <button type="button" class="btn btn-info buttons" data-toggle="modal" data-target="#createModel">Set Prices</button>
         </form>
 
       </div>
     </div>
     <ng-template [ngIf]="loading=='false'" [ngIfElse]="elseBlock">
+      <div class="row">
+        <div class="col-10"></div>
+        <div class="col-2">
+          <button class="a_link btn btn-success" (click)="differentPlan()">Try it different</button>
+        </div>
+      </div>
       <div class="row item_list">
         <div class="col-2 text-center">
           <div class="component">MOTHERBOARD</div>
@@ -29,7 +51,7 @@
         <div class="col-10 content text-white">
           <div class="container-fluid">
             <div class="row">
-              <ng-template [ngIf]="Motherboard.id=='null'" [ngIfElse]="elseRamBlock">
+              <ng-template [ngIf]="Motherboard.id!='null'" [ngIfElse]="elseMotherboardBlock">
                 <div class="col-2">
                   <img src="{{ Motherboard.image }}" height="80px" width="80px">
                 </div>
@@ -50,7 +72,7 @@
                   <span class="fa fa-star"></span>
                 </div>
               </ng-template>
-              <ng-template #elseRamBlock>
+              <ng-template #elseMotherboardBlock>
                 <div class="col-12 text-center">No Motherboard selected</div>
               </ng-template>
             </div>
@@ -66,7 +88,7 @@
         <div class="col-10 content text-white">
           <div class="container-fluid">
             <div class="row redirect">
-              <ng-template [ngIf]="Cpu.id=='null'" [ngIfElse]="elseCpuBlock">
+              <ng-template [ngIf]="Cpu.id!='null'" [ngIfElse]="elseCpuBlock">
                 <div class="col-2">
                   <img src="{{ Cpu.image }}" height="80px" width="80px">
                 </div>
@@ -101,7 +123,7 @@
         <div class="col-10 content text-white">
           <div class="container-fluid">
             <div class="row redirect">
-              <ng-template [ngIf]="Ram.id=='null'" [ngIfElse]="elseRamBlock">
+              <ng-template [ngIf]="Ram.id!='null'" [ngIfElse]="elseRamBlock">
                 <div class="col-2">
                   <img src="{{ Ram.image }}" height="80px" width="80px">
                 </div>
@@ -136,7 +158,7 @@
         <div class="col-10 content text-white">
           <div class="container-fluid">
             <div class="row redirect">
-              <ng-template [ngIf]="Vga.id=='null'" [ngIfElse]="elseVgaBlock">
+              <ng-template [ngIf]="Vga.id!='null'" [ngIfElse]="elseVgaBlock">
                 <div class="col-2">
                   <img src="{{ Vga.image }}" height="80px" width="80px">
                 </div>
@@ -171,7 +193,7 @@
         <div class="col-10 content text-white">
           <div class="container-fluid">
             <div class="row redirect">
-              <ng-template [ngIf]="Hard_Disk.id=='null'" [ngIfElse]="elseHard_DiskBlock">
+              <ng-template [ngIf]="Hard_Disk.id!='null'" [ngIfElse]="elseHard_DiskBlock">
                 <div class="col-2">
                   <img src="{{ Hard_Disk.image }}" height="80px" width="80px">
                 </div>
@@ -214,12 +236,7 @@
       <app-loading></app-loading>
     </ng-template>
 
-    <div class="row">
-      <div class="col-10"></div>
-      <div class="col-2">
-        <span class="a_link" (click)="differentPlan()">Try it different</span>
-      </div>
-    </div>
+
   </div>
 
   <div class="modal fade" id="createModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -234,8 +251,8 @@
                   <b>RAM</b>
                 </th>
                 <td>
-                  <input type="text" class="form-control text_box" formControlName="ram_min" name="ram_min" placeholder="Minimum Value">&nbsp;
-                  <input type="text" class="form-control text_box" formControlName="ram_max" name="ram_max" placeholder="Maximum Value">
+                  <input type="text" class="form-control text_box" formControlName="ram_min" name="ram_min" placeholder="Minimum Value" required>&nbsp;
+                  <input type="text" class="form-control text_box" formControlName="ram_max" name="ram_max" placeholder="Maximum Value" required>
                 </td>
               </tr>
               <tr>
@@ -243,8 +260,8 @@
                   <b>VGA</b>
                 </th>
                 <td>
-                  <input type="text" class="form-control text_box" formControlName="vga_min" name="vga_min" placeholder="Minimum Value">&nbsp;
-                  <input type="text" class="form-control text_box" formControlName="vga_max" name="vga_max" placeholder="Maximum Value">
+                  <input type="text" class="form-control text_box" formControlName="vga_min" name="vga_min" placeholder="Minimum Value" required>&nbsp;
+                  <input type="text" class="form-control text_box" formControlName="vga_max" name="vga_max" placeholder="Maximum Value" required>
                 </td>
               </tr>
               <tr>
@@ -252,8 +269,8 @@
                   <b>CPU</b>
                 </th>
                 <td>
-                  <input type="text" class="form-control text_box" formControlName="cpu_min" name="cpu_min" placeholder="Minimum Value">&nbsp;
-                  <input type="text" class="form-control text_box" formControlName="cpu_max" name="cpu_max" placeholder="Maximum Value">
+                  <input type="text" class="form-control text_box" formControlName="cpu_min" name="cpu_min" placeholder="Minimum Value" required>&nbsp;
+                  <input type="text" class="form-control text_box" formControlName="cpu_max" name="cpu_max" placeholder="Maximum Value" required>
                 </td>
               </tr>
               <tr>
@@ -261,8 +278,10 @@
                   <b>Motherboard</b>
                 </th>
                 <td>
-                  <input type="text" class="form-control text_box" formControlName="motherboard_min" name="motherboard_min" placeholder="Minimum Value">&nbsp;
-                  <input type="text" class="form-control text_box" formControlName="motherboard_max" name="motherboard_max" placeholder="Maximum Value">
+                  <input type="text" class="form-control text_box" formControlName="motherboard_min" name="motherboard_min" placeholder="Minimum Value"
+                    required>&nbsp;
+                  <input type="text" class="form-control text_box" formControlName="motherboard_max" name="motherboard_max" placeholder="Maximum Value"
+                    required>
                 </td>
               </tr>
               <tr>
@@ -270,8 +289,10 @@
                   <b>Hard Disk</b>
                 </th>
                 <td>
-                  <input type="text" class="form-control text_box" formControlName="hard_disk_min" name="hard_disk_min" placeholder="Minimum Value">&nbsp;
-                  <input type="text" class="form-control text_box" formControlName="hard_disk_max" name="hard_disk_max" placeholder="Maximum Value">
+                  <input type="text" class="form-control text_box" formControlName="hard_disk_min" name="hard_disk_min" placeholder="Minimum Value"
+                    required>&nbsp;
+                  <input type="text" class="form-control text_box" formControlName="hard_disk_max" name="hard_disk_max" placeholder="Maximum Value"
+                    required>
                 </td>
               </tr>
               <tr>

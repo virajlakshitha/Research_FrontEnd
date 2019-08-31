@@ -18,7 +18,8 @@
             </div>
             <!-- <ng-template [ngIf]="" -->
             <ng-template [ngIf]="category=='ram'" [ngIfElse]="elseBlockram">
-              <div class="left_bar_names left_nav_hover a" routerLink="/browse/pcparts/ram/all" routerLinkActive="active">RAM</div>
+              <div class="left_bar_names left_nav_hover a"  routerLinkActive="active">
+                <a href="/browse/pcparts/ram/all">RAM</a></div>
             </ng-template>
             <ng-template #elseBlockram>
               <div class="left_bar_names left_nav a" routerLink="/browse/pcparts/ram/all" routerLinkActive="active">RAM</div>
@@ -51,11 +52,11 @@
             <div class="left_bar_last">
               <div class="text-center">Sort By</div>
               <div class="text-center">
-                <select class="form-control drop">
-                  <option value="0">Ratings</option>
+                <select class="form-control drop" (change)="getSortedProducts($event.target.value)">
+                  <option value="0">Best Products</option>
                   <option value="1">Price</option>
                   <option value="2">Features</option>
-                  <option value="3">Best Products</option>
+                  <option value="3">User Ratings</option>
                 </select>
               </div>
             </div>

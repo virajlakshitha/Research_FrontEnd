@@ -40,41 +40,22 @@ export class SearchComponent implements OnInit {
       this.pcParts = this.pcpart["responseObject"];
       console.log(data);
     },
-      (error: any) => console.log(error),
-      () => console.log('Gets all data')
+      (error: any) => console.log(error)
     );
-    this.loading = 'true';
+    this.loading = 'false';
   }
 
-  getSortedProducts(option: string) {
-    this.searchService.sortProducts(option).subscribe(data => {
+  getSortedProducts(option) {
+    this.loading = 'true';
+    this.searchService.sortProducts(this.category, this.name, option).subscribe(data => {
+      this.pcpart = data;
       this.pcParts = this.pcpart["responseObject"];
     },
-      (error: any) => console.log(error),
-      () => console.log('Gets all data')
+      (error: any) => console.log(error)
     );
+    this.loading = 'false';
   }
 
-  pushNotification(user_id: string, product: string, price: string) {
-    this.searchService.pushNotification(user_id, product, price).subscribe(data => {
-
-    },
-      (error: any) => console.log(error),
-      () => console.log('Gets all data')
-    );
-  }
-
-  sortProducts(number) {
-    if(number == 0){
-
-    } else if(number == 1) {
-
-    } else if(number == 2) {
-
-    } else if(number == 3) {
-
-    }
-    console.log(number);
-  }
+  
 
 }
