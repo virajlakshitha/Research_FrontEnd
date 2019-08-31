@@ -15,7 +15,7 @@ export class SearchService {
 
   constructor(private http: HttpClient) { 
     this.pcpartsUrl = 'http://localhost:8080/api-techRing/pcparts';
-    this.commentsUrl = 'http://localhost:8080/api-techRing/comments';
+    this.commentsUrl = 'http://localhost:8080/api-techRing/pcparts/comments';
   }
 
   public findAll() {
@@ -30,15 +30,23 @@ export class SearchService {
     return this.http.get(this.pcpartsUrl+'/'+category+"/byId/"+_id);
   }
 
-  public sortProducts(option: string) {
-    return this.http.get(this.pcpartsUrl+'/sort_by/'+option);
+  public sortProducts(category, name, option) {
+    return this.http.get(this.pcpartsUrl+'/sort_by/'+category+'/'+name+'/'+option);
   }
 
   public getComments(name: string) {
-    return this.http.get(this.commentsUrl+'/comments/'+name);
+    return this.http.get(this.commentsUrl+'/'+name);
   }
 
-  public getVendorPrices(name: string) {
-    return this.http.get(this.pcpartsUrl+"/vendor_prices/"+name);
+  public getVendorPrices(category, id) {
+    return this.http.get(this.pcpartsUrl+"/vendor_prices/"+category+'/'+id);
+  }
+
+  public getVendorDetailsForProducts(pro_name: string, category: string) {
+    return this.http.get(this.pcpartsUrl+"/vendors/"+category+'/'+pro_name);
+  }
+  
+  public pushNotification(user_id: string, product: string) {
+    return this.http.post(this.pcpartsUrl+"/notify",[user_id,product]);
   }
 }

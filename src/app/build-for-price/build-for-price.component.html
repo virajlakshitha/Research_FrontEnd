@@ -5,186 +5,310 @@
 <!------------>
 
 <!--Build For Price-->
+<script>
+  // var slider = document.getElementById("myRange");
+  // var output = document.getElementById("demo");
+  // output.innerHTML = slider.value;
+  // console.log(document.getElementById("myRange").value);
+  // slider.oninput = function () {
+  //   output.innerHTML = this.value;
+  // }
+</script>
 
 <body>
   <div class="container" id="container">
     <div class="row" id="content_head">
-      <div class="col-6 content_topic">Build PC for your Budget</div>
-      <div class="col-5">
-        <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
-          <input type="range" name="points" min="0" max="25000" formControlName="min"><input type="range" name="points" min="25000" max="200000" formControlName="max">
-          &nbsp;&nbsp;<button type="submit" class="btn btn-primary">Go</button>
-        </form>
+
+      <div class="col-8 content_topic">Build PC for your Budget</div>
+      <div class="col-4">
+        <!-- <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()"> -->
+        <!-- <p style="display: inline;"> Min:
+          <span id="demo"></span>
+        </p>&nbsp; -->
+
+        <!-- <input type="range" min="1" max="100" value="50" class="slider" id="myRange" (rangeValueChange)="onRangeValueChange($event)">
+        <!-- <input type="range" min="0" max="25000" value="10000" class="content_topic slider" id="myRange"> -->
+        <!-- <input type="range" min="25000" max="200000" value="75000" id="myRange1" class="content_topic slider"> &nbsp;
+        <p style="display: inline;"> Max:
+          <span id="demo1"></span> 
+        </p>&nbsp;
+        <button type="submit" class="btn btn-primary buttons">Go</button>&nbsp;&nbsp; -->
+        <button type="button" class="btn btn-info buttons" data-toggle="modal" data-target="#createModel" style="width: 200px;">Set Prices</button>
+        <!-- </form> -->
+
       </div>
     </div>
-    <div class="row item_list">
-      <div class="col-2 text-center">
-        <div class="component">MOTHERBOARD</div>
+    <ng-template [ngIf]="loading=='false'" [ngIfElse]="elseBlock">
+      <div class="row">
+        <div class="col-10"></div>
+        <div class="col-2">
+          <button class="a_link btn btn-success" (click)="differentPlan()">Try it different</button>
+        </div>
       </div>
 
-      <div class="col-10 content text-white" ng-repeat="x in pcpart">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-2">
-              <img src="https://cdn.takas.lk/media/catalog/product/cache/1/small_image/250x/9df78eab33525d08d6e5fb8d27136e95/h/1/h110m-c.png" height="80px" width="80px">
+      <div class="row item_list">
+        <div class="col-2 text-center">
+          <div class="component">MOTHERBOARD</div>
+        </div>
+
+        <div class="col-10 content text-white">
+          <div class="container-fluid">
+            <div class="row">
+              <ng-template [ngIf]="Motherboard.id!='null'" [ngIfElse]="elseMotherboardBlock">
+                <div class="col-2">
+                  <img src="{{ Motherboard.image }}" height="80px" width="80px">
+                </div>
+                <div class="col-5">
+                  <div class="row">
+                    <span class="redirect" (click)="redirect('motherboard', Motherboard.id)">{{ Motherboard.name }}</span>
+                  </div>
+                  <div class="row text-center">
+                    <button class="btn btn-info" (click)="changePCPart('motherboard')">Replace</button>
+                  </div>
+                </div>
+                <div class="col-3">Rs. {{ Motherboard.price }} /=</div>
+                <div class="col-2">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                </div>
+              </ng-template>
+              <ng-template #elseMotherboardBlock>
+                <div class="col-12 text-center">No Motherboard selected</div>
+              </ng-template>
             </div>
-            <div class="col-5">
-              <div class="row">
-                <span>{{ Motherboard.name }}</span>
-              </div>
-              <div class="row text-center">
-                <button class="btn btn-info">Replace</button>
-              </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row item_list">
+        <div class="col-2 text-center">
+          <div class="component">CPU</div>
+        </div>
+        <div class="col-10 content text-white">
+          <div class="container-fluid">
+            <div class="row redirect">
+              <ng-template [ngIf]="Cpu.id!='null'" [ngIfElse]="elseCpuBlock">
+                <div class="col-2">
+                  <img src="{{ Cpu.image }}" height="80px" width="80px">
+                </div>
+                <div class="col-5">
+                  <div class="row">
+                    <span>{{ Cpu.name }}</span>
+                  </div>
+                  <div class="row text-center">
+                    <button class="btn btn-info" (click)="changePCPart('cpu')">Replace</button>
+                  </div>
+                </div>
+                <div class="col-3">Rs. {{ Cpu.price }} /=</div>
+                <div class="col-2">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                </div>
+              </ng-template>
+              <ng-template #elseCpuBlock>
+                <div class="col-12 text-center">No CPU selected</div>
+              </ng-template>
             </div>
-            <div class="col-3">Rs. {{ Motherboard.price }} /=</div>
-            <div class="col-2">
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
+          </div>
+        </div>
+      </div>
+      <div class="row item_list">
+        <div class="col-2 text-center">
+          <div class="component">RAM</div>
+        </div>
+        <div class="col-10 content text-white">
+          <div class="container-fluid">
+            <div class="row redirect">
+              <ng-template [ngIf]="Ram.id!='null'" [ngIfElse]="elseRamBlock">
+                <div class="col-2">
+                  <img src="{{ Ram.image }}" height="80px" width="80px">
+                </div>
+                <div class="col-5">
+                  <div class="row">
+                    <span>{{ Ram.name }}</span>
+                  </div>
+                  <div class="row text-center">
+                    <button class="btn btn-info" (click)="changePCPart('ram')">Replace</button>
+                  </div>
+                </div>
+                <div class="col-3">Rs. {{ Ram.price }} /=</div>
+                <div class="col-2">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                </div>
+              </ng-template>
+              <ng-template #elseRamBlock>
+                <div class="col-12 text-center">No RAM selected</div>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row item_list">
+        <div class="col-2 text-center">
+          <div class="component">VGA</div>
+        </div>
+        <div class="col-10 content text-white">
+          <div class="container-fluid">
+            <div class="row redirect">
+              <ng-template [ngIf]="Vga.id!='null'" [ngIfElse]="elseVgaBlock">
+                <div class="col-2">
+                  <img src="{{ Vga.image }}" height="80px" width="80px">
+                </div>
+                <div class="col-5">
+                  <div class="row">
+                    <span>{{ Vga.name }}</span>
+                  </div>
+                  <div class="row text-center">
+                    <button class="btn btn-info" (click)="changePCPart('vga')">Replace</button>
+                  </div>
+                </div>
+                <div class="col-3">Rs. {{ Vga.price }} /=</div>
+                <div class="col-2">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                </div>
+              </ng-template>
+              <ng-template #elseVgaBlock>
+                <div class="col-12 text-center">No VGA selected</div>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row item_list">
+        <div class="col-2 text-center">
+          <div class="component">Hard Disk</div>
+        </div>
+        <div class="col-10 content text-white">
+          <div class="container-fluid">
+            <div class="row redirect">
+              <ng-template [ngIf]="Hard_Disk.id!='null'" [ngIfElse]="elseHard_DiskBlock">
+                <div class="col-2">
+                  <img src="{{ Hard_Disk.image }}" height="80px" width="80px">
+                </div>
+                <div class="col-5">
+                  <div class="row">
+                    <span>{{ Hard_Disk.name }}</span>
+                  </div>
+                  <div class="row text-center">
+                    <button class="btn btn-info" (click)="changePCPart('hard_disk')">Replace</button>
+                  </div>
+                </div>
+                <div class="col-3">Rs. {{ Hard_Disk.price }} /=</div>
+                <div class="col-2">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                </div>
+              </ng-template>
+              <ng-template #elseHard_DiskBlock>
+                <div class="col-12 text-center">No Hard Disk selected</div>
+              </ng-template>
             </div>
           </div>
         </div>
       </div>
 
-    </div>
+      <div class="row">
+        <div class="col-6"></div>
+        <div class="col-2">
+          <span>Total Budget</span>
+        </div>
+        <div class="col-2">
+          <span>Rs. {{ total_price }} /=</span>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #elseBlock>
+      <app-loading></app-loading>
+    </ng-template>
 
-    <div class="row item_list">
-      <div class="col-2 text-center">
-        <div class="component">CPU</div>
-      </div>
-      <div class="col-10 content text-white">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-2">
-              <img src="https://cdn.takas.lk/media/catalog/product/cache/1/small_image/250x/9df78eab33525d08d6e5fb8d27136e95/b/l/black_ops.png" height="80px" width="80px">
-            </div>
-            <div class="col-5">
-              <div class="row">
-                <span>{{ Cpu.name }}</span>
-              </div>
-              <div class="row text-center">
-                <button class="btn btn-info">Replace</button>
-              </div>
-            </div>
-            <div class="col-3">Rs. {{ Cpu.price }} /=</div>
-            <div class="col-2">
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row item_list">
-      <div class="col-2 text-center">
-        <div class="component">RAM</div>
-      </div>
-      <div class="col-10 content text-white">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-2">
-              <img src="https://i.ebayimg.com/thumbs/images/g/QlwAAOSwu3ZcLFeI/s-l225.webp" height="80px" width="80px">
-            </div>
-            <div class="col-5">
-              <div class="row">
-                <span>{{ Ram.name }}</span>
-              </div>
-              <div class="row text-center">
-                <button class="btn btn-info">Replace</button>
-              </div>
-            </div>
-            <div class="col-3">Rs. {{ Ram.price }} /=</div>
-            <div class="col-2">
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row item_list">
-      <div class="col-2 text-center">
-        <div class="component">VGA</div>
-      </div>
-      <div class="col-10 content text-white">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-2">
-              <img src="https://i.ebayimg.com/thumbs/images/g/aDkAAOSw0npc2lOr/s-l225.webp" height="80px" width="80px">
-            </div>
-            <div class="col-5">
-              <div class="row">
-                <span>{{ Vga.name }}</span>
-              </div>
-              <div class="row text-center">
-                <button class="btn btn-info">Replace</button>
-              </div>
-            </div>
-            <div class="col-3">Rs. {{ Vga.price }} /=</div>
-            <div class="col-2">
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row item_list">
-      <div class="col-2 text-center">
-        <div class="component">Hard Disk</div>
-      </div>
-      <div class="col-10 content text-white">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-2">
-              <img src="https://i.ebayimg.com/thumbs/images/m/mwWN7MFmqUgVz4K6HxVJAkA/s-l225.webp" height="80px" width="80px">
-            </div>
-            <div class="col-5">
-              <div class="row">
-                <span>{{ Hard_Disk.name }}</span>
-              </div>
-              <div class="row text-center">
-                <button class="btn btn-info">Replace</button>
-              </div>
-            </div>
-            <div class="col-3">Rs. {{ Hard_Disk.price }} /=</div>
-            <div class="col-2">
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="row">
-      <div class="col-6"></div>
-      <div class="col-2">
-        <span>Total Budget</span>
-      </div>
-      <div class="col-2">
-        <span>Rs. 88,000.00 /=</span>
-      </div>
-    </div>
+  </div>
 
-    <div class="row">
-      <div class="col-10"></div>
-      <div class="col-2">
-        <a href="">Try it different</a>
+  <div class="modal fade" id="createModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <table class="table table-borderless">
+            <tbody [formGroup]="settingsForm">
+              <h3 class="text-center">Add Price Limitations</h3>
+              <tr>
+                <th>
+                  <b>RAM</b>
+                </th>
+                <td>
+                  <input type="text" class="form-control text_box" formControlName="ram_min" name="ram_min" placeholder="Minimum Value" required>&nbsp;
+                  <input type="text" class="form-control text_box" formControlName="ram_max" name="ram_max" placeholder="Maximum Value" required>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <b>VGA</b>
+                </th>
+                <td>
+                  <input type="text" class="form-control text_box" formControlName="vga_min" name="vga_min" placeholder="Minimum Value" required>&nbsp;
+                  <input type="text" class="form-control text_box" formControlName="vga_max" name="vga_max" placeholder="Maximum Value" required>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <b>CPU</b>
+                </th>
+                <td>
+                  <input type="text" class="form-control text_box" formControlName="cpu_min" name="cpu_min" placeholder="Minimum Value" required>&nbsp;
+                  <input type="text" class="form-control text_box" formControlName="cpu_max" name="cpu_max" placeholder="Maximum Value" required>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <b>Motherboard</b>
+                </th>
+                <td>
+                  <input type="text" class="form-control text_box" formControlName="motherboard_min" name="motherboard_min" placeholder="Minimum Value"
+                    required>&nbsp;
+                  <input type="text" class="form-control text_box" formControlName="motherboard_max" name="motherboard_max" placeholder="Maximum Value"
+                    required>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <b>Hard Disk</b>
+                </th>
+                <td>
+                  <input type="text" class="form-control text_box" formControlName="hard_disk_min" name="hard_disk_min" placeholder="Minimum Value"
+                    required>&nbsp;
+                  <input type="text" class="form-control text_box" formControlName="hard_disk_max" name="hard_disk_max" placeholder="Maximum Value"
+                    required>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <button type="submit" class="btn btn-success" data-dismiss="modal" (click)="settingsSubmit()">Submit</button>
+                  &nbsp;
+                  <button type="reset" class="btn btn-info">Clear</button>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

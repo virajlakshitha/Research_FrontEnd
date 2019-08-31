@@ -24,7 +24,7 @@
             <img src="{{lapTop.imageSource}}" class="imgs">
             <div class="text-center">{{lapTop.lapName}}</div>
             <button class="btn btn-info btn_lap" data-toggle="modal" data-target="#createModel" (click)="findLaptopById(lapTop.id)">View</button>
-            <button class="btn btn-primary btn_lap">Compare</button>
+            <button class="btn btn-primary btn_lap" (click)="addToCompare(lapTop)">Add to Compare</button>
           </div>
         </div>
 
@@ -109,6 +109,13 @@
           </div>
         </div>
       </div>
+  </div>
+
+  <div id="mybutton" *ngIf="boxDisplay">
+    <div class="feedback">
+      <li *ngFor = "let comLap of comLap1">{{comLap.lapName}}</li>
+      <button class="btn btn-secondary compare" *ngIf="enableCompare" (click)="compare(comLap1)">Compare</button>
+    </div>
   </div>
 
 </body>

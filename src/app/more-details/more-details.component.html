@@ -22,41 +22,114 @@
       <div class="col-8">
         <div class="row">
           <div class="col-12 pro_name">
-            <b>Kingston RAM 8GB</b>
+            <ng-template [ngIf]="pcpart.name" [ngIfElse]="elseBlock">
+              <b>{{ pcpart.name }}</b>
+            </ng-template>
+            <ng-template #elseBlock>
+              <b>Product Name</b>
+            </ng-template>
           </div>
         </div>
-        <div class="row">
-          <div class="col-4">Speed</div>
-          <div class="col-6">8 GB</div>
-        </div>
-        <div class="row">
-          <div class="col-4">Item Weight</div>
-          <div class="col-6">0.5 KG</div>
-        </div>
-        <div class="row">
-          <div class="col-4">Product Dimensions</div>
-          <div class="col-6">28.8*5.3*3.4 cm</div>
-        </div>
-        <div class="row">
-          <div class="col-4">Color</div>
-          <div class="col-6">Black</div>
-        </div>
-        <div class="row">
-          <div class="col-4">Warranty</div>
-          <div class="col-6">1 Year</div>
-        </div>
-        <div class="row">
-          <div class="col-4">Price</div>
-          <div class="col-6"> 80$ </div>
-        </div>
-        <div class="row">
-          <div class="col-4">Type</div>
-          <div class="col-6">RAM</div>
-        </div>
+
+        <ng-template [ngIf]="pcpart.speed">
+          <div class="row">
+            <div class="col-4">Speed</div>
+            <div class="col-6">{{ pcpart.speed }}</div>
+          </div>
+        </ng-template>
+        <ng-template [ngIf]="pcpart.size">
+          <div class="row">
+            <div class="col-4">Size</div>
+            <div class="col-6">{{ pcpart.size }}</div>
+          </div>
+        </ng-template>
+        <ng-template [ngIf]="pcpart.weight">
+          <div class="row">
+            <div class="col-4">Item Weight</div>
+            <div class="col-6">{{ pcpart.weight }}</div>
+          </div>
+        </ng-template>
+        <ng-template [ngIf]="pcpart.dimension">
+          <div class="row">
+            <div class="col-4">Product Dimensions</div>
+            <div class="col-6">{{ pcpart.dimension }}</div>
+          </div>
+        </ng-template>
+        <ng-template [ngIf]="pcpart.color">
+          <div class="row">
+            <div class="col-4">Color</div>
+            <div class="col-6">{{ pcpart.color }}</div>
+          </div>
+        </ng-template>
+        <ng-template [ngIf]="pcpart.warranty">
+          <div class="row">
+            <div class="col-4">Warranty</div>
+            <div class="col-6">{{ pcpart.warranty }}</div>
+          </div>
+        </ng-template>
+        <ng-template [ngIf]="pcpart.price">
+          <div class="row">
+            <div class="col-4">Price</div>
+            <div class="col-6">{{ pcpart.price }}</div>
+          </div>
+        </ng-template>
+        <ng-template [ngIf]="pcpart.type">
+          <div class="row">
+            <div class="col-4">Type</div>
+            <div class="col-6">{{ pcpart.type }}</div>
+          </div>
+        </ng-template>
+        <ng-template [ngIf]="pcpart.model">
+          <div class="row">
+            <div class="col-4">Model</div>
+            <div class="col-6">{{ pcpart.model }}</div>
+          </div>
+        </ng-template>
+        <ng-template [ngIf]="pcpart.socket">
+          <div class="row">
+            <div class="col-4">Socket</div>
+            <div class="col-6">{{ pcpart.socket }}</div>
+          </div>
+        </ng-template>
+        <ng-template [ngIf]="pcpart.proccessor_type">
+          <div class="row">
+            <div class="col-4">Proccessor Type</div>
+            <div class="col-6">{{ pcpart.proccessor_type }}</div>
+          </div>
+        </ng-template>
+        <ng-template [ngIf]="pcpart.cpu_brand">
+          <div class="row">
+            <div class="col-4">Cpu Brand</div>
+            <div class="col-6">{{ pcpart.cpu_brand }}</div>
+          </div>
+        </ng-template>
+        <ng-template [ngIf]="pcpart.memory_type">
+          <div class="row">
+            <div class="col-4">Memory Type</div>
+            <div class="col-6">{{ pcpart.memory_type }}</div>
+          </div>
+        </ng-template>
+        <ng-template [ngIf]="pcpart.chipset">
+          <div class="row">
+            <div class="col-4">Chipset</div>
+            <div class="col-6">{{ pcpart.chipset }}</div>
+          </div>
+        </ng-template>
+        <ng-template [ngIf]="pcpart.capacity">
+          <div class="row">
+            <div class="col-4">Capacity</div>
+            <div class="col-6">{{ pcpart.capacity }}</div>
+          </div>
+        </ng-template>
       </div>
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-12">
+      <input type="checkbox" id="notification" name="notification" [swal]="{ title: 'Login Here', input: 'email' }">&nbsp;&nbsp;&nbsp;I want to track down the price of the product
+    </div>
+  </div>
 
   <div class="container content2">
     <div class="row table_headers">
@@ -84,30 +157,30 @@
     </div>
   </div>
   <!--Comment Section-->
-  <div class="container content2">
+  <div class="container content2 p-5">
     <div class="row">
       <div class="col-12 comment_topic">
         <b>Comments</b>
       </div>
     </div>
-    <div class="row">
-      <div class="comment_list">
-        <img src="" class="pro_pic">
-        <div class="pro_name">
-          <b>{{ comments1[0].user_name }}</b>
+    <ng-template [ngIf]="comments.length != 0" [ngIfElse]="elseCommentBlock">
+      <div *ngFor="let p of comments; let i=index;">
+        <div class="row">
+          <div class="comment_list">
+            <img src="{{ p.comment_pic }}" class="pro_pic">
+            <div class="pro_name">
+              <b>{{ p.comment_name }}</b>
+            </div>
+            <div class="comment">{{ p.comment }}</div>
+          </div>
         </div>
-        <div class="comment">{{ comments1[0].comment }}</div>
       </div>
-    </div>
-    <div class="row">
-      <div class="comment_list">
-        <img src="" class="pro_pic">
-        <div class="pro_name">
-          <b>{{ comments1[1].user_name }}</b>
-        </div>
-        <div class="comment">{{ comments1[1].comment }}</div>
+    </ng-template>
+    <ng-template #elseCommentBlock>
+      <div class="row">
+        <div class="col-12 text-center">No Comment Found</div>
       </div>
-    </div>
+    </ng-template>
   </div>
   <!------------------>
 </div>

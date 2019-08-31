@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Pcpart } from '../model/pcpart';
 import { SearchService } from '../service/search.service';
 import { error } from 'protractor';
-import {ActivatedRoute} from '@angular/router';
-import {Router} from "@angular/router";
+import { ActivatedRoute } from '@angular/router';
+import { Router } from "@angular/router";
+import { LoadingComponent } from '../loading/loading.component';
 
 @Component({
   selector: 'app-search',
@@ -16,8 +17,9 @@ export class SearchComponent implements OnInit {
   pcParts = [];
   name;
   category;
+  loading = 'true';
 
-  constructor(private searchService: SearchService, private route : ActivatedRoute, private router: Router) { }
+  constructor(private searchService: SearchService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -28,31 +30,32 @@ export class SearchComponent implements OnInit {
   }
 
   redirect(_id): void {
-    this.router.navigate(['/product_details/', _id]);
+    this.router.navigate(['/product_details/' + this.category + '/' + _id]);
   }
 
   getAllPCPartsByCategory(category, name) {
+    this.loading = 'true';
     this.searchService.findByName(category, name).subscribe(data => {
       this.pcpart = data;
       this.pcParts = this.pcpart["responseObject"];
       console.log(data);
     },
-      (error: any) => console.log(error),
-      () => console.log('Gets all data')
+      (error: any) => console.log(error)
     );
-    
+    this.loading = 'false';
   }
 
-  getSortedProducts(option: string) {
-    this.searchService.sortProducts(option).subscribe(data => {
+  getSortedProducts(option) {
+    this.loading = 'true';
+    this.searchService.sortProducts(this.category, this.name, option).subscribe(data => {
       this.pcpart = data;
+      this.pcParts = this.pcpart["responseObject"];
     },
-      (error: any) => console.log(error),
-      () => console.log('Gets all data')
+      (error: any) => console.log(error)
     );
-    // var txt = '[{"_id": "141151","name": "Viraj", "price": 2500.00}]';
-    // this.pcParts = JSON.parse(txt);
-    // console.log(this.pcParts);
+    this.loading = 'false';
   }
+
+  
 
 }
