@@ -58,3 +58,8 @@
 a {
     color: white;
   }
+
+#spinner {
+    position: relative;
+    padding-left: 300px
+}

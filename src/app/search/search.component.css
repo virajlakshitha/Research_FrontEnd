@@ -1,52 +1,63 @@
-body{
-    margin: 0;
-    size: 100%;
-    margin-bottom: 20px;
+.left_side{
+    background-color: #314152;
+    height: 100px;
 }
-.container-fluid{
-    padding: 0 15px 0 15px;
+.item_line{
+    margin-top: 35px;
 }
-a{
-    text-decoration: none;
+.item_list{
+    width: 27%;
+    height: 250px;
+    border: 1px solid black;
+    margin-left: 40px;
+    border-radius: 8px;
+    background: #335b87;
 }
-.checked{
-    color: orange;
+.btn_lap{
+    margin-left: 80px;
+    margin-top: 10px;
 }
-#pc_part_name{
+.imgs{
+    height: 125px;
+    width: 145px;
+    margin: 15px 70px;
+}
+.left_bar{
+    background: #335b87;
+    height: 450px;
+    padding: 5px 0 20px 0;
+    margin: 35px 20px 0 50px;
+    width: 100%;
+    border-radius: 5px;
+}
+.left_bar_names{
+    padding: 10px 0 10px 30px;
+    border-top : 1px solid white;
+    border-bottom : 1px solid white;
+    font-size: 20px;
+}
+.left_bar_names:hover{
+    background-color: black;
     cursor: pointer;
 }
-
-@media only screen and (max-width:576px){
-
-    .content{
-        margin-top: 75px;
-    }
-    .left_bar{
-        display: none;
-    }
-    #right_side{
-        padding-top: 10px;
-    }
-    #right_topic{
-        height: 40px;
-        background: darkslateblue;
-        color: white;
-        border-radius: 5px;
-        padding-left: 20px;
-        padding-top: 5px;
-    }
+.left_topic1{
+    padding: 10px 0 20px 0;
+    text-align: center;
 }
-
-@media only screen and (max-width:768px){
-
+#left1:hover, #left2:hover, #left3:hover, #left4:hover, #left5:hover {
+    background: steelblue;
+    cursor: pointer;
 }
-
-@media only screen and (max-width:992px){
-
+#pagination{
+    float: right;
+    margin-right: 55px;
 }
-
-@media only screen and (max-width:1200px){
-
+.pages{
+    background: darkslateblue;
+    padding: 5px 10px;
+    margin-left: 8px;
+    color: white;
+    cursor: pointer;
 }
 
 @media only screen and (min-width:1200px){
@@ -122,25 +133,24 @@ a{
     }
 }
 
-@media only screen and (max-width:576px){
-
-    .content{
-        margin-top: 75px;
-    }
+.backdrop{
+    margin-top: 150px;
+}
+.modal-dialog {
+    margin-right: 10;
+    margin-top: 2000;
+ }
+ .modal-backdrop.in {
+    opacity: 0.9;
+}
+.lapTable{
+    text-align: center;
+}
+#detail{
+    background-color:#335b87;
+    color: beige;
+}
+.processor{
+    margin-left: 100px;
 }
 
-@media only screen and (max-width:768px){
-
-}
-
-@media only screen and (max-width:992px){
-
-}
-
-@media only screen and (max-width:1200px){
-
-}
-
-@media only screen and (min-width:1200px){
-
-}

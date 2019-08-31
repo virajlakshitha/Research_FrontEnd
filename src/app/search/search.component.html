@@ -17,37 +17,36 @@
               <b>CATEGORIES</b>
             </div>
             <!-- <ng-template [ngIf]="" -->
-            <ng-template [ngIf]="category=='ram'" [ngIfElse]="elseBlockram">
-              <div class="left_bar_names left_nav_hover a"  routerLinkActive="active">
-                <a href="/browse/pcparts/ram/all">RAM</a></div>
-            </ng-template>
+            <!-- <ng-template [ngIf]="category=='ram'" [ngIfElse]="elseBlockram"> -->
+              <div class="left_bar_names left_nav a" (click)="getAllPCPartsByCategory('ram', 'all')">RAM</div>
+            <!-- </ng-template>
             <ng-template #elseBlockram>
-              <div class="left_bar_names left_nav a" routerLink="/browse/pcparts/ram/all" routerLinkActive="active">RAM</div>
+              <div class="left_bar_names left_nav a" (click)="getAllPCPartsByCategory('ram', 'all')">RAM</div>
             </ng-template>
-            <ng-template [ngIf]="category=='vga'" [ngIfElse]="elseBlockvga">
-              <div class="left_bar_names left_nav_hover a" routerLink="/browse/pcparts/vga/all" routerLinkActive="active">VGA</div>
-            </ng-template>
+            <ng-template [ngIf]="category=='vga'" [ngIfElse]="elseBlockvga"> -->
+              <div class="left_bar_names left_nav a" (click)="getAllPCPartsByCategory('vga', 'all')">VGA</div>
+            <!-- </ng-template>
             <ng-template #elseBlockvga>
-              <div class="left_bar_names left_nav a" routerLink="/browse/pcparts/vga/all" routerLinkActive="active">VGA</div>
+              <div class="left_bar_names left_nav a" (click)="getAllPCPartsByCategory('vga', 'all')">VGA</div>
             </ng-template>
-            <ng-template [ngIf]="category=='cpu'" [ngIfElse]="elseBlockcpu">
-              <div class="left_bar_names left_nav_hover a" routerLink="/browse/pcparts/cpu/all" routerLinkActive="active">CPU</div>
-            </ng-template>
+            <ng-template [ngIf]="category=='cpu'" [ngIfElse]="elseBlockcpu"> -->
+              <div class="left_bar_names left_nav a" (click)="getAllPCPartsByCategory('cpu', 'all')">CPU</div>
+            <!-- </ng-template>
             <ng-template #elseBlockcpu>
-              <div class="left_bar_names left_nav a" routerLink="/browse/pcparts/cpu/all" routerLinkActive="active">CPU</div>
+              <div class="left_bar_names left_nav a" (click)="getAllPCPartsByCategory('cpu', 'all')">CPU</div>
             </ng-template>
-            <ng-template [ngIf]="category=='motherboard'" [ngIfElse]="elseBlockmotherboard">
-              <div class="left_bar_names left_nav_hover a" routerLink="/browse/pcparts/motherboard/all" routerLinkActive="active">MOTHERBOARD</div>
-            </ng-template>
+            <ng-template [ngIf]="category=='motherboard'" [ngIfElse]="elseBlockmotherboard"> -->
+              <div class="left_bar_names left_nav a" (click)="getAllPCPartsByCategory('motherboard', 'all')">MOTHERBOARD</div>
+            <!-- </ng-template>
             <ng-template #elseBlockmotherboard>
-              <div class="left_bar_names left_nav a" routerLink="/browse/pcparts/motherboard/all" routerLinkActive="active">MOTHERBOARD</div>
-            </ng-template>
-            <ng-template [ngIf]="category=='hard_disk'" [ngIfElse]="elseBlockhardDisk">
-              <div class="left_bar_names left_nav_hover a" routerLink="/browse/pcparts/hard_disk/all" routerLinkActive="active">HARD DISK</div>
-            </ng-template>
+              <div class="left_bar_names left_nav a" (click)="getAllPCPartsByCategory('motherboard', 'all')">MOTHERBOARD</div>
+            </ng-template> -->
+            <!-- <ng-template [ngIf]="category=='hard_disk'" [ngIfElse]="elseBlockhardDisk"> -->
+              <div class="left_bar_names left_nav a" (click)="getAllPCPartsByCategory('hard_disk', 'all')">HARD DISK</div>
+            <!-- </ng-template>
             <ng-template #elseBlockhardDisk>
-              <div class="left_bar_names left_nav a" routerLink="/browse/pcparts/hard_disk/all" routerLinkActive="active">HARD DISK</div>
-            </ng-template>
+              <div class="left_bar_names left_nav a" (click)="getAllPCPartsByCategory('hard_disk', 'all')">HARD DISK</div>
+            </ng-template> -->
 
             <div class="left_bar_last">
               <div class="text-center">Sort By</div>
