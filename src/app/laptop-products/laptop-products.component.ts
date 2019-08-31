@@ -5,6 +5,9 @@ import {LaptopStore}          from './laptop.store';
 import {LaptopCompareService} from '../service/laptop-compare.service';
 import { Point }              from '../model/point'
 import {Router}               from "@angular/router";
+import {passingObject}        from '../model/passingObject';
+
+import {LaptopInteractionService} from '../service/laptop-interaction.service';
 
 
 @Component({
@@ -33,7 +36,7 @@ export class LaptopProductsComponent implements OnInit {
 
   list:LaptopStore;
   
-  constructor(private laptopBrandService: LaptopBrandService, private laptopService:LaptopService, private laptopCompareService:LaptopCompareService,private router: Router) {}
+  constructor(private laptopBrandService: LaptopBrandService, private laptopService:LaptopService, private laptopCompareService:LaptopCompareService,private router: Router,private laptopInteractionService:LaptopInteractionService) {}
 
   ngOnInit() {
     this.getLapBrad();
@@ -98,25 +101,39 @@ export class LaptopProductsComponent implements OnInit {
 
    private x=0;
 
+   resultObject  = new Array();
+
   compare(laptops){
 
     this.laptopCompareService.getLaptopPoint(laptops[0]).subscribe(data => {
-      this.point2 = new Point(data);
-      console.log("Second Laptop "+this.point2.Point);
-      this.x = this.point2.Point;
+      this.point1 = new Point(data);
+      // console.log("First Laptop "+this.point1.Point);
+      this.x = this.point1.Point;
+
+      let lap = new passingObject(this.point1.Point,laptops[0]);
+      this.resultObject.push(40);
+
+      console.log(this.resultObject);
     })
 
     this.laptopCompareService.getLaptopPoint(laptops[1]).toPromise().then(data => {
         this.point2 = new Point(data);
-        console.log("Second Laptop "+this.point2.Point);
-        this.print(this.point2.Point);
+        // console.log("Second Laptop "+this.point2.Point);
+        let lap = new passingObject(this.point2.Point,laptops[1]);
+        this.resultObject.push(20);
+
+        this.print();
+
+        console.log(this.resultObject);
     })
 
   }
 
-  print(y){
+  print(){
     
     if(this.x != null){
+      // console.log(this.resultObject)
+      this.laptopInteractionService.sendLaptopDetails(this.resultObject);
       this.router.navigate(['/laptop_comparison']);
     }
     
