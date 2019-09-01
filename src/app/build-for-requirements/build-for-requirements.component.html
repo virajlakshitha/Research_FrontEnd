@@ -10,7 +10,11 @@
       <input type="text" class="search form-control" placeholder="Search Game" [(ngModel)]="search_game">
       <button class="btn btn-info srch_btn"  (click)="scrapeGame()">Search</button>
     </div>
+
+    <img class="animated fadeInDown" id="spinner" *ngIf="loading" src="../../assets/img/spinner2.gif"> 
   </div>
+
+  
 
   <div *ngFor="let p of game; let i=index;">
     <div class="row">
@@ -26,11 +30,7 @@
          
         </div>
 
-        <div class="lower_part_list">
-          <div class="row">
-            <div class="col-2">Name</div>
-            <div class="col-10">{{ p.name }}</div>
-          </div>
+        <div class="lower_part_list"> 
           <div class="row">
             <div class="col-2">CPU</div>
             <div class="col-10">{{ p.cpu }}</div>

@@ -24,7 +24,9 @@
 }
 .choice{
     margin-top: 25px;
-    color: green;
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
 }
 .left_side .col-5{
     border-right: 1px solid;

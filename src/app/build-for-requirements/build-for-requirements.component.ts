@@ -11,7 +11,9 @@ export class BuildForRequirementsComponent implements OnInit {
 
   search_game = '';
   games: Object;
-  game = [];
+  game = []; 
+  loading = false;
+
 
   constructor(private gameService: GameService) { }
 
@@ -20,6 +22,7 @@ export class BuildForRequirementsComponent implements OnInit {
   }
 
   searchGame() {
+    this.loading = true;
     console.log('game name' + this.search_game);
   } 
 
@@ -35,10 +38,13 @@ export class BuildForRequirementsComponent implements OnInit {
   }
 
   scrapeGame() {
+    this.loading = true;
     this.gameService.scarpeGame(this.search_game).subscribe(
       data => { 
+          this.ngOnInit();
+          this.loading = false;
       }
-    )
+    );
   }
 
 }

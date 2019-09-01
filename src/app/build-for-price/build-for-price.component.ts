@@ -63,8 +63,10 @@ export class BuildForPriceComponent implements OnInit {
 
   budgetPlan(ram_min, ram_max, motherboard_min, motherboard_max, vga_min, vga_max, cpu_min, cpu_max,hard_disk_min, hard_disk_max) {
     this.pcpartServiceService.budgetPlan(ram_min, ram_max, motherboard_min, motherboard_max, vga_min, vga_max, cpu_min, cpu_max,hard_disk_min, hard_disk_max).subscribe(data => {
+      console.log(data);
       if(data["responseCode"] == "111"){
         this.Budget_Pro = data["responseObject"];
+        console.log(this.Budget_Pro);
         this.total_loop = data["responseObject"].length;
         this.Ram = this.Budget_Pro[this.budget_loop]["ram"];
         if(this.Ram["price"] != null){
@@ -79,6 +81,7 @@ export class BuildForPriceComponent implements OnInit {
           this.total_price = this.total_price + parseFloat(this.Cpu["price"]);
         }
         this.Motherboard = this.Budget_Pro[this.budget_loop]["motherboard"];
+        console.log(this.Motherboard["user_rating"]);
         if(this.Motherboard["price"] != null){
           this.total_price = this.total_price + parseFloat(this.Motherboard["price"]);
         }
