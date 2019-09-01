@@ -15,6 +15,7 @@ export class PcpartServiceService {
   constructor(private http: HttpClient) { 
     this.pcpartsUrl = 'http://localhost:8080/api-techRing/pcparts/';
     this.buildForPriceUrl = 'http://localhost:8080/api-techRing/build_for_price/';
+    // this.buildForPriceUrl = 'http://localhost:8093/api-py-techRing/';
   }
 
   public findMaximum() {
@@ -31,15 +32,17 @@ export class PcpartServiceService {
   }
 
   public changePCPart(pro, val1, val2, arr) {
-    return this.http.get(this.buildForPriceUrl+'change/'+pro+'/'+val1+'/'+val2+'/'+arr["motherboard"]+'/'+arr["cpu"]+'/'+arr["ram"]+'/'+arr["vga"]+'/'+arr["hard_disk"]);
+    return this.http.get(this.buildForPriceUrl+'change/'+pro+'/'+val1+'/'+val2+'/'+arr["cpu"]+'/'+arr["motherboard"]+'/'+arr["ram"]+'/'+arr["vga"]+'/'+arr["hard_disk"]);
   }
 
   public budgetPlan(a, b, c, d, e, f, g, h, i, j) {
+    // var abc = { "ram_min": a, "ram_max": b, "motherboard_min": c, "motherboard_max": d, "vga_min": e, "vga_max": f, "cpu_min": g, "cpu_max": h, "hard_disk_min": i, "hard_disk_max": j};
     return this.http.get(this.buildForPriceUrl+'budgetPlan_price/'+a+'/'+b+'/'+c+'/'+d+'/'+e+'/'+f+'/'+g+'/'+h+'/'+i+'/'+j);
+    // return this.http.post(this.buildForPriceUrl+'budgetPlan', abc );
   }
 
   public settingsSubmit(ram_min, ram_max, vga_min, vga_max, cpu_min, cpu_max, motherboard_min, motherboard_max, hard_disk_min, hard_disk_max) {
-    return this.http.get(this.buildForPriceUrl+'budgetPlan_price/'+ram_min+'/'+ram_max+'/'+vga_min+'/'+vga_min+'/'+cpu_min+'/'+cpu_max+'/'+motherboard_min+'/'+motherboard_max+'/'+hard_disk_min+'/'+hard_disk_max);
+    return this.http.get(this.buildForPriceUrl+'budgetPlan_price/'+ram_min+'/'+ram_max+'/'+vga_min+'/'+vga_max+'/'+cpu_min+'/'+cpu_max+'/'+motherboard_min+'/'+motherboard_max+'/'+hard_disk_min+'/'+hard_disk_max);
   }
 
   public getMaxMinBudget() {

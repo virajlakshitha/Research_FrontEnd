@@ -5,6 +5,10 @@ import {LaptopStore}          from './laptop.store';
 import {LaptopCompareService} from '../service/laptop-compare.service';
 import { Point }              from '../model/point'
 import {Router}               from "@angular/router";
+import {passingObject}        from '../model/passingObject';
+
+import {LaptopInteractionService} from '../service/laptop-interaction.service';
+import { Laptop } from '../model/laptop';
 
 
 @Component({
@@ -22,6 +26,18 @@ export class LaptopProductsComponent implements OnInit {
   private defaulsLaptop = "Dell";
   private boxDisplay: boolean = false;
   private enableCompare = false;
+
+  private firstLapId:string;
+  private secondLapId:string;
+  private firstLapScore:number;
+  private secondLapScore:number;
+
+  private point2:Point;
+  private point1:Point;
+
+  private x=0;
+
+  resultObject  = new Array();
   
 
   /**
@@ -33,7 +49,7 @@ export class LaptopProductsComponent implements OnInit {
 
   list:LaptopStore;
   
-  constructor(private laptopBrandService: LaptopBrandService, private laptopService:LaptopService, private laptopCompareService:LaptopCompareService,private router: Router) {}
+  constructor(private laptopBrandService: LaptopBrandService, private laptopService:LaptopService, private laptopCompareService:LaptopCompareService,private router: Router,private laptopInteractionService:LaptopInteractionService) {}
 
   ngOnInit() {
     this.getLapBrad();
@@ -88,38 +104,46 @@ export class LaptopProductsComponent implements OnInit {
 
     this.comLap1.push(laptop1);
 
+    // console.log(laptop1[0]);
+    // console.log(laptop1[1]);
+
     if(this.comLap1.length == 2){
       this.enableCompare = true;
     }
   }
 
-   private point2:Point = null;
-   private point1:Point = null;
-
-   private x=0;
-
+  /**
+   * find computational power point from ` Python Expert System ` 
+   * 
+   */
   compare(laptops){
 
     this.laptopCompareService.getLaptopPoint(laptops[0]).subscribe(data => {
-      this.point2 = new Point(data);
-      console.log("Second Laptop "+this.point2.Point);
-      this.x = this.point2.Point;
+
+      this.point1 = new Point(data);
+      this.firstLapScore = data["point"]
+      this.firstLapId = laptops[0].id;
+
     })
 
     this.laptopCompareService.getLaptopPoint(laptops[1]).toPromise().then(data => {
-        this.point2 = new Point(data);
-        console.log("Second Laptop "+this.point2.Point);
-        this.print(this.point2.Point);
+
+      this.point2 = new Point(data);
+      this.secondLapScore = data["point"]
+      this.secondLapId = laptops[1].id;
+
+      this.showResult();
+
     })
 
   }
 
-  print(y){
-    
-    if(this.x != null){
-      this.router.navigate(['/laptop_comparison']);
-    }
-    
+  /**
+   * show comparision result.
+   * 
+   */
+  showResult(){
+      this.router.navigate(['/laptop_comparison/'+this.firstLapScore+'/'+this.firstLapId+'/'+this.secondLapScore+'/'+this.secondLapId]);
   }
 
 }

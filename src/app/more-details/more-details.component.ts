@@ -106,6 +106,7 @@ export class MoreDetailsComponent implements OnInit {
 
   getVendorPrices(category, name) {
     this.searchService.getVendorPrices(category, name).subscribe(data => {
+      console.log(data["responseObject"]);
       this.vendorPrice = data["responseObject"];
     },
       (error: any) => console.log(error),
@@ -118,6 +119,7 @@ export class MoreDetailsComponent implements OnInit {
 
   getVendorDetails(pro_name: string, category: string) {
     this.searchService.getVendorDetailsForProducts(pro_name, category).subscribe(data => {
+      console.log(data);
       this.vendorDetails = data;
     },
     (error: any) => console.log(error));

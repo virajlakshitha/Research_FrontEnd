@@ -25,15 +25,15 @@ export class BuildForPriceComponent implements OnInit {
   Motherboard = [];
   Hard_Disk = [];
   min_ram = 0;
-  max_ram = 10000;
+  max_ram = 4500;
   min_vga = 0;
-  max_vga = 10000;
+  max_vga = 7500;
   min_cpu = 0;
-  max_cpu = 10000;
+  max_cpu = 6500;
   min_motherboard = 0;
-  max_motherboard = 10000;
+  max_motherboard = 4500;
   min_hard_disk = 0;
-  max_hard_disk = 10000;
+  max_hard_disk = 2500;
                   
   constructor(private pcpartServiceService: PcpartServiceService, private route: ActivatedRoute, private router: Router) { }
 
@@ -63,8 +63,10 @@ export class BuildForPriceComponent implements OnInit {
 
   budgetPlan(ram_min, ram_max, motherboard_min, motherboard_max, vga_min, vga_max, cpu_min, cpu_max,hard_disk_min, hard_disk_max) {
     this.pcpartServiceService.budgetPlan(ram_min, ram_max, motherboard_min, motherboard_max, vga_min, vga_max, cpu_min, cpu_max,hard_disk_min, hard_disk_max).subscribe(data => {
+      console.log(data);
       if(data["responseCode"] == "111"){
         this.Budget_Pro = data["responseObject"];
+        console.log(this.Budget_Pro);
         this.total_loop = data["responseObject"].length;
         this.Ram = this.Budget_Pro[this.budget_loop]["ram"];
         if(this.Ram["price"] != null){
@@ -79,6 +81,7 @@ export class BuildForPriceComponent implements OnInit {
           this.total_price = this.total_price + parseFloat(this.Cpu["price"]);
         }
         this.Motherboard = this.Budget_Pro[this.budget_loop]["motherboard"];
+        console.log(this.Motherboard["user_rating"]);
         if(this.Motherboard["price"] != null){
           this.total_price = this.total_price + parseFloat(this.Motherboard["price"]);
         }
@@ -91,7 +94,8 @@ export class BuildForPriceComponent implements OnInit {
     (error: any) => console.log(error));
   }
 
-  settingsSubmit(ram_min, ram_max, motherboard_min, motherboard_max, vga_min, vga_max, cpu_min, cpu_max,hard_disk_min, hard_disk_max) {
+  // settingsSubmit(ram_min, ram_max, motherboard_min, motherboard_max, vga_min, vga_max, cpu_min, cpu_max,hard_disk_min, hard_disk_max) {
+  settingsSubmit() {
     this.budget_loop = 1;
     this.total_price = 0;
 
@@ -116,7 +120,7 @@ export class BuildForPriceComponent implements OnInit {
     var hard_disk_max = this.settingsForm.value.hard_disk_max;
     this.max_hard_disk = hard_disk_max;
 
-    this.pcpartServiceService.settingsSubmit(ram_min, ram_max, vga_min, vga_max, cpu_min, cpu_max, motherboard_min, motherboard_max, hard_disk_min, hard_disk_max).subscribe(data => {
+    this.pcpartServiceService.settingsSubmit(ram_min, ram_max, motherboard_min, motherboard_max, vga_min, vga_max, cpu_min, cpu_max, hard_disk_min, hard_disk_max).subscribe(data => {
         this.Ram = data["responseObject"][this.budget_loop]["ram"];
         if(this.Ram["price"] != null){
           this.total_price = this.total_price + parseFloat(this.Ram["price"]);
@@ -196,7 +200,31 @@ export class BuildForPriceComponent implements OnInit {
     }
     this.pcpartServiceService.changePCPart(category, pass_min , pass_max, arr).subscribe(data => {
       if(data["responseCode"] == "111"){
-
+        console.log(data["responseObject"]);
+        if(category == "ram"){
+          this.Ram = data["responseObject"][this.budget_loop]["ram"];
+          if(this.Ram["price"] != null){
+            this.total_price = this.total_price + parseFloat(this.Ram["price"]);
+          }
+        }
+        else if(category == "motherboard")
+        
+        this.Vga = data["responseObject"][this.budget_loop]["vga"];
+        if(this.Vga["price"] != null){
+          this.total_price = this.total_price + parseFloat(this.Vga["price"]);
+        }
+        this.Cpu = data["responseObject"][this.budget_loop]["cpu"];
+        if(this.Cpu["price"] != null){
+          this.total_price = this.total_price + parseFloat(this.Cpu["price"]);
+        }
+        this.Motherboard = data["responseObject"][this.budget_loop]["motherboard"];
+        if(this.Motherboard["price"] != null){
+          this.total_price = this.total_price + parseFloat(this.Motherboard["price"]);
+        }
+        this.Hard_Disk = data["responseObject"][this.budget_loop]["hard_disk"];
+        if(this.Hard_Disk["price"] != null){
+          this.total_price = this.total_price + parseFloat(this.Hard_Disk["price"]);
+        }
       }
       else{
         console.log("error -> change pc");
