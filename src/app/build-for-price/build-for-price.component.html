@@ -5,44 +5,36 @@
 <!------------>
 
 <!--Build For Price-->
-<script>
-  var slider = document.getElementById("myRange");
-  var output = document.getElementById("demo");
-  output.innerHTML = slider.value;
-  console.log(document.getElementById("myRange").value);
-  slider.oninput = function () {
-    output.innerHTML = this.value;
-  }
-</script>
-
 <body>
   <div class="container" id="container">
     <div class="row" id="content_head">
-      <div class="col-4 content_topic">Build PC for your Budget</div>
-      <div class="col-8">
-        <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
-        <p style="display: inline;"> Min:
+
+      <div class="col-8 content_topic">Build PC for your Budget</div>
+      <div class="col-4">
+        <!-- <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()"> -->
+        <!-- <p style="display: inline;"> Min:
           <span id="demo"></span>
-        </p>&nbsp;
-        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+        </p>&nbsp; -->
+
+        <!-- <input type="range" min="1" max="100" value="50" class="slider" id="myRange" (rangeValueChange)="onRangeValueChange($event)">
         <!-- <input type="range" min="0" max="25000" value="10000" class="content_topic slider" id="myRange"> -->
-        <input type="range" min="25000" max="200000" value="75000" id="myRange1" class="content_topic slider"> &nbsp;
+        <!-- <input type="range" min="25000" max="200000" value="75000" id="myRange1" class="content_topic slider"> &nbsp;
         <p style="display: inline;"> Max:
-          <span id="demo1"></span>
+          <span id="demo1"></span> 
         </p>&nbsp;
-        <button type="submit" class="btn btn-primary buttons">Go</button>&nbsp;&nbsp;
-        <button type="button" class="btn btn-info buttons" data-toggle="modal" data-target="#createModel">Set Prices</button>
-        </form>
+        <button type="submit" class="btn btn-primary buttons">Go</button>&nbsp;&nbsp; -->
+        <button type="button" class="btn btn-info buttons" data-toggle="modal" data-target="#createModel" style="width: 200px;">Set Prices</button>
+        <!-- </form> -->
 
       </div>
     </div>
-    <ng-template [ngIf]="loading=='false'" [ngIfElse]="elseBlock">
       <div class="row">
         <div class="col-10"></div>
         <div class="col-2">
           <button class="a_link btn btn-success" (click)="differentPlan()">Try it different</button>
         </div>
       </div>
+
       <div class="row item_list">
         <div class="col-2 text-center">
           <div class="component">MOTHERBOARD</div>
@@ -231,10 +223,6 @@
           <span>Rs. {{ total_price }} /=</span>
         </div>
       </div>
-    </ng-template>
-    <ng-template #elseBlock>
-      <app-loading></app-loading>
-    </ng-template>
 
 
   </div>

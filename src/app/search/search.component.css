@@ -79,7 +79,7 @@ a{
         background: steelblue;
         cursor: pointer;
         width: 115%;
-        margin-left: -20px;
+        margin-left: -20px; 
     }
     #right_side{
         padding-top: 10px;

@@ -34,8 +34,8 @@ export class SearchService {
     return this.http.get(this.pcpartsUrl+'/sort_by/'+category+'/'+name+'/'+option);
   }
 
-  public getComments(name: string) {
-    return this.http.get(this.commentsUrl+'/'+name);
+  public getComments() {
+    return this.http.get(this.commentsUrl);
   }
 
   public getVendorPrices(category, id) {

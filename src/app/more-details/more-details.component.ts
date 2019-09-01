@@ -35,18 +35,13 @@ export class MoreDetailsComponent implements OnInit {
     this.searchService.findById(category, id).subscribe(data => {
       this.loading = 'false';
       this.pcpart = data["responseObject"];
-      if(data["responseCode"] == "111"){
-        this.getComments(this.pcpart["name"]);
-        this.getVendorPrices(category, this.pcpart["name"]);
-      }
-      else{
-        console.log("error 1");
-      }
-      
+      name = this.pcpart["name"];
     },
       (error: any) => console.log(error)
     );
     this.loading = 'true';
+    this.getComments();
+    this.getVendorPrices(category, name);
   }
 
   getPartDetails(category: string, id: string) {
@@ -62,9 +57,8 @@ export class MoreDetailsComponent implements OnInit {
 
   }
 
-  getComments(name) {
-    console.log(name);
-    this.searchService.getComments(name).subscribe(data => {
+  getComments() {
+    this.searchService.getComments().subscribe(data => {
       this.comments = data["responseObject"];
       console.log(this.comments);
     },
@@ -74,8 +68,8 @@ export class MoreDetailsComponent implements OnInit {
     
   }
 
-  getVendorPrices(category, id) {
-    this.searchService.getVendorPrices(category, id).subscribe(data => {
+  getVendorPrices(category, name) {
+    this.searchService.getVendorPrices(category, name).subscribe(data => {
       this.vendorPrice = data["responseObject"];
     },
       (error: any) => console.log(error),
