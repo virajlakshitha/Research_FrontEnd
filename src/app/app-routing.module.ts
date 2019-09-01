@@ -51,6 +51,10 @@ const routes: Routes = [
     component: BuildForRequirementsComponent
   },
   {
+    path: "build_for_gaming/pc-part-list/:_id",
+    component: CompatiblePcPartListComponent
+  },
+  {
     path: "product_details/:category/:_id",
     component: MoreDetailsComponent
   },
@@ -61,10 +65,6 @@ const routes: Routes = [
   {
     path: "user_profile",
     component: UserProfileComponent
-  },
-  {
-    path: "build_for_gaming/pc-part-list",
-    component: CompatiblePcPartListComponent
   },
   {
     path: '**', 

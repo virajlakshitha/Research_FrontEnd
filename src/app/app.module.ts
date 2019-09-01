@@ -26,6 +26,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoadingComponent } from './loading/loading.component';
 import {LaptopStore} from './laptop-products/laptop.store';
+import { GoogleChartsModule } from 'angular-google-charts';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import {LaptopStore} from './laptop-products/laptop.store';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    GoogleChartsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
     SweetAlert2Module.forRoot({

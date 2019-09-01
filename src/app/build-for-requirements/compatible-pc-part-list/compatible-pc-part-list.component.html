@@ -13,24 +13,33 @@
   </div>
 
   <div class="row">
-    <div class="col-12 upper_part">
-      <div class="topic1"><b>System Requirements</b></div>
-      <div class="lower_part_list">
+    <div class="col-12  upper_part">
+      <div class="topic1"> <b>System Requirements</b> <br>
+        <img class=" game_image" width= "324" hight= "200" src="{{ game.imageSource }}">
+        <div class="game_name"><b>{{ game.name }}</b>
+        </div>
+         
+      </div>
+      <div>
+       
+      </div>
+
+      <div class="lower_part_list"> 
         <div class="row">
           <div class="col-2">CPU</div>
-          <div class="col-10">2.4 GHz Intel Core i5 </div>
+          <div class="col-10">{{ game.cpu }}</div>
         </div>
         <div class="row">
           <div class="col-2">RAM</div>
-          <div class="col-10">4GB Memory </div>
+          <div class="col-10">{{ game.ram }}</div>
         </div>
         <div class="row">
           <div class="col-2">GPU</div>
-          <div class="col-10">DirectX 11 graphic card with 1TB Video RAM</div>
+          <div class="col-10">{{ game.graphics }}</div>
         </div>
         <div class="row">
           <div class="col-2">Storage</div>
-          <div class="col-10">Atleast 17GB of free space</div>
+          <div class="col-10">{{ game.storage }}</div>
         </div>
       </div>
     </div>

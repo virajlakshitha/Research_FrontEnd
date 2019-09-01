@@ -57,12 +57,12 @@
                 </div>
                 <div class="col-3">Rs. {{ Motherboard.price }} /=</div>
                 <div class="col-2">
-                  <span>{{ Motherboard.user_rating }} % </span>
-                  <!-- <span class="fa fa-star checked"></span>
+                  <!-- <span>{{ Motherboard.user_rating }} % </span> -->
+                  <span class="fa fa-star checked"></span>
                   <span class="fa fa-star checked"></span>
                   <span class="fa fa-star checked"></span>
                   <span class="fa fa-star"></span>
-                  <span class="fa fa-star"></span> -->
+                  <span class="fa fa-star"></span>
                 </div>
               </ng-template>
               <ng-template #elseMotherboardBlock>
@@ -93,7 +93,7 @@
                     <button class="btn btn-info" (click)="changePCPart('cpu')">Replace</button>
                   </div>
                 </div>
-                <div class="col-3">Rs. {{ Cpu.id}} /=</div>
+                <div class="col-3">Rs. {{ Cpu.price}} /=</div>
                 <div class="col-2">
                   <span class="fa fa-star checked"></span>
                   <span class="fa fa-star checked"></span>

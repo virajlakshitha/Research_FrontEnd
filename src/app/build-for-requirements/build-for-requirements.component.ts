@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GameService } from '../service/game.service';
+import { Router, ActivatedRoute } from "@angular/router";
  
 
 @Component({
@@ -9,13 +10,12 @@ import { GameService } from '../service/game.service';
 })
 export class BuildForRequirementsComponent implements OnInit {
 
-  search_game = '';
-  games: Object;
-  game = []; 
-  loading = false;
+ private search_game = '';
+ private games: Object;
+ private game = []; 
+ private loading = false; 
 
-
-  constructor(private gameService: GameService) { }
+  constructor(private gameService: GameService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.getGames();
@@ -30,9 +30,8 @@ export class BuildForRequirementsComponent implements OnInit {
     this.gameService.getAllGames().subscribe(
       data => {
           this.games = data;
-          this.game = this.games["responseObject"];
-          console.log(this.games["responseObject"][0].ram);
-          console.log(this.games["responseObject"][0].id);
+          this.game = this.games["responseObject"]; 
+          console.log(this.games["responseObject"]);
       }
     );
   }
@@ -45,6 +44,12 @@ export class BuildForRequirementsComponent implements OnInit {
           this.loading = false;
       }
     );
+  }
+
+  getPCpartList(id:String ){
+    console.log(id)
+    var game = id
+    this.router.navigate(['build_for_gaming/pc-part-list/'+game]);
   }
 
 }

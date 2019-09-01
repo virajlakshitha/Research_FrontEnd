@@ -22,6 +22,7 @@
     "@angular/router": "~7.2.0",
     "@sweetalert2/ngx-sweetalert2": "^5.1.0",
     "@types/googlemaps": "^3.37.1",
+    "angular-google-charts": "^0.1.6",
     "core-js": "^2.5.4",
     "ng5-slider": "^1.2.4",
     "ngx-pagination": "^4.0.0",
