@@ -5,16 +5,6 @@
 <!------------>
 
 <!--Build For Price-->
-<script>
-  // var slider = document.getElementById("myRange");
-  // var output = document.getElementById("demo");
-  // output.innerHTML = slider.value;
-  // console.log(document.getElementById("myRange").value);
-  // slider.oninput = function () {
-  //   output.innerHTML = this.value;
-  // }
-</script>
-
 <body>
   <div class="container" id="container">
     <div class="row" id="content_head">
@@ -38,7 +28,6 @@
 
       </div>
     </div>
-    <ng-template [ngIf]="loading=='false'" [ngIfElse]="elseBlock">
       <div class="row">
         <div class="col-10"></div>
         <div class="col-2">
@@ -54,7 +43,7 @@
         <div class="col-10 content text-white">
           <div class="container-fluid">
             <div class="row">
-              <ng-template [ngIf]="Motherboard.id!='null'" [ngIfElse]="elseMotherboardBlock">
+              <ng-template [ngIf]="Motherboard.id !='null'" [ngIfElse]="elseMotherboardBlock">
                 <div class="col-2">
                   <img src="{{ Motherboard.image }}" height="80px" width="80px">
                 </div>
@@ -68,11 +57,12 @@
                 </div>
                 <div class="col-3">Rs. {{ Motherboard.price }} /=</div>
                 <div class="col-2">
-                  <span class="fa fa-star checked"></span>
+                  <span>{{ Motherboard.user_rating }} % </span>
+                  <!-- <span class="fa fa-star checked"></span>
                   <span class="fa fa-star checked"></span>
                   <span class="fa fa-star checked"></span>
                   <span class="fa fa-star"></span>
-                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span> -->
                 </div>
               </ng-template>
               <ng-template #elseMotherboardBlock>
@@ -103,7 +93,7 @@
                     <button class="btn btn-info" (click)="changePCPart('cpu')">Replace</button>
                   </div>
                 </div>
-                <div class="col-3">Rs. {{ Cpu.price }} /=</div>
+                <div class="col-3">Rs. {{ Cpu.id}} /=</div>
                 <div class="col-2">
                   <span class="fa fa-star checked"></span>
                   <span class="fa fa-star checked"></span>
@@ -234,10 +224,6 @@
           <span>Rs. {{ total_price }} /=</span>
         </div>
       </div>
-    </ng-template>
-    <ng-template #elseBlock>
-      <app-loading></app-loading>
-    </ng-template>
 
 
   </div>
