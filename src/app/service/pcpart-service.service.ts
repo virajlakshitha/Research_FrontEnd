@@ -42,7 +42,7 @@ export class PcpartServiceService {
   }
 
   public settingsSubmit(ram_min, ram_max, vga_min, vga_max, cpu_min, cpu_max, motherboard_min, motherboard_max, hard_disk_min, hard_disk_max) {
-    return this.http.get(this.buildForPriceUrl+'budgetPlan_price/'+ram_min+'/'+ram_max+'/'+vga_min+'/'+vga_min+'/'+cpu_min+'/'+cpu_max+'/'+motherboard_min+'/'+motherboard_max+'/'+hard_disk_min+'/'+hard_disk_max);
+    return this.http.get(this.buildForPriceUrl+'budgetPlan_price/'+ram_min+'/'+ram_max+'/'+vga_min+'/'+vga_max+'/'+cpu_min+'/'+cpu_max+'/'+motherboard_min+'/'+motherboard_max+'/'+hard_disk_min+'/'+hard_disk_max);
   }
 
   public getMaxMinBudget() {
