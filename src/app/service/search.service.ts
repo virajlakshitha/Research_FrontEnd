@@ -12,10 +12,13 @@ export class SearchService {
 
   private pcpartsUrl: string;
   private commentsUrl: string;
+  private analyzeComment: string;
 
   constructor(private http: HttpClient) { 
     this.pcpartsUrl = 'http://localhost:8080/api-techRing/pcparts';
     this.commentsUrl = 'http://localhost:8080/api-techRing/pcparts/comments';
+    this.analyzeComment = 'http://localhost:8093/api-py-techRing/';
+
   }
 
   public findAll() {
@@ -34,8 +37,8 @@ export class SearchService {
     return this.http.get(this.pcpartsUrl+'/sort_by/'+category+'/'+name+'/'+option);
   }
 
-  public getComments(name: string) {
-    return this.http.get(this.commentsUrl+'/'+name);
+  public getComments() {
+    return this.http.get(this.commentsUrl);
   }
 
   public getVendorPrices(category, id) {
@@ -48,5 +51,9 @@ export class SearchService {
   
   public pushNotification(user_id: string, product: string) {
     return this.http.post(this.pcpartsUrl+"/notify",[user_id,product]);
+  }
+
+  public analyzeComments(product: string) {
+    return this.http.post(this.analyzeComment+"analyze_comments", {"product_name":product});
   }
 }

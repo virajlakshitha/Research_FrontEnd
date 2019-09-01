@@ -19,6 +19,10 @@ export class GameService {
     return this.http.get(this.gameurl+'getAll');
   }
 
+  public getGame(id:string) {
+    return this.http.get(this.gameurl+'findById/'+id);
+  }
+
   // public scarpeGame(game:string) {
   //   return this.http.get(this.gameurl+ game +'/getgame');
   // } 

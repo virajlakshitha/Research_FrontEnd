@@ -13,11 +13,11 @@ import { LoadingComponent } from '../loading/loading.component';
 })
 export class SearchComponent implements OnInit {
 
-  pcpart: Object;
-  pcParts = [];
-  name;
-  category;
-  loading = 'true';
+  private pcpart: Object;
+  private pcParts = [];
+  private name: String;
+  private category: String;
+  private loading = 'true';
 
   constructor(private searchService: SearchService, private route: ActivatedRoute, private router: Router) { }
 

@@ -6,6 +6,7 @@ import { SearchService } from '../service/search.service';
 import { error } from 'protractor';
 import { Router } from "@angular/router";
 import { ActivatedRoute } from '@angular/router';
+import { SentimentAnalysis } from './sentiment_analysis';
 
 @Component({
   selector: 'app-more-details',
@@ -14,16 +15,30 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MoreDetailsComponent implements OnInit {
 
+  PC_part_name:string;
   pcpart: Object;
   comments = [];
   vendorPrice = [];
   vendorDetails: Object;
   logged_in = 'false';
   loading = 'false';
+  load_for_comment: boolean;
+  positive: number ;
+  negative: number ;
+  isShowChart:boolean = false;
 
   constructor(private searchService: SearchService, private route : ActivatedRoute, private router: Router) { }
 
+  title = 'Analysis results of feedback';
+  type = 'PieChart'; 
+  columnNames = ['Browser', 'Percentage'];
+  options = {    
+  };
+  width = 550;
+  height = 400;
+   
   ngOnInit() {
+    this.load_for_comment = true;
     var category;
     var id;
     this.route.params.subscribe(params => {
@@ -35,18 +50,34 @@ export class MoreDetailsComponent implements OnInit {
     this.searchService.findById(category, id).subscribe(data => {
       this.loading = 'false';
       this.pcpart = data["responseObject"];
-      if(data["responseCode"] == "111"){
-        this.getComments(this.pcpart["name"]);
-        this.getVendorPrices(category, this.pcpart["name"]);
-      }
-      else{
-        console.log("error 1");
-      }
-      
+      name = this.pcpart["name"];
+      this.PC_part_name = this.pcpart["name"];
+      console.log(this.PC_part_name)
     },
       (error: any) => console.log(error)
     );
     this.loading = 'true';
+    this.getComments();
+    this.getVendorPrices(category, name);
+
+    // console.log("--------------------------"+this.pcpart["name"])
+    // this.searchService.analyzeComments(this.pcpart["name"]).subscribe(data => {
+      console.log("---------*******"+this.PC_part_name)
+    this.searchService.analyzeComments("Samsung Galaxy S11 - NEVER SEEN BEFORE IMPROVEMENTS").subscribe(data => { 
+      let abc = new SentimentAnalysis(data["avg_compound_value"])
+     
+       console.log("----------***" + JSON.stringify(abc.value)) 
+       console.log("----------***" +  data) 
+
+       this.positive = +abc.value * 100;
+       this.negative = 100 - this.positive;
+       console.log("")
+       this.load_for_comment = false;
+       this.isShowChart = true;
+    },
+    (error: any) => console.log(error)
+    );
+    
   }
 
   getPartDetails(category: string, id: string) {
@@ -62,9 +93,8 @@ export class MoreDetailsComponent implements OnInit {
 
   }
 
-  getComments(name) {
-    console.log(name);
-    this.searchService.getComments(name).subscribe(data => {
+  getComments() {
+    this.searchService.getComments().subscribe(data => {
       this.comments = data["responseObject"];
       console.log(this.comments);
     },
@@ -74,8 +104,8 @@ export class MoreDetailsComponent implements OnInit {
     
   }
 
-  getVendorPrices(category, id) {
-    this.searchService.getVendorPrices(category, id).subscribe(data => {
+  getVendorPrices(category, name) {
+    this.searchService.getVendorPrices(category, name).subscribe(data => {
       this.vendorPrice = data["responseObject"];
     },
       (error: any) => console.log(error),
@@ -100,5 +130,6 @@ export class MoreDetailsComponent implements OnInit {
       (error: any) => console.log(error)
     );
   }
-
+  
+ 
 }

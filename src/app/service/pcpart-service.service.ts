@@ -30,12 +30,12 @@ export class PcpartServiceService {
     return this.http.get(this.buildForPriceUrl+min+'/'+max);
   }
 
-  public changePCPart(pro, arr) {
-    return this.http.get(this.buildForPriceUrl+'change/'+pro+'/'+arr["motherboard"]+'/'+arr["cpu"]+'/'+arr["ram"]+'/'+arr["vga"]+'/'+arr["hard_disk"]);
+  public changePCPart(pro, val1, val2, arr) {
+    return this.http.get(this.buildForPriceUrl+'change/'+pro+'/'+val1+'/'+val2+'/'+arr["motherboard"]+'/'+arr["cpu"]+'/'+arr["ram"]+'/'+arr["vga"]+'/'+arr["hard_disk"]);
   }
 
-  public budgetPlan(min, max) {
-    return this.http.get(this.buildForPriceUrl+'budgetPlan/'+min+'/'+max);
+  public budgetPlan(a, b, c, d, e, f, g, h, i, j) {
+    return this.http.get(this.buildForPriceUrl+'budgetPlan_price/'+a+'/'+b+'/'+c+'/'+d+'/'+e+'/'+f+'/'+g+'/'+h+'/'+i+'/'+j);
   }
 
   public settingsSubmit(ram_min, ram_max, vga_min, vga_max, cpu_min, cpu_max, motherboard_min, motherboard_max, hard_disk_min, hard_disk_max) {

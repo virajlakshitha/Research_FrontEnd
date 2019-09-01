@@ -21,7 +21,7 @@
       <div class="col-12  upper_part">
         <div class="topic1"><b>System Requirements</b> <br>
           <img class=" game_image" width= "324" hight= "200" src="{{ p.imageSource }}">
-          <button class="btn btn-info get_parts_btn" ><a routerLink="/build_for_gaming/pc-part-list" routerLinkActive="active">Get PC Parts List</a></button>
+          <button class="btn btn-info get_parts_btn" ><a routerLink="/build_for_gaming/pc-part-list" routerLinkActive="active" (click)="getPCpartList(p.id)" >Get PC Parts List</a></button>
           <div class="game_name"><b>{{ p.name }}</b>
           </div>
            
