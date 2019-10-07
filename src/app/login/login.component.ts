@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl } from '@angular/forms';
-import { SearchService } from '../service/search.service';
-import { error } from 'protractor';
 import {Router} from "@angular/router";
 import { UserAccessService } from '../service/user-access.service';
 
@@ -27,20 +25,17 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
     var username = this.customerForm.value.username;
     var password = this.customerForm.value.password;
-    if(this.checkLogin(username, password) == true){
-      this.router.navigate(['/']);
-    }
+    this.checkLogin(username, password);
   }
 
-  checkLogin(username, password): boolean {
+  checkLogin(username, password) {
     this.userAccessService.login(username, password).subscribe(data => {
-      this.user = data;
-      console.log(data);
+      this.user = data["responseObject"];
+      if(data["responseCode"] == "111"){
+        this.router.navigate(['/']);
+      }
     },
-      (error: any) => console.log(error),
-      () => console.log('Gets all data')
-    );
-    return true;
+      (error: any) => console.log(error));
   }
 
 }

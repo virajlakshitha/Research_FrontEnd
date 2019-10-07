@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { SearchService } from '../service/search.service';
-import { error } from 'protractor';
 import { Pcpart } from '../model/pcpart';
 import {Router} from "@angular/router";
 
@@ -21,16 +20,25 @@ export class MenuBarComponent implements OnInit {
 
   ngOnInit() {
     this.employeeForm = new FormGroup({
-      category: new FormControl(),
+      category: new FormControl("all"),
       name: new FormControl()
     });
+    if(localStorage.getItem('username')){
+      this.logged = "true";
+    }
   }
 
   onSubmit(): void {
     var category = this.employeeForm.value.category;
     var name = this.employeeForm.value.name;
-    this.router.navigate(['/browse/pcparts/'+category+'/'+name]);
-    console.log(category);
+    if(name == null || name == ""){
+      window.location.href = '/browse/pcparts/'+category+'/'+name;
+      // this.router.navigateByUrl('/browse/pcparts/'+category+'/all');
+      // this.router.navigate(['/browse/pcparts/'+category+'/all']);
+    } else {
+      window.location.href = '/browse/pcparts/'+category+'/'+name;
+      // this.router.navigateByUrl('/browse/pcparts/'+category+'/'+name);
+    }
   }
 
 }
