@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
     this.userAccessService.login(username, password).subscribe(data => {
       this.user = data["responseObject"];
       if(data["responseCode"] == "111"){
+        localStorage.setItem('username', username);
         this.router.navigate(['/']);
       }
     },

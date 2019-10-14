@@ -32,12 +32,9 @@ export class MenuBarComponent implements OnInit {
     var category = this.employeeForm.value.category;
     var name = this.employeeForm.value.name;
     if(name == null || name == ""){
-      window.location.href = '/browse/pcparts/'+category+'/'+name;
-      // this.router.navigateByUrl('/browse/pcparts/'+category+'/all');
-      // this.router.navigate(['/browse/pcparts/'+category+'/all']);
+      
     } else {
       window.location.href = '/browse/pcparts/'+category+'/'+name;
-      // this.router.navigateByUrl('/browse/pcparts/'+category+'/'+name);
     }
   }
 

@@ -12,18 +12,15 @@
       <div class="col-4 left_images">
         <img src="{{ model.pcpart.image }}" class="imgs">
         <div class="rating">
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star"></span>
-          <span class="fa fa-star"></span>
+          <span style="color: green;font-size: 25px;"><b>+ {{ model.rating*20 }}%</b></span>&nbsp;&nbsp;
+          <span style="color: red;font-size: 25px;"><b>- {{ 100 - model.rating*20 }}%</b></span>
         </div>
       </div>
       <div class="col-8">
         <div class="row">
           <div class="col-12 pro_name">
             <ng-template [ngIf]="model.pcpart.name" [ngIfElse]="elseBlock">
-              <b>{{ model.pcpart.name }}</b>
+              <a href="{{ model.pcpart.link }}"><b>{{ model.pcpart.name }}</b></a>
             </ng-template>
             <ng-template #elseBlock>
               <b>Product Name</b>
@@ -127,7 +124,7 @@
 
   <div class="row">
     <div class="col-12">
-      <ng-template [ngIf]="model.logged_in == 'true'" [ngIfElse]="elseNotify">
+      <ng-template [ngIf]="model.logged_in == true" [ngIfElse]="elseNotify">
         <input type="checkbox" id="notification" name="notification">&nbsp;&nbsp;&nbsp;I want to track down the price of the
         product
       </ng-template>
@@ -169,9 +166,9 @@
       <div class="col-3 text-center table_headers">
         <b class="text-white">Price</b>
       </div>
-      <div class="col-3 text-center">Rs. 7500.00 /=</div>
-      <div class="col-3 text-center">Rs. 8500.00 /=</div>
-      <div class="col-3 text-center">Rs. 6800.00 /=</div>
+      <div class="col-3 text-center">Rs. {{model.ebay_price}} /=</div>
+      <div class="col-3 text-center">Rs. {{model.nanotek_price}} /=</div>
+      <div class="col-3 text-center">Rs. {{model.redline_price}} /=</div>
     </div>
   </div>
   <!--Comment Section-->
@@ -182,11 +179,10 @@
       </div>
     </div>
     <ng-template [ngIf]="model.comments.length != 0" [ngIfElse]="elseCommentBlock">
-      <div *ngFor="let p of model.comments; let i=index;">
+      <div *ngFor="let p of model.comments;">
         <div class="row">
           <div class="comment_list">
-            <img src="/src/assets/img/user.png" class="pro_pic">
-            <!-- <img src="../../assets/img/user.png" class="pro_pic"> -->
+            <img src="../../assets/img/user.png" class="pro_pic">
             <div class="pro_name">
               <b>{{ p.comment_name }}</b>
             </div>

@@ -1,11 +1,15 @@
 import { FormGroup, FormControl } from '@angular/forms';
 
 export class Model {
-    priceForm: FormGroup;
     settingsForm: FormGroup;
+    ramVisible: Boolean;
+    vgaVisible: Boolean;
+    cpuVisible: Boolean;
+    motherboardVisible: Boolean;
+    hard_diskVisible: Boolean;
 
     total_price = 0;
-    budget_loop = 1;
+    budget_loop = 0;
     total_loop = 0;
 
     Ram = [];

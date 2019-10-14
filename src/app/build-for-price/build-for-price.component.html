@@ -10,29 +10,18 @@
   <div class="container" id="container">
     <div class="row" id="content_head">
 
-      <div class="col-8 content_topic">Build PC for your Budget</div>
+      <div class="col-4 content_topic">Build PC for your Budget</div>
       <div class="col-4">
-        <!-- <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()"> -->
-        <!-- <p style="display: inline;"> Min:
-          <span id="demo"></span>
-        </p>&nbsp; -->
-
-        <!-- <input type="range" min="1" max="100" value="50" class="slider" id="myRange" (rangeValueChange)="onRangeValueChange($event)">
-        <!-- <input type="range" min="0" max="25000" value="10000" class="content_topic slider" id="myRange"> -->
-        <!-- <input type="range" min="25000" max="200000" value="75000" id="myRange1" class="content_topic slider"> &nbsp;
-        <p style="display: inline;"> Max:
-          <span id="demo1"></span> 
-        </p>&nbsp;
-        <button type="submit" class="btn btn-primary buttons">Go</button>&nbsp;&nbsp; -->
         <form [formGroup]="sliderForm">
-          <p>Low value: {{ sliderForm.value.sliderControl[0] }}</p>
-          <p>High value: {{ sliderForm.value.sliderControl[1] }}</p>
-          <ng5-slider [options]="options" formControlName="sliderControl"></ng5-slider>
+          <label>Rs. {{ sliderForm.value.sliderControl[0] }}.00</label>
+          <label style="float: right">Rs. {{ sliderForm.value.sliderControl[1] }}.00</label>
+          <ng5-slider [options]="options" formControlName="sliderControl"
+            (mouseup)="budgetPlan(sliderForm.value.sliderControl[0],sliderForm.value.sliderControl[1])"></ng5-slider>
         </form>
+      </div>
+      <div class="col-4 content_topic">
         <button type="button" class="btn btn-info buttons" data-toggle="modal" data-target="#createModel"
-          style="width: 200px;">Set Prices</button>
-        <!-- </form> -->
-
+          style="width: 200px;float: right">Set Prices</button>
       </div>
     </div>
     <div class="row">
@@ -50,30 +39,33 @@
       <div class="col-10 content text-white">
         <div class="container-fluid">
           <div class="row">
-            <ng-template [ngIf]="model.Motherboard !=''" [ngIfElse]="elseMotherboardBlock">
-              <div class="col-2">
-                <img src="{{ model.Motherboard.image }}" height="80px" width="80px">
-              </div>
-              <div class="col-5">
-                <div class="row">
-                  <a href="/product_details/motherboard/{{model.Motherboard.id}}">{{ model.Motherboard.name }}</a>
+            <ng-template [ngIf]="model.motherboardVisible" [ngIfElse]="elseisVisible">
+              <ng-template [ngIf]="model.Motherboard !=''" [ngIfElse]="elseMotherboardBlock">
+                <div class="col-2">
+                  <img src="{{ model.Motherboard.image }}" height="80px" width="80px">
                 </div>
-                <div class="row text-center">
-                  <button class="btn btn-info" (click)="changePCPart('motherboard')">Replace</button>
+                <div class="col-5">
+                  <div class="row">
+                    <a href="/product_details/motherboard/{{model.Motherboard._id.$oid}}">{{ model.Motherboard.name }}</a>
+                  </div>
+                  <div class="row text-center">
+                    <button class="btn btn-info" (click)="changePCPart('motherboard')">Replace</button>
+                  </div>
                 </div>
-              </div>
-              <div class="col-3">Rs. {{ model.Motherboard.price }} /=</div>
-              <div class="col-2">
-                <!-- <span>{{ Motherboard.user_rating }} % </span> -->
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-              </div>
+                <div class="col-3">Rs. {{ model.Motherboard.price }} /=</div>
+                <div class="col-2">
+                  <span style="color: greenyellow;font-size: 20px;">+{{ model.Motherboard.user_rating*20 }}% </span>
+                </div>
+              </ng-template>
+              <ng-template #elseMotherboardBlock>
+                <div class="col-12 text-center">No Motherboard selected</div>
+              </ng-template>
             </ng-template>
-            <ng-template #elseMotherboardBlock>
-              <div class="col-12 text-center">No Motherboard selected</div>
+            <ng-template #elseisVisible>
+              <div class="col-12 he" id="right_side">
+                <div class="no_data text-center"><img src="../../assets/img/ajax-loader.gif" height="75" width="75" />
+                </div>
+              </div>
             </ng-template>
           </div>
         </div>
@@ -88,29 +80,33 @@
       <div class="col-10 content text-white">
         <div class="container-fluid">
           <div class="row redirect">
-            <ng-template [ngIf]="model.Cpu !=''" [ngIfElse]="elseCpuBlock">
-              <div class="col-2">
-                <img src="{{ model.Cpu.image }}" height="80px" width="80px">
-              </div>
-              <div class="col-5">
-                <div class="row">
-                  <span>{{ model.Cpu.name }}</span>
+            <ng-template [ngIf]="model.cpuVisible" [ngIfElse]="elseisVisible">
+              <ng-template [ngIf]="model.Cpu !=''" [ngIfElse]="elseCpuBlock">
+                <div class="col-2">
+                  <img src="{{ model.Cpu.image }}" height="80px" width="80px">
                 </div>
-                <div class="row text-center">
-                  <button class="btn btn-info" (click)="changePCPart('cpu')">Replace</button>
+                <div class="col-5">
+                  <div class="row">
+                    <a href="/product_details/cpu/{{model.Cpu._id.$oid}}">{{ model.Cpu.name }}</a>
+                  </div>
+                  <div class="row text-center">
+                    <button class="btn btn-info" (click)="changePCPart('cpu')">Replace</button>
+                  </div>
                 </div>
-              </div>
-              <div class="col-3">Rs. {{ model.Cpu.price}} /=</div>
-              <div class="col-2">
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-              </div>
+                <div class="col-3">Rs. {{ model.Cpu.price}} /=</div>
+                <div class="col-2">
+                  <span style="color: greenyellow;font-size: 20px;">+{{ model.Cpu.user_rating*20 }}%</span>
+                </div>
+              </ng-template>
+              <ng-template #elseCpuBlock>
+                <div class="col-12 text-center">No CPU selected</div>
+              </ng-template>
             </ng-template>
-            <ng-template #elseCpuBlock>
-              <div class="col-12 text-center">No CPU selected</div>
+            <ng-template #elseisVisible>
+              <div class="col-12 he" id="right_side">
+                <div class="no_data text-center"><img src="../../assets/img/ajax-loader.gif" height="75" width="75" />
+                </div>
+              </div>
             </ng-template>
           </div>
         </div>
@@ -123,29 +119,33 @@
       <div class="col-10 content text-white">
         <div class="container-fluid">
           <div class="row redirect">
-            <ng-template [ngIf]="model.Ram !=''" [ngIfElse]="elseRamBlock">
-              <div class="col-2">
-                <img src="{{ model.Ram.image }}" height="80px" width="80px">
-              </div>
-              <div class="col-5">
-                <div class="row">
-                  <span>{{ model.Ram.name }}</span>
+            <ng-template [ngIf]="model.ramVisible" [ngIfElse]="elseisVisible">
+              <ng-template [ngIf]="model.Ram !=''" [ngIfElse]="elseRamBlock">
+                <div class="col-2">
+                  <img src="{{ model.Ram.image }}" height="80px" width="80px">
                 </div>
-                <div class="row text-center">
-                  <button class="btn btn-info" (click)="changePCPart('ram')">Replace</button>
+                <div class="col-5">
+                  <div class="row">
+                    <a href="/product_details/ram/{{model.Ram._id.$oid}}">{{ model.Ram.name }}</a>
+                  </div>
+                  <div class="row text-center">
+                    <button class="btn btn-info" (click)="changePCPart('ram')">Replace</button>
+                  </div>
                 </div>
-              </div>
-              <div class="col-3">Rs. {{ model.Ram.price }} /=</div>
-              <div class="col-2">
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-              </div>
+                <div class="col-3">Rs. {{ model.Ram.price }} /=</div>
+                <div class="col-2">
+                  <span style="color: greenyellow;font-size: 20px;">+{{ model.Ram.user_rating*20 }}%</span>
+                </div>
+              </ng-template>
+              <ng-template #elseRamBlock>
+                <div class="col-12 text-center">No RAM selected</div>
+              </ng-template>
             </ng-template>
-            <ng-template #elseRamBlock>
-              <div class="col-12 text-center">No RAM selected</div>
+            <ng-template #elseisVisible>
+              <div class="col-12 he" id="right_side">
+                <div class="no_data text-center"><img src="../../assets/img/ajax-loader.gif" height="75" width="75" />
+                </div>
+              </div>
             </ng-template>
           </div>
         </div>
@@ -158,29 +158,33 @@
       <div class="col-10 content text-white">
         <div class="container-fluid">
           <div class="row redirect">
-            <ng-template [ngIf]="model.Vga !=''" [ngIfElse]="elseVgaBlock">
-              <div class="col-2">
-                <img src="{{ model.Vga.image }}" height="80px" width="80px">
-              </div>
-              <div class="col-5">
-                <div class="row">
-                  <span>{{ model.Vga.name }}</span>
+            <ng-template [ngIf]="model.vgaVisible" [ngIfElse]="elseisVisible">
+              <ng-template [ngIf]="model.Vga !=''" [ngIfElse]="elseVgaBlock">
+                <div class="col-2">
+                  <img src="{{ model.Vga.image }}" height="80px" width="80px">
                 </div>
-                <div class="row text-center">
-                  <button class="btn btn-info" (click)="changePCPart('vga')">Replace</button>
+                <div class="col-5">
+                  <div class="row">
+                    <a href="/product_details/vga/{{model.Vga._id.$oid}}">{{ model.Vga.name }}</a>
+                  </div>
+                  <div class="row text-center">
+                    <button class="btn btn-info" (click)="changePCPart('vga')">Replace</button>
+                  </div>
                 </div>
-              </div>
-              <div class="col-3">Rs. {{ model.Vga.price }} /=</div>
-              <div class="col-2">
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-              </div>
+                <div class="col-3">Rs. {{ model.Vga.price }} /=</div>
+                <div class="col-2">
+                  <span style="color: greenyellow;font-size: 20px;">+{{ model.Vga.user_rating*20 }}%</span>
+                </div>
+              </ng-template>
+              <ng-template #elseVgaBlock>
+                <div class="col-12 text-center">No VGA selected</div>
+              </ng-template>
             </ng-template>
-            <ng-template #elseVgaBlock>
-              <div class="col-12 text-center">No VGA selected</div>
+            <ng-template #elseisVisible>
+              <div class="col-12 he" id="right_side">
+                <div class="no_data text-center"><img src="../../assets/img/ajax-loader.gif" height="75" width="75" />
+                </div>
+              </div>
             </ng-template>
           </div>
         </div>
@@ -193,29 +197,33 @@
       <div class="col-10 content text-white">
         <div class="container-fluid">
           <div class="row redirect">
-            <ng-template [ngIf]="model.Hard_Disk !=''" [ngIfElse]="elseHard_DiskBlock">
-              <div class="col-2">
-                <img src="{{ model.Hard_Disk.image }}" height="80px" width="80px">
-              </div>
-              <div class="col-5">
-                <div class="row">
-                  <span>{{ model.Hard_Disk.name }}</span>
+            <ng-template [ngIf]="model.hard_diskVisible" [ngIfElse]="elseisVisible">
+              <ng-template [ngIf]="model.Hard_Disk !=''" [ngIfElse]="elseHard_DiskBlock">
+                <div class="col-2">
+                  <img src="{{ model.Hard_Disk.image }}" height="80px" width="80px">
                 </div>
-                <div class="row text-center">
-                  <button class="btn btn-info" (click)="changePCPart('hard_disk')">Replace</button>
+                <div class="col-5">
+                  <div class="row">
+                    <a href="/product_details/hard_disk/{{model.Hard_Disk._id.$oid}}">{{ model.Hard_Disk.name }}</a>
+                  </div>
+                  <div class="row text-center">
+                    <button class="btn btn-info" (click)="changePCPart('hard_disk')">Replace</button>
+                  </div>
                 </div>
-              </div>
-              <div class="col-3">Rs. {{ model.Hard_Disk.price }} /=</div>
-              <div class="col-2">
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-              </div>
+                <div class="col-3">Rs. {{ model.Hard_Disk.price }} /=</div>
+                <div class="col-2">
+                  <span style="color: greenyellow;font-size: 20px;">+{{ model.Hard_Disk.user_rating*20 }}%</span>
+                </div>
+              </ng-template>
+              <ng-template #elseHard_DiskBlock>
+                <div class="col-12 text-center">No Hard Disk selected</div>
+              </ng-template>
             </ng-template>
-            <ng-template #elseHard_DiskBlock>
-              <div class="col-12 text-center">No Hard Disk selected</div>
+            <ng-template #elseisVisible>
+              <div class="col-12 he" id="right_side">
+                <div class="no_data text-center"><img src="../../assets/img/ajax-loader.gif" height="75" width="75" />
+                </div>
+              </div>
             </ng-template>
           </div>
         </div>

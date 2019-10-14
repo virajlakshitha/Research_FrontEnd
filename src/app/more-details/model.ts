@@ -2,12 +2,13 @@ export class Model {
     category;
     id;
     name: String;
+    rating;
     PC_part_name: string;
     pcpart: Object;
     comments = [];
     vendorPrice = [];
     vendorDetails: Object;
-    logged_in = 'false';
+    logged_in = false;
     load_for_comment: boolean;
     positive: number;
     negative: number;
@@ -19,4 +20,9 @@ export class Model {
     };
     width = 550;
     height = 400;
+
+    ebay_price;
+    nanotek_price;
+    redline_price;
+    isVisible: Boolean;
 }

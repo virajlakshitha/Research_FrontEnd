@@ -34,55 +34,62 @@ export class MoreDetailsComponent implements OnInit {
       (error: any) => console.log(error)
     );
 
-    this.getVendorPrices(this.model.category, name);
-    // this.getComments();
+    this.getVendorPrices(this.model.category, this.model.name);
+    this.getComments(this.model.name);
 
-    this.searchService.analyzeComments("Sobadhara - Sri Lanka Wildlife Documentary | 2019-08-30 | (පාද යාත්‍රා) Padayathra").subscribe(data => {
-      let abc = new SentimentAnalysis(data["avg_compound_value"]);
-      this.model.positive = +abc.value * 100;
-      this.model.negative = 100 - this.model.positive;
-      this.model.load_for_comment = false;
-      this.model.isShowChart = true;
-    },
-      (error: any) => console.log(error));
+    // this.searchService.analyzeComments("Sobadhara - Sri Lanka Wildlife Documentary | 2019-08-30 | (පාද යාත්‍රා) Padayathra").subscribe(data => {
+    //   let abc = new SentimentAnalysis(data["avg_compound_value"]);
+    //   this.model.positive = +abc.value * 100;
+    //   this.model.negative = 100 - this.model.positive;
+    //   this.model.load_for_comment = false;
+    //   this.model.isShowChart = true;
+    // },
+    //   (error: any) => console.log(error));
 
-    if(localStorage.getItem('username')){
-      this.model.logged_in = "true";
+    if (localStorage.getItem('username')) {
+      this.model.logged_in = true;
     }
-    
+    this.model.isVisible = false;
   }
 
   getPartDetails(category: string, id: string) {
     this.searchService.findById(category, id).subscribe(data => {
       this.model.pcpart = data["responseObject"];
-      console.log(this.model.pcpart);
+      this.model.isVisible = true;
     },
-      (error: any) => console.log(error),
-      () => console.log('Gets all data')
-    );
+      (error: any) => console.log(error));
   }
 
-  getComments() {
-    this.searchService.getComments().subscribe(data => {
-      this.model.comments = data["responseObject"];
-      console.log(this.model.comments);
+  getComments(name) {
+    this.searchService.getComments(name).subscribe(data => {
+      console.log(data);
+      this.model.comments = data["res"];
+      this.model.rating = data["rating"];
     },
-      (error: any) => console.log(error),
-      () => console.log('Gets all data')
-    );
+      (error: any) => console.log(error));
   }
 
   getVendorPrices(category, name) {
-    this.searchService.getVendorPrices(category, name).subscribe(data => {
+    this.searchService.getVendorPrices(category, name, "ebay").subscribe(data => {
       console.log(data["responseObject"]);
       this.model.vendorPrice = data["responseObject"];
+      this.model.ebay_price = data["responseObject"]["ebay"];
     },
-      (error: any) => console.log(error),
-      () => console.log('Gets all data')
-    );
+      (error: any) => console.log(error));
 
-    this.model.vendorPrice = [{ name: "RedLine", price: "15000.00" },
-    { name: "Nanotech", price: "14000.00" }];
+    this.searchService.getVendorPrices(category, name, "nanotek").subscribe(data => {
+      console.log(data["responseObject"]);
+      this.model.vendorPrice = data["responseObject"];
+      this.model.nanotek_price = data["responseObject"]["nanotek_price"];
+    },
+      (error: any) => console.log(error));
+
+    this.searchService.getVendorPrices(category, name, "redline").subscribe(data => {
+      console.log(data["responseObject"]);
+      this.model.vendorPrice = data["responseObject"];
+      this.model.redline_price = data["responseObject"]["redline_price"];
+    },
+      (error: any) => console.log(error));
   }
 
   getVendorDetails(pro_name: string, category: string) {
@@ -93,12 +100,16 @@ export class MoreDetailsComponent implements OnInit {
       (error: any) => console.log(error));
   }
 
-  pushNotification(user_id: string, product: string, price: string) {
-    this.searchService.pushNotification(user_id, product).subscribe(data => {
-      console.log("Success");
-    },
-      (error: any) => console.log(error)
-    );
+  pushNotification(product: string, price: string) {
+    var username;
+    if (localStorage.getItem('username')) {
+      username = localStorage.getItem('username');
+      this.searchService.pushNotification(username, product).subscribe(data => {
+        console.log("Success");
+      },
+        (error: any) => console.log(error)
+      );
+    }
   }
 
 }
