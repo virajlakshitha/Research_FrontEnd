@@ -21,19 +21,19 @@
       <div class="container-fluid pro_details">
         <div class="row">
           <div class="col-3">Name</div>
-          <div class="col-9">Name of the Account Holder</div>
+          <div class="col-9">{{ model.user_object.name }}</div>
         </div>
         <div class="row">
           <div class="col-3">Username</div>
-          <div class="col-9">Username</div>
+          <div class="col-9">{{ model.user_object.username }}</div>
         </div>
         <div class="row">
           <div class="col-3">Email</div>
-          <div class="col-9">viraj@gmail.com</div>
+          <div class="col-9">{{ model.user_object.email }}</div>
         </div>
         <div class="row">
           <div class="col-3">Password</div>
-          <div class="col-9">Password</div>
+          <div class="col-9">{{ model.user_object.password }}</div>
         </div>
         <div class="row">
           <div class="col-3">Type</div>
@@ -46,11 +46,12 @@
         <div class="row">
           <div class="col-8">
             <div>
-              <button name="edit_pro" id="edit_pro" class="btn btn-success">Edit Profile</button>
+              <button name="edit_pro" id="edit_pro" class="btn btn-success" data-toggle="modal"
+                data-target="#createModel">Edit Profile</button>
             </div>
-            <ng-template [ngIf]="type=='vendor'">
+            <ng-template [ngIf]="model.type=='vendor'">
               <div>
-                <button name="upload_csv" id="upload_csv" class="btn btn-info">Upload Product CSV</button>
+                <input type="file" name="upload_csv" id="upload_csv" class="btn btn-info" value="Upload Product CSV">
               </div>
             </ng-template>
           </div>
@@ -58,7 +59,7 @@
       </div>
     </div>
   </div>
-  <ng-template [ngIf]="type=='vendor'">
+  <ng-template [ngIf]="model.type=='vendor'">
     <div class="row product_details">
       <div class="col-12">
         <div class="row">
@@ -66,6 +67,9 @@
             <h3 class="text-center text-white">Product Details</h3>
           </div>
         </div>
+
+
+
         <div class="row pro_list">
           <div class="col-2">
             <img src="" class="pro_img">
@@ -102,6 +106,118 @@
       </div>
     </div>
   </ng-template>
+</div>
+
+<div class="modal fade" id="createModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <table class="table table-borderless">
+          <tbody [formGroup]="model.userForm">
+            <h3 class="text-center">User Account Edit</h3>
+            <tr>
+              <th>
+                <b>Name</b>
+              </th>
+              <td>
+                <input type="text" class="form-control text_box" formControlName="name" placeholder="Name" required>
+              </td>
+              <td> </td>
+            </tr>
+            <tr>
+              <th>
+                <b>Username</b>
+              </th>
+              <td>
+                <input type="text" class="form-control text_box" formControlName="username" placeholder="Username"
+                  required>
+              </td>
+              <td> </td>
+            </tr>
+            <tr>
+              <th>
+                <b>Email</b>
+              </th>
+              <td>
+                <input type="email" class="form-control text_box" formControlName="email" placeholder="Email" required>
+              </td>
+              <td> </td>
+            </tr>
+            <tr>
+              <th>
+                <b>Password</b>
+              </th>
+              <td>
+                <input type="password" class="form-control text_box" formControlName="password" placeholder="Password"
+                  required>
+              </td>
+              <td> </td>
+            </tr>
+            <tr>
+              <th><b>Street line 1</b></th>
+              <td>
+                <input type="text" class="form-control text_box" formControlName="street1" placeholder="Street Line 1"
+                  required>
+              </td>
+              <td> </td>
+            </tr>
+            <tr>
+              <th><b>Street Line2</b></th>
+              <td>
+                <input type="text" class="form-control text_box" formControlName="street2" placeholder="Street Line 2"
+                  required>
+              </td>
+            </tr>
+            <tr>
+              <th><b>City</b></th>
+              <td>
+                <input type="text" class="form-control text_box" formControlName="city" placeholder="City/Town"
+                  required>
+              </td>
+            </tr>
+            <tr>
+              <th><b>Province</b></th>
+              <td>
+                <input type="text" class="form-control text_box" formControlName="province" placeholder="Province"
+                  required>
+              </td>
+            </tr>
+            <tr>
+              <th><b>Telephone</b></th>
+              <td>
+                <input type="text" class="form-control text_box" formControlName="tel" placeholder="Telephone" required>
+              </td>
+            </tr>
+            <tr>
+              <th><b>Mobile</b></th>
+              <td>
+                <input type="text" class="form-control text_box" formControlName="mobile" placeholder="Mobile" required>
+              </td>
+            </tr>
+            <tr>
+              <th><b>Credit Card/ Debit Card</b></th>
+              <td>
+                <input type="text" class="form-control text_box" formControlName="credit"
+                  placeholder="Credit Card/Debit Card" required>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <button type="submit" class="btn btn-success" data-dismiss="modal"
+                  (click)="editUserInfo()">Submit</button>
+                &nbsp;
+                <button type="reset" class="btn btn-info">Clear</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!--Footer-->

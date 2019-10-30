@@ -43,14 +43,18 @@ export class RegisterComponent implements OnInit {
     var province = this.vendorForm.value.province;
     var tel = this.vendorForm.value.tel;
     var mobile = this.vendorForm.value.mobile;
+    var card_number = this.vendorForm.value.card_number;
 
-    this.userAccessService.saveVendor(username, email, password, street1, street2, city, province, tel, mobile).subscribe(data => {
-      this.user = data;
-      console.log(data);
-    },
-      (error: any) => console.log(error),
-      () => console.log('Gets all data')
-    );
+    if(password == re_password) {
+      this.userAccessService.saveVendor(username, email, password, street1, street2, city, province, tel, mobile, card_number).subscribe(data => {
+        this.user = data;
+        console.log(data);
+      },
+        (error: any) => console.log(error));
+    }
+    else{
+      alert("Passwords are incorrect");
+    }
   }
 
 }

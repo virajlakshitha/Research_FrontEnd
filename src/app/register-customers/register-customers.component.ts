@@ -30,14 +30,17 @@ export class RegisterCustomersComponent implements OnInit {
     var email = this.customerForm.value.email;
     var password = this.customerForm.value.password;
     var re_password = this.customerForm.value.re_password;
-
-    this.userAccessService.saveCustomer(username, email, password).subscribe(data => {
-      this.user = data;
-      console.log(data);
-    },
-      (error: any) => console.log(error),
-      () => console.log('Gets all data')
-    );
+    // console.log("username : "+username+" password : "+password+" email : "+email+" repassword : "+re_password);
+    if(password == re_password) {
+      this.userAccessService.saveCustomer(username, email, password).subscribe(data => {
+        // this.user = data;
+        // console.log(data);
+      },
+        (error: any) => console.log(error));
+    }
+    else{
+      alert("Passwords are incorrect");
+    }
   }
 
 }

@@ -16,37 +16,46 @@
             <div class="left_topic1">
               <b>CATEGORIES</b>
             </div>
-            <!-- <ng-template [ngIf]="" -->
-            <!-- <ng-template [ngIf]="category=='ram'" [ngIfElse]="elseBlockram"> -->
-              <div class="left_bar_names left_nav a" (click)="getAllPCPartsByCategory('ram', 'all')">RAM</div>
-            <!-- </ng-template>
+            <ng-template [ngIf]="search.category=='ram'" [ngIfElse]="elseBlockram">
+              <div class="left_bar_names left_nav_hover left_nav a">RAM</div>
+            </ng-template>
             <ng-template #elseBlockram>
-              <div class="left_bar_names left_nav a" (click)="getAllPCPartsByCategory('ram', 'all')">RAM</div>
+              <a href="/browse/pcparts/ram/{{ search.name }}">
+                <div class="left_bar_names left_nav a">RAM</div>
+              </a>
             </ng-template>
-            <ng-template [ngIf]="category=='vga'" [ngIfElse]="elseBlockvga"> -->
-              <div class="left_bar_names left_nav a" (click)="getAllPCPartsByCategory('vga', 'all')">VGA</div>
-            <!-- </ng-template>
+            <ng-template [ngIf]="search.category=='vga'" [ngIfElse]="elseBlockvga">
+              <div class="left_bar_names left_nav_hover left_nav a">VGA</div>
+            </ng-template>
             <ng-template #elseBlockvga>
-              <div class="left_bar_names left_nav a" (click)="getAllPCPartsByCategory('vga', 'all')">VGA</div>
+              <a href="/browse/pcparts/vga/{{ search.name }}">
+                <div class="left_bar_names left_nav a">VGA</div>
+              </a>
             </ng-template>
-            <ng-template [ngIf]="category=='cpu'" [ngIfElse]="elseBlockcpu"> -->
-              <div class="left_bar_names left_nav a" (click)="getAllPCPartsByCategory('cpu', 'all')">CPU</div>
-            <!-- </ng-template>
+            <ng-template [ngIf]="search.category=='cpu'" [ngIfElse]="elseBlockcpu">
+              <div class="left_bar_names left_nav_hover left_nav a">CPU</div>
+            </ng-template>
             <ng-template #elseBlockcpu>
-              <div class="left_bar_names left_nav a" (click)="getAllPCPartsByCategory('cpu', 'all')">CPU</div>
+              <a href="/browse/pcparts/cpu/{{ search.name }}">
+                <div class="left_bar_names left_nav a">CPU</div>
+              </a>
             </ng-template>
-            <ng-template [ngIf]="category=='motherboard'" [ngIfElse]="elseBlockmotherboard"> -->
-              <div class="left_bar_names left_nav a" (click)="getAllPCPartsByCategory('motherboard', 'all')">MOTHERBOARD</div>
-            <!-- </ng-template>
+            <ng-template [ngIf]="search.category=='motherboard'" [ngIfElse]="elseBlockmotherboard">
+              <div class="left_bar_names left_nav_hover left_nav a">MOTHERBOARD</div>
+            </ng-template>
             <ng-template #elseBlockmotherboard>
-              <div class="left_bar_names left_nav a" (click)="getAllPCPartsByCategory('motherboard', 'all')">MOTHERBOARD</div>
-            </ng-template> -->
-            <!-- <ng-template [ngIf]="category=='hard_disk'" [ngIfElse]="elseBlockhardDisk"> -->
-              <div class="left_bar_names left_nav a" (click)="getAllPCPartsByCategory('hard_disk', 'all')">HARD DISK</div>
-            <!-- </ng-template>
+              <a href="/browse/pcparts/motherboard/{{ search.name }}">
+                <div class="left_bar_names left_nav a">MOTHERBOARD</div>
+              </a>
+            </ng-template>
+            <ng-template [ngIf]="search.category=='hard_disk'" [ngIfElse]="elseBlockhardDisk">
+              <div class="left_bar_names left_nav_hover left_nav a">HARD DISK</div>
+            </ng-template>
             <ng-template #elseBlockhardDisk>
-              <div class="left_bar_names left_nav a" (click)="getAllPCPartsByCategory('hard_disk', 'all')">HARD DISK</div>
-            </ng-template> -->
+              <a href="/browse/pcparts/hard_disk/{{ search.name }}">
+                <div class="left_bar_names left_nav a">HARD DISK</div>
+              </a>
+            </ng-template>
 
             <div class="left_bar_last">
               <div class="text-center">Sort By</div>
@@ -64,13 +73,12 @@
       </div>
       <!-------------->
       <!--Right Side-->
+      <ng-template [ngIf]="isVisible" [ngIfElse]="elseisVisible">
+        <ng-template [ngIf]="code != null || code == '000'" [ngIfElse]="elseBlock">
+          <div class="col-9 he" id="right_side">
+            <div id="right_topic">Searched Product : {{ search.name }}</div>
 
-      <ng-template [ngIf]="pcParts" [ngIfElse]="elseBlock">
-        <div class="col-9 he" id="right_side">
-          <div id="right_topic">Searched Product {{ name }}</div>
-
-          <ng-template [ngIf]="loading=='false'" [ngIfElse]="elseBlockLoading">
-            <div *ngFor="let p of pcParts; let i=index;">
+            <div *ngFor="let p of pcParts | paginate: { itemsPerPage: count, currentPage: c }">
               <div class="item_list">
                 <div class="row">
                   <div class="col-2">
@@ -78,7 +86,7 @@
                   </div>
                   <div class="col-10 text-white">
                     <div class="row" id="pc_part_name">
-                      <span (click)="redirect(p.id)">{{ p.name }}</span>
+                      <a href="/product_details/{{search.category}}/{{p.id}}">{{ p.name }}</a>
                     </div>
                     <div class="row">{{ p.speed }}</div>
                     <div class="row">Rs. {{ p.price }} /=</div>
@@ -93,30 +101,26 @@
                 </div>
               </div>
             </div>
-          </ng-template>
-          <ng-template #elseBlockLoading>
-            <app-loading></app-loading>
-          </ng-template>
 
-          <!--Pagination-->
-          <!-- <div class="row">
-          <div class="col-12">
-            <div id="pagination">
-              <span class="pages">1</span>
-              <span class="pages">2</span>
-              <span class="pages">3</span>
-              <span class="pages">4</span>
+            <!--Including the pagination control.-->
+            <div class="text-right">
+              <pagination-controls (pageChange)="c = $event"></pagination-controls>
             </div>
-          </div>
-        </div> -->
-          <!-------------->
-        </div>
-      </ng-template>
 
-      <ng-template #elseBlock>
+          </div>
+        </ng-template>
+
+        <ng-template #elseBlock>
+          <div class="col-9 he" id="right_side">
+            <div id="right_topic">Searched Product : {{ search.name }}</div>
+            <div class="no_data text-center">No Data Available</div>
+          </div>
+        </ng-template>
+      </ng-template>
+      <ng-template #elseisVisible>
         <div class="col-9 he" id="right_side">
-          <div id="right_topic">Searched Product {{ name }}</div>
-          <div class="no_data text-center">No Data Available</div>
+          <div id="right_topic">Searched Product : {{ search.name }}</div>
+          <div class="no_data text-center"><img src="../../assets/img/ajax-loader.gif" height="100" width="100" /></div>
         </div>
       </ng-template>
       <!-------------->

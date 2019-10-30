@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 // import { RangeSliderModule } from 'ngx-rangeslider-component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { Ng5SliderModule } from 'ng5-slider';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -64,7 +65,8 @@ import { GoogleChartsModule } from 'angular-google-charts';
     }),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDHRyL4DvYGHgH_7a3sDKtBEy8KfMPI6aw'
-    })
+    }),
+    Ng5SliderModule
   ],
   providers: [LaptopStore],
   bootstrap: [AppComponent]

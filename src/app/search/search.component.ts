@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Pcpart } from '../model/pcpart';
+import { Search } from './search.model';
 import { SearchService } from '../service/search.service';
-import { error } from 'protractor';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from "@angular/router";
-import { LoadingComponent } from '../loading/loading.component';
 
 @Component({
   selector: 'app-search',
@@ -13,49 +11,50 @@ import { LoadingComponent } from '../loading/loading.component';
 })
 export class SearchComponent implements OnInit {
 
-  private pcpart: Object;
   private pcParts = [];
-  private name: String;
-  private category: String;
-  private loading = 'true';
+  private code;
+  private search: Search;
+  c: Number = 1;
+  count: Number = 10;
+  private isVisible;
 
-  constructor(private searchService: SearchService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private searchService: SearchService, private route: ActivatedRoute, private router: Router) {
+    this.search = new Search();
+  }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.category = params["category"];
-      this.name = params["name"];
+      this.search.category = params["category"];
+      this.search.name = params["name"];
     });
-    this.getAllPCPartsByCategory(this.category, this.name);
+    this.getAllPCPartsByCategory(this.search.category, this.search.name);
+    this.isVisible = false;
   }
 
   redirect(_id): void {
-    this.router.navigate(['/product_details/' + this.category + '/' + _id]);
+    this.router.navigate(['/product_details/' + this.search.category + '/' + _id]);
   }
 
   getAllPCPartsByCategory(category, name) {
-    this.loading = 'true';
     this.searchService.findByName(category, name).subscribe(data => {
-      this.pcpart = data;
-      this.pcParts = this.pcpart["responseObject"];
+      this.isVisible = true;
+      this.pcParts = data["responseObject"];
+      this.code = data["responseCode"];
       console.log(data);
     },
-      (error: any) => console.log(error)
-    );
-    this.loading = 'false';
+      (error: any) => console.log(error));
+    console.log(this.code);
   }
 
   getSortedProducts(option) {
-    this.loading = 'true';
-    this.searchService.sortProducts(this.category, this.name, option).subscribe(data => {
-      this.pcpart = data;
-      this.pcParts = this.pcpart["responseObject"];
+    console.log(option);
+    this.searchService.sortProducts(this.search.category, this.search.name, option).subscribe(data => {
+      this.pcParts = data["responseObject"];
+      this.code = data["responseCode"];
     },
-      (error: any) => console.log(error)
-    );
-    this.loading = 'false';
+      (error: any) => console.log(error));
   }
 
-  
+
 
 }

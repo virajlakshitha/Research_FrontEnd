@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Pcpart } from '../model/pcpart';
+import { Model } from './model';
 import { PcpartServiceService } from '../service/pcpart-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from "@angular/router";
+import { Options } from 'ng5-slider';
+import * as swal from 'sweetalert2';
 
 @Component({
   selector: 'app-build-for-price',
@@ -11,38 +13,22 @@ import { Router } from "@angular/router";
   styleUrls: ['./build-for-price.component.css']
 })
 export class BuildForPriceComponent implements OnInit {
-  
-  employeeForm: FormGroup;
-  settingsForm: FormGroup;
-  total_price = 0;
-  budget_loop = 1;
-  total_loop = 0;
-  Budget_Pro = [];
 
-  Ram = [];
-  Vga = [];
-  Cpu = [];
-  Motherboard = [];
-  Hard_Disk = [];
-  min_ram = 0;
-  max_ram = 4500;
-  min_vga = 0;
-  max_vga = 7500;
-  min_cpu = 0;
-  max_cpu = 6500;
-  min_motherboard = 0;
-  max_motherboard = 4500;
-  min_hard_disk = 0;
-  max_hard_disk = 2500;
-                  
-  constructor(private pcpartServiceService: PcpartServiceService, private route: ActivatedRoute, private router: Router) { }
+  private model: Model;
+  private Swal;
+
+  constructor(private pcpartServiceService: PcpartServiceService, private route: ActivatedRoute, private router: Router) {
+    this.model = new Model();
+    this.Swal = require('sweetalert2');
+  }
+
+  sliderForm: FormGroup;
 
   ngOnInit() {
-    this.employeeForm = new FormGroup({
-      min: new FormControl(),
-      max: new FormControl()
+    this.sliderForm = new FormGroup({
+      sliderControl: new FormControl([0, 100000])
     });
-    this.settingsForm = new FormGroup({
+    this.model.settingsForm = new FormGroup({
       ram_min: new FormControl(),
       ram_max: new FormControl(),
       vga_min: new FormControl(),
@@ -54,183 +40,239 @@ export class BuildForPriceComponent implements OnInit {
       hard_disk_min: new FormControl(),
       hard_disk_max: new FormControl()
     });
-    this.budgetPlan(this.min_ram, this.max_ram, this.min_motherboard, this.max_motherboard, this.min_vga, this.max_vga, this.min_cpu, this.max_cpu, this.min_hard_disk, this.max_hard_disk);
+    console.log("ng - "+this.sliderForm.value.sliderControl[0]+" "+this.sliderForm.value.sliderControl[1])
+    this.budgetPlan(this.sliderForm.value.sliderControl[0], this.sliderForm.value.sliderControl[1]);
+    this.model.ramVisible = false;
+    this.model.vgaVisible = false;
+    this.model.cpuVisible = false;
+    this.model.motherboardVisible = false;
+    this.model.hard_diskVisible = false;
   }
+
+  options: Options = {
+    floor: 0,
+    ceil: 100000,
+    step: 1
+  };
 
   redirect(category, _id): void {
     this.router.navigate(['/product_details/' + category + '/' + _id]);
   }
 
-  budgetPlan(ram_min, ram_max, motherboard_min, motherboard_max, vga_min, vga_max, cpu_min, cpu_max,hard_disk_min, hard_disk_max) {
-    this.pcpartServiceService.budgetPlan(ram_min, ram_max, motherboard_min, motherboard_max, vga_min, vga_max, cpu_min, cpu_max,hard_disk_min, hard_disk_max).subscribe(data => {
-      console.log(data);
-      if(data["responseCode"] == "111"){
-        this.Budget_Pro = data["responseObject"];
-        console.log(this.Budget_Pro);
-        this.total_loop = data["responseObject"].length;
-        this.Ram = this.Budget_Pro[this.budget_loop]["ram"];
-        if(this.Ram["price"] != null){
-          this.total_price = this.total_price + parseFloat(this.Ram["price"]);
+  budgetPlan(min, max) {
+    var ram_min = min*(100/100);
+    var ram_max = max*(100/100);
+    var motherboard_min = min*(100/100);
+    var motherboard_max = max*(100/100);
+    var vga_min = min*(100/100);
+    var vga_max = max*(100/100);
+    var cpu_min = min*(100/100);
+    var cpu_max = max*(100/100);
+    var hard_disk_min = min*(100/100);
+    var hard_disk_max = max*(100/100);
+    this.model.ramVisible = false;
+    this.model.vgaVisible = false;
+    this.model.cpuVisible = false;
+    this.model.motherboardVisible = false;
+    this.model.hard_diskVisible = false;
+    this.pcpartServiceService.budgetPlan(ram_min, ram_max, motherboard_min, motherboard_max, vga_min, vga_max, cpu_min, cpu_max, hard_disk_min, hard_disk_max).subscribe(data => {
+        console.log(data["res"].length);
+        this.model.Budget_Pro = data["res"];
+        this.model.total_loop = data["res"].length;
+
+        this.model.Ram = this.model.Budget_Pro[this.model.budget_loop]["ram"];
+        if (this.model.Ram["price"] != null) {
+          this.model.total_price = this.model.total_price + parseFloat(this.model.Ram["price"]);
         }
-        this.Vga = this.Budget_Pro[this.budget_loop]["vga"];
-        if(this.Vga["price"] != null){
-          this.total_price = this.total_price + parseFloat(this.Vga["price"]);
+        this.model.ramVisible = true;
+        this.model.Vga = this.model.Budget_Pro[this.model.budget_loop]["vga"];
+        if (this.model.Vga["price"] != null) {
+          this.model.total_price = this.model.total_price + parseFloat(this.model.Vga["price"]);
         }
-        this.Cpu = this.Budget_Pro[this.budget_loop]["cpu"];
-        if(this.Cpu["price"] != null){
-          this.total_price = this.total_price + parseFloat(this.Cpu["price"]);
+        this.model.vgaVisible = true;
+        this.model.Cpu = this.model.Budget_Pro[this.model.budget_loop]["cpu"];
+        if (this.model.Cpu["price"] != null) {
+          this.model.total_price = this.model.total_price + parseFloat(this.model.Cpu["price"]);
         }
-        this.Motherboard = this.Budget_Pro[this.budget_loop]["motherboard"];
-        console.log(this.Motherboard["user_rating"]);
-        if(this.Motherboard["price"] != null){
-          this.total_price = this.total_price + parseFloat(this.Motherboard["price"]);
+        this.model.cpuVisible = true;
+        this.model.Motherboard = this.model.Budget_Pro[this.model.budget_loop]["motherboard"];
+        if (this.model.Motherboard["price"] != null) {
+          this.model.total_price = this.model.total_price + parseFloat(this.model.Motherboard["price"]);
         }
-        this.Hard_Disk = this.Budget_Pro[this.budget_loop]["hard_disk"];
-        if(this.Hard_Disk["price"] != null){
-          this.total_price = this.total_price + parseFloat(this.Hard_Disk["price"]);
+        this.model.motherboardVisible = true;
+        this.model.Hard_Disk = this.model.Budget_Pro[this.model.budget_loop]["hard_disk"];
+        if (this.model.Hard_Disk["price"] != null) {
+          this.model.total_price = this.model.total_price + parseFloat(this.model.Hard_Disk["price"]);
         }
-      }
+        this.model.hard_diskVisible = true;
     },
-    (error: any) => console.log(error));
+      (error: any) => console.log(error));
   }
 
-  // settingsSubmit(ram_min, ram_max, motherboard_min, motherboard_max, vga_min, vga_max, cpu_min, cpu_max,hard_disk_min, hard_disk_max) {
   settingsSubmit() {
-    this.budget_loop = 1;
-    this.total_price = 0;
+    this.model.total_price = 0;
+    this.model.ramVisible = false;
+    this.model.vgaVisible = false;
+    this.model.cpuVisible = false;
+    this.model.motherboardVisible = false;
+    this.model.hard_diskVisible = false;
+    this.model.min_ram = this.model.settingsForm.value.ram_min;
+    this.model.max_ram = this.model.settingsForm.value.ram_max;
+    this.model.min_vga = this.model.settingsForm.value.vga_min;
+    this.model.max_vga = this.model.settingsForm.value.vga_max;
+    this.model.min_cpu = this.model.settingsForm.value.cpu_min;
+    this.model.max_cpu = this.model.settingsForm.value.cpu_max;
+    this.model.min_motherboard = this.model.settingsForm.value.motherboard_min;
+    this.model.max_motherboard = this.model.settingsForm.value.motherboard_max;
+    this.model.min_hard_disk = this.model.settingsForm.value.hard_disk_min;
+    this.model.max_hard_disk = this.model.settingsForm.value.hard_disk_max;
 
-    var ram_min = this.settingsForm.value.ram_min;
-    this.min_ram = ram_min;
-    var ram_max = this.settingsForm.value.ram_max;
-    this.max_ram = ram_max;
-    var vga_min = this.settingsForm.value.vga_min;
-    this.min_vga = vga_min;
-    var vga_max = this.settingsForm.value.vga_max;
-    this.max_vga = vga_max;
-    var cpu_min = this.settingsForm.value.cpu_min;
-    this.min_cpu = cpu_min;
-    var cpu_max = this.settingsForm.value.cpu_max;
-    this.max_cpu = cpu_max;
-    var motherboard_min = this.settingsForm.value.motherboard_min;
-    this.min_motherboard = motherboard_min;
-    var motherboard_max = this.settingsForm.value.motherboard_max;
-    this.max_motherboard = motherboard_max;
-    var hard_disk_min = this.settingsForm.value.hard_disk_min;
-    this.min_hard_disk = hard_disk_min;
-    var hard_disk_max = this.settingsForm.value.hard_disk_max;
-    this.max_hard_disk = hard_disk_max;
+    this.pcpartServiceService.settingsSubmit(this.model.min_ram, this.model.max_ram, this.model.min_vga, this.model.max_vga, this.model.min_cpu, this.model.max_cpu, this.model.min_motherboard, this.model.max_motherboard, this.model.min_hard_disk, this.model.max_hard_disk).subscribe(data => {
+     
+        this.model.Budget_Pro = data["res"];
+        this.model.total_loop = data["res"].length;
 
-    this.pcpartServiceService.settingsSubmit(ram_min, ram_max, motherboard_min, motherboard_max, vga_min, vga_max, cpu_min, cpu_max, hard_disk_min, hard_disk_max).subscribe(data => {
-        this.Ram = data["responseObject"][this.budget_loop]["ram"];
-        if(this.Ram["price"] != null){
-          this.total_price = this.total_price + parseFloat(this.Ram["price"]);
+        this.model.Ram = data["res"][this.model.budget_loop]["ram"];
+        if (this.model.Ram["price"] != null) {
+          this.model.total_price = this.model.total_price + parseFloat(this.model.Ram["price"]);
         }
-        this.Vga = data["responseObject"][this.budget_loop]["vga"];
-        if(this.Vga["price"] != null){
-          this.total_price = this.total_price + parseFloat(this.Vga["price"]);
+        this.model.ramVisible = true;
+        this.model.Vga = data["res"][this.model.budget_loop]["vga"];
+        if (this.model.Vga["price"] != null) {
+          this.model.total_price = this.model.total_price + parseFloat(this.model.Vga["price"]);
         }
-        this.Cpu = data["responseObject"][this.budget_loop]["cpu"];
-        if(this.Cpu["price"] != null){
-          this.total_price = this.total_price + parseFloat(this.Cpu["price"]);
+        this.model.vgaVisible = true;
+        this.model.Cpu = data["res"][this.model.budget_loop]["cpu"];
+        if (this.model.Cpu["price"] != null) {
+          this.model.total_price = this.model.total_price + parseFloat(this.model.Cpu["price"]);
         }
-        this.Motherboard = data["responseObject"][this.budget_loop]["motherboard"];
-        if(this.Motherboard["price"] != null){
-          this.total_price = this.total_price + parseFloat(this.Motherboard["price"]);
+        this.model.cpuVisible = true;
+        this.model.Motherboard = data["res"][this.model.budget_loop]["motherboard"];
+        if (this.model.Motherboard["price"] != null) {
+          this.model.total_price = this.model.total_price + parseFloat(this.model.Motherboard["price"]);
         }
-        this.Hard_Disk = data["responseObject"][this.budget_loop]["hard_disk"];
-        if(this.Hard_Disk["price"] != null){
-          this.total_price = this.total_price + parseFloat(this.Hard_Disk["price"]);
+        this.model.motherboardVisible = true;
+        this.model.Hard_Disk = data["res"][this.model.budget_loop]["hard_disk"];
+        if (this.model.Hard_Disk["price"] != null) {
+          this.model.total_price = this.model.total_price + parseFloat(this.model.Hard_Disk["price"]);
         }
+        this.model.hard_diskVisible = true;
     },
-    (error: any) => console.log(error));
+      (error: any) => console.log(error));
   }
 
   differentPlan() {
-    if(this.total_loop-1 != this.budget_loop){
-      this.total_price = 0;
-      this.budget_loop = this.budget_loop+1;
-      if(this.Ram["price"] != null){
-        this.total_price = this.total_price + parseFloat(this.Ram["price"]);
+    this.model.ramVisible = false;
+    this.model.vgaVisible = false;
+    this.model.cpuVisible = false;
+    this.model.motherboardVisible = false;
+    this.model.hard_diskVisible = false;
+    if (this.model.total_loop - 1 != this.model.budget_loop) {
+      this.model.total_price = 0;
+      this.model.budget_loop = this.model.budget_loop + 1;
+
+      this.model.Ram = this.model.Budget_Pro[this.model.budget_loop]["ram"];
+      if (this.model.Ram["price"] != null) {
+        this.model.total_price = this.model.total_price + parseFloat(this.model.Ram["price"]);
       }
-      this.Vga = this.Budget_Pro[this.budget_loop]["vga"];
-      if(this.Vga["price"] != null){
-        this.total_price = this.total_price + parseFloat(this.Vga["price"]);
+      this.model.ramVisible = true;
+      this.model.Vga = this.model.Budget_Pro[this.model.budget_loop]["vga"];
+      if (this.model.Vga["price"] != null) {
+        this.model.total_price = this.model.total_price + parseFloat(this.model.Vga["price"]);
       }
-      this.Cpu = this.Budget_Pro[this.budget_loop]["cpu"];
-      if(this.Cpu["price"] != null){
-        this.total_price = this.total_price + parseFloat(this.Cpu["price"]);
+      this.model.vgaVisible = true;
+      this.model.Cpu = this.model.Budget_Pro[this.model.budget_loop]["cpu"];
+      if (this.model.Cpu["price"] != null) {
+        this.model.total_price = this.model.total_price + parseFloat(this.model.Cpu["price"]);
       }
-      this.Motherboard = this.Budget_Pro[this.budget_loop]["motherboard"];
-      if(this.Motherboard["price"] != null){
-        this.total_price = this.total_price + parseFloat(this.Motherboard["price"]);
+      this.model.cpuVisible = true;
+      this.model.Motherboard = this.model.Budget_Pro[this.model.budget_loop]["motherboard"];
+      if (this.model.Motherboard["price"] != null) {
+        this.model.total_price = this.model.total_price + parseFloat(this.model.Motherboard["price"]);
       }
-      this.Hard_Disk = this.Budget_Pro[this.budget_loop]["hard_disk"];
-      if(this.Hard_Disk["price"] != null){
-        this.total_price = this.total_price + parseFloat(this.Hard_Disk["price"]);
+      this.model.motherboardVisible = true;
+      this.model.Hard_Disk = this.model.Budget_Pro[this.model.budget_loop]["hard_disk"];
+      if (this.model.Hard_Disk["price"] != null) {
+        this.model.total_price = this.model.total_price + parseFloat(this.model.Hard_Disk["price"]);
       }
+      this.model.hard_diskVisible = true;
     }
-    else{
-      alert("No more budget plans available");
+    else {
+      this.Swal.fire('Oops...', 'No More Budget Plans !!!', 'error')
     }
   }
 
   changePCPart(category) {
-    var arr = { "motherboard": this.Motherboard["id"], "cpu": this.Cpu["id"], "ram": this.Ram["id"], "vga": this.Vga["id"], "hard_disk": this.Hard_Disk["id"] };
+    var arr = { "motherboard": this.model.Motherboard["_id"]["$oid"], "cpu": this.model.Cpu["_id"]["$oid"], "ram": this.model.Ram["_id"]["$oid"], "vga": this.model.Vga["_id"]["$oid"], "hard_disk": this.model.Hard_Disk["_id"]["$oid"]};
     var pass_min = 0;
     var pass_max = 0;
-    if(category == "motherboard"){
-      pass_min = this.min_motherboard;
-      pass_max = this.max_motherboard;
+    if (category == "motherboard") {
+      this.model.motherboardVisible = false;
+      pass_min = this.model.min_motherboard;
+      pass_max = this.model.max_motherboard;
     }
-    else if(category == "cpu"){
-      pass_min = this.min_cpu;
-      pass_max = this.max_cpu;
+    else if (category == "cpu") {
+      this.model.cpuVisible = false;
+      pass_min = this.model.min_cpu;
+      pass_max = this.model.max_cpu;
     }
-    else if(category == "ram"){
-      pass_min = this.min_ram;
-      pass_max = this.max_ram;
+    else if (category == "ram") {
+      this.model.ramVisible = false;
+      pass_min = this.model.min_ram;
+      pass_max = this.model.max_ram;
     }
-    else if(category == "vga"){
-      pass_min = this.min_vga;
-      pass_max = this.max_vga;
+    else if (category == "vga") {
+      this.model.vgaVisible = false;
+      pass_min = this.model.min_vga;
+      pass_max = this.model.max_vga;
     }
-    else if(category == "hard_disk"){
-      pass_min = this.min_hard_disk;
-      pass_max = this.max_hard_disk;
+    else if (category == "hard_disk") {
+      this.model.hard_diskVisible = false;
+      pass_min = this.model.min_hard_disk;
+      pass_max = this.model.max_hard_disk;
     }
-    this.pcpartServiceService.changePCPart(category, pass_min , pass_max, arr).subscribe(data => {
-      if(data["responseCode"] == "111"){
-        console.log(data["responseObject"]);
-        if(category == "ram"){
-          this.Ram = data["responseObject"][this.budget_loop]["ram"];
-          if(this.Ram["price"] != null){
-            this.total_price = this.total_price + parseFloat(this.Ram["price"]);
+    this.pcpartServiceService.changePCPart(category, pass_min, pass_max, arr).subscribe(data => {
+        if(data["res"] != null || data != null){
+          if (category == "ram") {
+            this.model.Ram = data["res"][this.model.budget_loop];
+            if (this.model.Ram["price"] != null) {
+              this.model.total_price = this.model.total_price + parseFloat(this.model.Ram["price"]);
+            }
+            this.model.ramVisible = true;
           }
+          else if (category == "vga") {
+            this.model.Vga = data["res"][this.model.budget_loop];
+            if (this.model.Vga["price"] != null) {
+              this.model.total_price = this.model.total_price + parseFloat(this.model.Vga["price"]);
+            }
+            this.model.vgaVisible = true;
+          }
+          else if (category == "cpu") {
+            this.model.Cpu = data["res"][this.model.budget_loop];
+            if (this.model.Cpu["price"] != null) {
+              this.model.total_price = this.model.total_price + parseFloat(this.model.Cpu["price"]);
+            }
+            this.model.cpuVisible = true;
+          }
+          else if (category == "motherboard") {
+            this.model.Motherboard = data["res"][this.model.budget_loop];
+            if (this.model.Motherboard["price"] != null) {
+              this.model.total_price = this.model.total_price + parseFloat(this.model.Motherboard["price"]);
+            }
+            this.model.motherboardVisible = true;
+          }
+          else if (category == "hard_disk") {
+            this.model.Hard_Disk = data["res"][this.model.budget_loop];
+            if (this.model.Hard_Disk["price"] != null) {
+              this.model.total_price = this.model.total_price + parseFloat(this.model.Hard_Disk["price"]);
+            }
+            this.model.hard_diskVisible = true;
+          }
+        } else {
+          this.Swal.fire('Oops...', 'No PC Part Found !!!', 'error')
         }
-        else if(category == "motherboard")
-        
-        this.Vga = data["responseObject"][this.budget_loop]["vga"];
-        if(this.Vga["price"] != null){
-          this.total_price = this.total_price + parseFloat(this.Vga["price"]);
-        }
-        this.Cpu = data["responseObject"][this.budget_loop]["cpu"];
-        if(this.Cpu["price"] != null){
-          this.total_price = this.total_price + parseFloat(this.Cpu["price"]);
-        }
-        this.Motherboard = data["responseObject"][this.budget_loop]["motherboard"];
-        if(this.Motherboard["price"] != null){
-          this.total_price = this.total_price + parseFloat(this.Motherboard["price"]);
-        }
-        this.Hard_Disk = data["responseObject"][this.budget_loop]["hard_disk"];
-        if(this.Hard_Disk["price"] != null){
-          this.total_price = this.total_price + parseFloat(this.Hard_Disk["price"]);
-        }
-      }
-      else{
-        console.log("error -> change pc");
-      }
     },
-    (error: any) => console.log(error));
+      (error: any) => console.log(error));
   }
 
 }
