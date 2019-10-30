@@ -63,7 +63,7 @@ export class MoreDetailsComponent implements OnInit {
     // console.log("--------------------------"+this.pcpart["name"])
     // this.searchService.analyzeComments(this.pcpart["name"]).subscribe(data => {
       console.log("---------*******"+this.PC_part_name)
-    this.searchService.analyzeComments("Sobadhara - Sri Lanka Wildlife Documentary | 2019-08-30 | (පාද යාත්‍රා) Padayathra").subscribe(data => { 
+    this.searchService.analyzeComments("https://www.youtube.com/watch?v=Urk2U14iMPs").subscribe(data => { 
       let abc = new SentimentAnalysis(data["avg_compound_value"])
      
        console.log("----------***" + JSON.stringify(abc.value)) 
