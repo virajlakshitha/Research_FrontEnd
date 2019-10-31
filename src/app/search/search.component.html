@@ -74,43 +74,46 @@
       <!-------------->
       <!--Right Side-->
       <ng-template [ngIf]="isVisible" [ngIfElse]="elseisVisible">
-        <ng-template [ngIf]="code != null || code == '000'" [ngIfElse]="elseBlock">
-          <div class="col-9 he" id="right_side">
-            <div id="right_topic">Searched Product : {{ search.name }}</div>
+        <ng-template [ngIf]="code != null" [ngIfElse]="elseCode">
+          <ng-template [ngIf]="code != '000'" [ngIfElse]="elseBlock">
+            <div class="col-9 he" id="right_side">
+              <div id="right_topic">Searched Product : {{ search.name }}</div>
 
-            <div *ngFor="let p of pcParts | paginate: { itemsPerPage: count, currentPage: c }">
-              <div class="item_list">
-                <div class="row">
-                  <div class="col-2">
-                    <img src="{{ p.image }}" height="75px" width="75px">
-                  </div>
-                  <div class="col-10 text-white">
-                    <div class="row" id="pc_part_name">
-                      <a href="/product_details/{{search.category}}/{{p.id}}">{{ p.name }}</a>
+              <div *ngFor="let p of pcParts | paginate: { itemsPerPage: count, currentPage: c }">
+                <div class="item_list">
+                  <div class="row">
+                    <div class="col-2">
+                      <img src="{{ p.image }}" height="75px" width="75px">
                     </div>
-                    <div class="row">{{ p.speed }}</div>
-                    <div class="row">Rs. {{ p.price }} /=</div>
-                    <div class="row">
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star"></span>
-                      <span class="fa fa-star"></span>
+                    <div class="col-10 text-white">
+                      <div class="row" id="pc_part_name">
+                        <a href="/product_details/{{search.category}}/{{p.id}}">{{ p.name }}</a>
+                      </div>
+                      <div class="row">{{ p.speed }}</div>
+                      <div class="row">Rs. {{ p.price }} /=</div>
+                      <div class="row">
+                        <span style="color: green;font-size: 25px;"><b>+ {{ p.user_rating }}%</b></span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <!--Including the pagination control.-->
-            <div class="text-right">
-              <pagination-controls (pageChange)="c = $event"></pagination-controls>
-            </div>
+              <!--Including the pagination control.-->
+              <div class="text-right">
+                <pagination-controls (pageChange)="c = $event"></pagination-controls>
+              </div>
 
-          </div>
+            </div>
+          </ng-template>
+          <ng-template #elseBlock>
+            <div class="col-9 he" id="right_side">
+              <div id="right_topic">Searched Product : {{ search.name }}</div>
+              <div class="no_data text-center">No Data Available</div>
+            </div>
+          </ng-template>
         </ng-template>
-
-        <ng-template #elseBlock>
+        <ng-template #elseCode>
           <div class="col-9 he" id="right_side">
             <div id="right_topic">Searched Product : {{ search.name }}</div>
             <div class="no_data text-center">No Data Available</div>

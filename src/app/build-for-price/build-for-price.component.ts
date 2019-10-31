@@ -60,16 +60,16 @@ export class BuildForPriceComponent implements OnInit {
   }
 
   budgetPlan(min, max) {
-    var ram_min = min*(100/100);
-    var ram_max = max*(100/100);
-    var motherboard_min = min*(100/100);
-    var motherboard_max = max*(100/100);
-    var vga_min = min*(100/100);
-    var vga_max = max*(100/100);
-    var cpu_min = min*(100/100);
-    var cpu_max = max*(100/100);
-    var hard_disk_min = min*(100/100);
-    var hard_disk_max = max*(100/100);
+    var ram_min = min*(16.08/100);
+    var ram_max = max*(16.08/100);
+    var motherboard_min = min*(14.11/100);
+    var motherboard_max = max*(14.11/100);
+    var vga_min = min*(34.25/100);
+    var vga_max = max*(34.25/100);
+    var cpu_min = min*(25.41/100);
+    var cpu_max = max*(25.41/100);
+    var hard_disk_min = min*(10.14/100);
+    var hard_disk_max = max*(10.14/100);
     this.model.ramVisible = false;
     this.model.vgaVisible = false;
     this.model.cpuVisible = false;

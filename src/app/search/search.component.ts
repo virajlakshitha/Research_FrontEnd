@@ -38,8 +38,10 @@ export class SearchComponent implements OnInit {
   getAllPCPartsByCategory(category, name) {
     this.searchService.findByName(category, name).subscribe(data => {
       this.isVisible = true;
-      this.pcParts = data["responseObject"];
       this.code = data["responseCode"];
+      if(this.code != "000"){
+        this.pcParts = data["responseObject"];
+      }
       console.log(data);
     },
       (error: any) => console.log(error));

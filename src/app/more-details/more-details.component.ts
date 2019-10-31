@@ -29,13 +29,14 @@ export class MoreDetailsComponent implements OnInit {
       this.model.pcpart = data["responseObject"];
       this.model.name = this.model.pcpart["name"];
       this.model.PC_part_name = this.model.pcpart["name"];
+      this.getComments(this.model.PC_part_name);
       console.log(this.model.PC_part_name)
     },
       (error: any) => console.log(error)
     );
 
     this.getVendorPrices(this.model.category, this.model.name);
-    this.getComments(this.model.name);
+    
 
     // this.searchService.analyzeComments("Sobadhara - Sri Lanka Wildlife Documentary | 2019-08-30 | (පාද යාත්‍රා) Padayathra").subscribe(data => {
     //   let abc = new SentimentAnalysis(data["avg_compound_value"]);
@@ -61,6 +62,7 @@ export class MoreDetailsComponent implements OnInit {
   }
 
   getComments(name) {
+    console.log("name : "+name);
     this.searchService.getComments(name).subscribe(data => {
       console.log(data);
       this.model.comments = data["res"];
