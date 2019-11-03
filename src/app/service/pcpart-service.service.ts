@@ -19,7 +19,7 @@ export class PcpartServiceService {
   }
 
   public changePCPart(pro, val1, val2, arr) {
-    return this.http.post(this.buildForPriceUrl+'change_product', {"product": pro, "min": val1, "max": val2, "motherboard": arr["motherboard"], "cpu": arr["cpu"], "ram": arr["ram"], "vga": arr["vga"], "hard_disk": arr["hard_disk"]});
+    return this.http.post(this.buildForPriceUrl+'change_product', {"product": pro, "min": val1, "max": val2, "motherboard": arr["motherboard"], "cpu": arr["cpu"], "ram": arr["ram"], "vga": arr["vga"], "hard_disk": arr["hard_disk"], "type": "quality"});
   }
 
   httpOptions = {
@@ -29,13 +29,13 @@ export class PcpartServiceService {
   }
 
   public budgetPlan(a, b, c, d, e, f, g, h, i, j) {
-    var abc = { "ram_min": a, "ram_max": b, "motherboard_min": c, "motherboard_max": d, "vga_min": e, "vga_max": f, "cpu_min": g, "cpu_max": h, "hard_disk_min": i, "hard_disk_max": j};
+    var abc = { "ram_min": a, "ram_max": b, "motherboard_min": c, "motherboard_max": d, "vga_min": e, "vga_max": f, "cpu_min": g, "cpu_max": h, "hard_disk_min": i, "hard_disk_max": j, "type": "quality"};
     return this.http.post(this.buildForPriceUrl+'build_for_price', abc, this.httpOptions);
   }
 
   public settingsSubmit(ram_min, ram_max, vga_min, vga_max, cpu_min, cpu_max, motherboard_min, motherboard_max, hard_disk_min, hard_disk_max) {
     console.log("ram_min : "+ram_min+" ram_max : "+ram_max+" motherboard_min : "+motherboard_min+" motherboard_max  : "+motherboard_max+" vga_min : "+vga_min+" vga_max : "+vga_max+" cpu_min : "+cpu_min+" cpu_max : "+cpu_max+" hard_disk_min : "+hard_disk_min+" hard_disk_max : "+hard_disk_max);
-    var abc = { "ram_min": ram_min, "ram_max": ram_max, "motherboard_min": motherboard_min, "motherboard_max": motherboard_max, "vga_min": vga_min, "vga_max": vga_max, "cpu_min": cpu_min, "cpu_max": cpu_max, "hard_disk_min": hard_disk_min, "hard_disk_max": hard_disk_max};
+    var abc = { "ram_min": ram_min, "ram_max": ram_max, "motherboard_min": motherboard_min, "motherboard_max": motherboard_max, "vga_min": vga_min, "vga_max": vga_max, "cpu_min": cpu_min, "cpu_max": cpu_max, "hard_disk_min": hard_disk_min, "hard_disk_max": hard_disk_max, "type": "quality"};
     return this.http.post(this.buildForPriceUrl+'build_for_price', abc);
   }
 
