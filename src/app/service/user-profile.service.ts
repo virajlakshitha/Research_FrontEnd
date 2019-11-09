@@ -14,28 +14,28 @@ export class UserProfileService {
 
   constructor(private http: HttpClient) { 
     this.pcpartsUrl = 'http://localhost:8080/api-techRing/pcparts/';
-    this.userUrl = 'http://localhost:8080/api-techRing/users/';
+    this.userUrl = 'http://localhost:8080/api-techRing/auth/users/';
   }
 
   //----------------PC Parts------------------------------------
-  public findAllParts(): Observable<Pcpart[]> {
-    return this.http.get<Pcpart[]>(this.pcpartsUrl);
+  public findAllParts() {
+    return this.http.get(this.pcpartsUrl);
   }
 
   public saveParts(pcpart: Pcpart) {
     return this.http.post<Pcpart>(this.pcpartsUrl+'add/', pcpart);
   }
 
-  public findByPartName(name: string): Observable<Pcpart[]> {
-    return this.http.get<Pcpart[]>(this.pcpartsUrl+''+name);
+  public findByPartName(name: string) {
+    return this.http.get(this.pcpartsUrl+''+name);
   }
 
-  public findByVendor(vendor: string): Observable<Pcpart[]> {
-    return this.http.get<Pcpart[]>(this.pcpartsUrl+'vendor/'+vendor);
+  public findByVendor(vendor: string) {
+    return this.http.get(this.pcpartsUrl+'vendor/'+vendor);
   }
 
-  public findByPartId(_id: string): Observable<Pcpart> {
-    return this.http.get<Pcpart>(this.pcpartsUrl+_id);
+  public findByPartId(_id: string) {
+    return this.http.get(this.pcpartsUrl+_id);
   }
 
   public updateProduct(_id: string, pcpart: Pcpart) {

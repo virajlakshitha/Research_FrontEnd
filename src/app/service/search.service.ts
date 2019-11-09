@@ -16,9 +16,13 @@ export class SearchService {
 
   constructor(private http: HttpClient) { 
     this.pcpartsUrl = 'http://localhost:8080/api-techRing/pcparts';
-    this.commentsUrl = 'http://localhost:8080/api-techRing/pcparts/comments';
-    this.analyzeComment = 'http://localhost:8093/api-py-techRing/';
+    this.analyzeComment = 'http://localhost:8093/api-py-techRing/analyze_comments';
 
+  }
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-type':'application/json'
+    })
   }
 
   public findAll() {
@@ -37,20 +41,20 @@ export class SearchService {
     return this.http.get(this.pcpartsUrl+'/sort_by/'+category+'/'+name+'/'+option);
   }
 
-  public getComments() {
-    return this.http.get(this.commentsUrl);
+  public getComments(name) {
+    return this.http.post(this.analyzeComment, {"name": name}, this.httpOptions);
   }
 
-  public getVendorPrices(category, id) {
-    return this.http.get(this.pcpartsUrl+"/vendor_prices/"+category+'/'+id);
+  public getVendorPrices(category, id, company) {
+    return this.http.get(this.pcpartsUrl+"/vendor_prices/"+category+'/'+id+'/'+company);
   }
 
   public getVendorDetailsForProducts(pro_name: string, category: string) {
     return this.http.get(this.pcpartsUrl+"/vendors/"+category+'/'+pro_name);
   }
   
-  public pushNotification(user_id: string, product: string) {
-    return this.http.post(this.pcpartsUrl+"/notify",[user_id,product]);
+  public pushNotification(user_id, product, price) {
+    return this.http.post(this.pcpartsUrl+"/notify",[user_id,product,price]);
   }
 
   public analyzeComments(product: string) {

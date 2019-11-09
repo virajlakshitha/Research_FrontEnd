@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Pcpart } from '../model/pcpart';
-import { User } from '../model/user';
 import { UserProfileService } from '../service/user-profile.service';
-import { error } from 'protractor';
+import { Model } from './model';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-user-profile',
@@ -11,33 +10,44 @@ import { error } from 'protractor';
 })
 export class UserProfileComponent implements OnInit {
 
-  pcpart: Pcpart[];
-  user: User[];
-  user_object: User;
-  type = 'vendor';
+  private model: Model;
 
-  constructor(private userProfileService: UserProfileService) { }
+  constructor(private userProfileService: UserProfileService) {
+    this.model = new Model();
+  }
 
   ngOnInit() {
+    this.model.userForm = new FormGroup({
+      name: new FormControl(),
+      username: new FormControl(),
+      email: new FormControl(),
+      password: new FormControl(),
+      street1: new FormControl(),
+      street2: new FormControl(),
+      city: new FormControl(),
+      province: new FormControl(),
+      tel: new FormControl(),
+      mobile: new FormControl(),
+      credit: new FormControl()
+    });
+
     this.getAllPCParts('ebay');
-    this.getUserData('viraj');
+    this.getUserData('5d98e131e265c622343f038f');
   }
 
   getAllPCParts(vendor: string) {
     this.userProfileService.findByVendor(vendor).subscribe(data => {
-      this.pcpart = data;
+      this.model.pcpart = data["responseObject"];
     },
-    (error: any) => console.log(error),
-    () => console.log('Gets all data')
-    );
+      (error: any) => console.log(error));
   }
 
-  getUserData(username: string) {
-    this.userProfileService.findByUserUsername(username).subscribe(data => {
-      this.user_object = data;
+  getUserData(userId: string) {
+    this.userProfileService.findByUserId(userId).subscribe(data => {
+      this.model.user_object = data["responseObject"];
+      this.model.type = data["responseObject"]["type"]
     },
-    (error: any) => console.log(error),
-    () => console.log('Get all Data'));
+      (error: any) => console.log(error));
   }
 
 }

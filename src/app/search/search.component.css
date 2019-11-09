@@ -8,6 +8,7 @@ body{
 }
 a{
     text-decoration: none;
+    color: white;
 }
 .checked{
     color: orange;
@@ -54,7 +55,7 @@ a{
         margin-top: 100px;
     }
     .left_bar{
-        background: #335b87;
+        background: #1761A0;
         height: 450px;
         padding: 5px 0 20px 0;
         margin: 60px 30px 0 40px;
@@ -86,7 +87,7 @@ a{
     }
     #right_topic{
         height: 40px;
-        background: darkslateblue;
+        background: #1761A0;
         color: white;
         border-radius: 5px;
         padding-left: 20px;
@@ -94,7 +95,8 @@ a{
     }
     .item_list{
         padding: 15px;
-        background: #335b87;
+        /* background: #335b87; */
+        background: #3f7cb5;
         border-radius: 5px;
         margin: 10px 0 10px 0;
     }
@@ -120,27 +122,4 @@ a{
     .no_data{
         padding: 25px;
     }
-}
-
-@media only screen and (max-width:576px){
-
-    .content{
-        margin-top: 75px;
-    }
-}
-
-@media only screen and (max-width:768px){
-
-}
-
-@media only screen and (max-width:992px){
-
-}
-
-@media only screen and (max-width:1200px){
-
-}
-
-@media only screen and (min-width:1200px){
-
 }

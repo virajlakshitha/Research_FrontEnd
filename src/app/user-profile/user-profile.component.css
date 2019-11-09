@@ -1,5 +1,5 @@
 .topic1{
-    background-color: darkslateblue;
+    background-color: #3f7cb5;
     border-radius: 5px;
 }
 .content{
@@ -40,6 +40,6 @@
     border-radius: 5px;
 }
 .pro_img{
-    width: 100px;
+    width: 10px;
     height: 100px;
 }

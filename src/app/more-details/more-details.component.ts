@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Pcpart } from '../model/pcpart';
-import { Comments } from '../model/comments';
-import { VendorPrice } from '../model/vendor-price';
 import { SearchService } from '../service/search.service';
-import { error } from 'protractor';
 import { Router } from "@angular/router";
 import { ActivatedRoute } from '@angular/router';
 import { SentimentAnalysis } from './sentiment_analysis';
+import { Model } from './model';
+import * as swal from 'sweetalert2';
 
 @Component({
   selector: 'app-more-details',
@@ -15,123 +13,133 @@ import { SentimentAnalysis } from './sentiment_analysis';
 })
 export class MoreDetailsComponent implements OnInit {
 
-  PC_part_name:string;
-  pcpart: Object;
-  comments = [];
-  vendorPrice = [];
-  vendorDetails: Object;
-  logged_in = 'false';
-  loading = 'false';
-  load_for_comment: boolean;
-  positive: number ;
-  negative: number ;
-  isShowChart:boolean = false;
+  private model: Model;
+  private Swal;
 
-  constructor(private searchService: SearchService, private route : ActivatedRoute, private router: Router) { }
+  constructor(private searchService: SearchService, private route: ActivatedRoute, private router: Router) {
+    this.model = new Model();
+    this.Swal = require('sweetalert2');
+  }
 
-  title = 'Analysis results of feedback';
-  type = 'PieChart'; 
-  columnNames = ['Browser', 'Percentage'];
-  options = {    
-  };
-  width = 550;
-  height = 400;
-   
   ngOnInit() {
-    this.load_for_comment = true;
-    var category;
-    var id;
+    this.model.load_for_comment = true;
     this.route.params.subscribe(params => {
-      category = params["category"];
-      id = params["_id"];
+      this.model.category = params["category"];
+      this.model.id = params["_id"];
     });
 
-    var name;
-    this.searchService.findById(category, id).subscribe(data => {
-      this.loading = 'false';
-      this.pcpart = data["responseObject"];
-      name = this.pcpart["name"];
-      this.PC_part_name = this.pcpart["name"];
-      console.log(this.PC_part_name)
+    this.searchService.findById(this.model.category, this.model.id).subscribe(data => {
+      this.model.pcpart = data["responseObject"];
+      this.model.name = this.model.pcpart["name"];
+      this.model.PC_part_name = this.model.pcpart["name"];
+      this.getComments(this.model.PC_part_name);
+      console.log(this.model.PC_part_name)
     },
       (error: any) => console.log(error)
     );
-    this.loading = 'true';
-    this.getComments();
-    this.getVendorPrices(category, name);
-
-    // console.log("--------------------------"+this.pcpart["name"])
-    // this.searchService.analyzeComments(this.pcpart["name"]).subscribe(data => {
-      console.log("---------*******"+this.PC_part_name)
-    this.searchService.analyzeComments("https://www.youtube.com/watch?v=5BpYD7TxvKU").subscribe(data => { 
-      let abc = new SentimentAnalysis(data["avg_compound_value"])
-     
-       console.log("----------***" + JSON.stringify(abc.value)) 
-       console.log("----------***" +  data) 
-
-       this.positive = +abc.value * 100;
-       this.negative = 100 - this.positive;
-       console.log("")
-       this.load_for_comment = false;
-       this.isShowChart = true;
-    },
-    (error: any) => console.log(error)
-    );
     
+    // this.loading = 'true';
+    // this.getComments();
+    // this.getVendorPrices(category, name);
+
+    // // console.log("--------------------------"+this.pcpart["name"])
+    // // this.searchService.analyzeComments(this.pcpart["name"]).subscribe(data => {
+    //   console.log("---------*******"+this.PC_part_name)
+    // this.searchService.analyzeComments("https://www.youtube.com/watch?v=5BpYD7TxvKU").subscribe(data => { 
+    //   let abc = new SentimentAnalysis(data["avg_compound_value"])
+     
+    //    console.log("----------***" + JSON.stringify(abc.value)) 
+    //    console.log("----------***" +  data) 
+
+    //    this.positive = +abc.value * 100;
+    //    this.negative = 100 - this.positive;
+    //    console.log("")
+    //    this.load_for_comment = false;
+    //    this.isShowChart = true;
+    // },
+    // (error: any) => console.log(error)
+    // );
+
+    this.getVendorPrices(this.model.category, this.model.name);
+    
+
+    // this.searchService.analyzeComments("Sobadhara - Sri Lanka Wildlife Documentary | 2019-08-30 | (පාද යාත්‍රා) Padayathra").subscribe(data => {
+    //   let abc = new SentimentAnalysis(data["avg_compound_value"]);
+    //   this.model.positive = +abc.value * 100;
+    //   this.model.negative = 100 - this.model.positive;
+    //   this.model.load_for_comment = false;
+    //   this.model.isShowChart = true;
+    // },
+    //   (error: any) => console.log(error));
+
+    if (localStorage.getItem('username')) {
+      this.model.logged_in = true;
+    }
+    this.model.isVisible = false;
   }
 
   getPartDetails(category: string, id: string) {
     this.searchService.findById(category, id).subscribe(data => {
-      this.loading = 'false';
-      this.pcpart = data["responseObject"];
-      console.log(this.pcpart);
-      this.loading = 'true';
+      this.model.pcpart = data["responseObject"];
+      this.model.isVisible = true;
     },
-      (error: any) => console.log(error),
-      () => console.log('Gets all data')
-    );
-
+      (error: any) => console.log(error));
   }
 
-  getComments() {
-    this.searchService.getComments().subscribe(data => {
-      this.comments = data["responseObject"];
-      console.log(this.comments);
+  getComments(name) {
+    console.log("name : "+name);
+    this.searchService.getComments(name).subscribe(data => {
+      console.log(data);
+      this.model.comments = data["res"];
+      this.model.rating = data["rating"];
     },
-      (error: any) => console.log(error),
-      () => console.log('Gets all data')
-    );
-    
+      (error: any) => console.log(error));
   }
 
   getVendorPrices(category, name) {
-    this.searchService.getVendorPrices(category, name).subscribe(data => {
+    this.searchService.getVendorPrices(category, name, "ebay").subscribe(data => {
       console.log(data["responseObject"]);
-      this.vendorPrice = data["responseObject"];
+      this.model.vendorPrice = data["responseObject"];
+      this.model.ebay_price = data["responseObject"]["ebay"];
     },
-      (error: any) => console.log(error),
-      () => console.log('Gets all data')
-    );
+      (error: any) => console.log(error));
 
-    this.vendorPrice = [{ name: "RedLine", price: "15000.00" },
-                      { name: "Nanotech", price: "14000.00" }];
+    this.searchService.getVendorPrices(category, name, "nanotek").subscribe(data => {
+      console.log(data["responseObject"]);
+      this.model.vendorPrice = data["responseObject"];
+      this.model.nanotek_price = data["responseObject"]["nanotek_price"];
+    },
+      (error: any) => console.log(error));
+
+    this.searchService.getVendorPrices(category, name, "redline").subscribe(data => {
+      console.log(data["responseObject"]);
+      this.model.vendorPrice = data["responseObject"];
+      this.model.redline_price = data["responseObject"]["redline_price"];
+    },
+      (error: any) => console.log(error));
   }
 
   getVendorDetails(pro_name: string, category: string) {
     this.searchService.getVendorDetailsForProducts(pro_name, category).subscribe(data => {
       console.log(data);
-      this.vendorDetails = data;
+      this.model.vendorDetails = data["responseObject"];
     },
-    (error: any) => console.log(error));
+      (error: any) => console.log(error));
   }
 
-  pushNotification(user_id: string, product: string, price: string) {
-    this.searchService.pushNotification(user_id, product).subscribe(data => {
-      alert("Success");
-    },
-      (error: any) => console.log(error)
-    );
+  pushNotification(product: string, price: string) {
+    var username;
+    if (localStorage.getItem('username')) {
+      username = localStorage.getItem('username');
+      this.searchService.pushNotification(username, product, price).subscribe(data => {
+        console.log("Success");
+      },
+        (error: any) => console.log(error)
+      );
+    }
+    else {
+      this.Swal.fire('Oops...', 'You have not logged in !!!', 'error')
+    }
   }
-  
- 
+
 }
