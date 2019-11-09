@@ -77,40 +77,54 @@ export class BuildForPriceComponent implements OnInit {
     this.model.hard_diskVisible = false;
     this.pcpartServiceService.budgetPlan(ram_min, ram_max, motherboard_min, motherboard_max, vga_min, vga_max, cpu_min, cpu_max, hard_disk_min, hard_disk_max).subscribe(data => {
         console.log(data["res"].length);
-        this.model.Budget_Pro = data["res"];
-        this.model.total_loop = data["res"].length;
+        if (data["res"].length != 0) {
+          this.model.total_price = 0;
+          this.model.Budget_Pro = data["res"];
+          this.model.total_loop = data["res"].length;
 
-        this.model.Ram = this.model.Budget_Pro[this.model.budget_loop]["ram"];
-        if (this.model.Ram["price"] != null) {
-          this.model.total_price = this.model.total_price + parseFloat(this.model.Ram["price"]);
+          this.model.Ram = this.model.Budget_Pro[this.model.budget_loop]["ram"];
+          if (this.model.Ram["price"] != null) {
+            this.model.total_price = this.model.total_price + parseFloat(this.model.Ram["price"]);
+          }
+          this.model.ramVisible = true;
+          this.model.Vga = this.model.Budget_Pro[this.model.budget_loop]["vga"];
+          if (this.model.Vga["price"] != null) {
+            this.model.total_price = this.model.total_price + parseFloat(this.model.Vga["price"]);
+          }
+          this.model.vgaVisible = true;
+          this.model.Cpu = this.model.Budget_Pro[this.model.budget_loop]["cpu"];
+          if (this.model.Cpu["price"] != null) {
+            this.model.total_price = this.model.total_price + parseFloat(this.model.Cpu["price"]);
+          }
+          this.model.cpuVisible = true;
+          this.model.Motherboard = this.model.Budget_Pro[this.model.budget_loop]["motherboard"];
+          if (this.model.Motherboard["price"] != null) {
+            this.model.total_price = this.model.total_price + parseFloat(this.model.Motherboard["price"]);
+          }
+          this.model.motherboardVisible = true;
+          this.model.Hard_Disk = this.model.Budget_Pro[this.model.budget_loop]["hard_disk"];
+          if (this.model.Hard_Disk["price"] != null) {
+            this.model.total_price = this.model.total_price + parseFloat(this.model.Hard_Disk["price"]);
+          }
+          this.model.hard_diskVisible = true;
         }
-        this.model.ramVisible = true;
-        this.model.Vga = this.model.Budget_Pro[this.model.budget_loop]["vga"];
-        if (this.model.Vga["price"] != null) {
-          this.model.total_price = this.model.total_price + parseFloat(this.model.Vga["price"]);
+        else {
+          this.Swal.fire('Oops...', 'No Budget Plans Found !!!', 'error');
+          this.model.ramVisible = true;
+          this.model.hard_diskVisible = true;
+          this.model.motherboardVisible = true;
+          this.model.vgaVisible = true;
+          this.model.cpuVisible = true;
+          this.sliderForm = new FormGroup({
+            sliderControl: new FormControl([0, 100000])
+          });
         }
-        this.model.vgaVisible = true;
-        this.model.Cpu = this.model.Budget_Pro[this.model.budget_loop]["cpu"];
-        if (this.model.Cpu["price"] != null) {
-          this.model.total_price = this.model.total_price + parseFloat(this.model.Cpu["price"]);
-        }
-        this.model.cpuVisible = true;
-        this.model.Motherboard = this.model.Budget_Pro[this.model.budget_loop]["motherboard"];
-        if (this.model.Motherboard["price"] != null) {
-          this.model.total_price = this.model.total_price + parseFloat(this.model.Motherboard["price"]);
-        }
-        this.model.motherboardVisible = true;
-        this.model.Hard_Disk = this.model.Budget_Pro[this.model.budget_loop]["hard_disk"];
-        if (this.model.Hard_Disk["price"] != null) {
-          this.model.total_price = this.model.total_price + parseFloat(this.model.Hard_Disk["price"]);
-        }
-        this.model.hard_diskVisible = true;
     },
       (error: any) => console.log(error));
   }
 
   settingsSubmit() {
-    this.model.total_price = 0;
+    
     this.model.ramVisible = false;
     this.model.vgaVisible = false;
     this.model.cpuVisible = false;
@@ -129,6 +143,8 @@ export class BuildForPriceComponent implements OnInit {
 
     this.pcpartServiceService.settingsSubmit(this.model.min_ram, this.model.max_ram, this.model.min_vga, this.model.max_vga, this.model.min_cpu, this.model.max_cpu, this.model.min_motherboard, this.model.max_motherboard, this.model.min_hard_disk, this.model.max_hard_disk).subscribe(data => {
      
+      if (data["res"].length != 0) {
+        this.model.total_price = 0;
         this.model.Budget_Pro = data["res"];
         this.model.total_loop = data["res"].length;
 
@@ -157,6 +173,15 @@ export class BuildForPriceComponent implements OnInit {
           this.model.total_price = this.model.total_price + parseFloat(this.model.Hard_Disk["price"]);
         }
         this.model.hard_diskVisible = true;
+      }
+      else {
+          this.Swal.fire('Oops...', 'No Budget Plans Found !!!', 'error');
+          this.model.ramVisible = true;
+          this.model.hard_diskVisible = true;
+          this.model.motherboardVisible = true;
+          this.model.vgaVisible = true;
+          this.model.cpuVisible = true;
+      }
     },
       (error: any) => console.log(error));
   }
@@ -232,7 +257,8 @@ export class BuildForPriceComponent implements OnInit {
       pass_max = this.model.max_hard_disk;
     }
     this.pcpartServiceService.changePCPart(category, pass_min, pass_max, arr).subscribe(data => {
-        if(data["res"] != null || data != null){
+        if(data["res"] != null && data != null && data["res"].length != 0){
+          console.log("two");
           if (category == "ram") {
             this.model.Ram = data["res"][this.model.budget_loop];
             if (this.model.Ram["price"] != null) {
@@ -269,7 +295,12 @@ export class BuildForPriceComponent implements OnInit {
             this.model.hard_diskVisible = true;
           }
         } else {
-          this.Swal.fire('Oops...', 'No PC Part Found !!!', 'error')
+          this.Swal.fire('Oops...', 'No PC Part Found !!!', 'error');
+          this.model.ramVisible = true;
+          this.model.hard_diskVisible = true;
+          this.model.motherboardVisible = true;
+          this.model.cpuVisible = true;
+          this.model.vgaVisible = true;
         }
     },
       (error: any) => console.log(error));

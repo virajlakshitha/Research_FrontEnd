@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { ActivatedRoute } from '@angular/router';
 import { SentimentAnalysis } from './sentiment_analysis';
 import { Model } from './model';
+import * as swal from 'sweetalert2';
 
 @Component({
   selector: 'app-more-details',
@@ -13,9 +14,11 @@ import { Model } from './model';
 export class MoreDetailsComponent implements OnInit {
 
   private model: Model;
+  private Swal;
 
   constructor(private searchService: SearchService, private route: ActivatedRoute, private router: Router) {
     this.model = new Model();
+    this.Swal = require('sweetalert2');
   }
 
   ngOnInit() {
@@ -106,11 +109,14 @@ export class MoreDetailsComponent implements OnInit {
     var username;
     if (localStorage.getItem('username')) {
       username = localStorage.getItem('username');
-      this.searchService.pushNotification(username, product).subscribe(data => {
+      this.searchService.pushNotification(username, product, price).subscribe(data => {
         console.log("Success");
       },
         (error: any) => console.log(error)
       );
+    }
+    else {
+      this.Swal.fire('Oops...', 'You have not logged in !!!', 'error')
     }
   }
 

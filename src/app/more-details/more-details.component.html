@@ -12,7 +12,7 @@
       <div class="col-4 left_images">
         <img src="{{ model.pcpart.image }}" class="imgs">
         <div class="rating">
-          <span style="color: green;font-size: 25px;"><b>+ {{ model.pcpart.user_rating }}%</b></span>
+          <span style="color: green;font-size: 25px;margin-left: 25px;"><b>+ {{ model.pcpart.user_rating }}%</b></span>
         </div>
       </div>
       <div class="col-8">
@@ -123,15 +123,8 @@
 
   <div class="row">
     <div class="col-12">
-      <ng-template [ngIf]="model.logged_in == true" [ngIfElse]="elseNotify">
-        <input type="checkbox" id="notification" name="notification">&nbsp;&nbsp;&nbsp;I want to track down the price of the
+        <input type="checkbox" (click)="pushNotification(model.pcpart.id, model.pcpart.price)" id="notification" name="notification">&nbsp;&nbsp;&nbsp;I want to track down the price of the
         product
-      </ng-template>
-      <ng-template #elseNotify>
-        <input type="checkbox" id="notification" name="notification"
-          [swal]="{ title: 'Login Here', input: 'email' }">&nbsp;&nbsp;&nbsp;I want to track down the price of the
-        product
-      </ng-template>
     </div>
   </div>
 
@@ -165,9 +158,9 @@
       <div class="col-3 text-center table_headers">
         <b class="text-white">Price</b>
       </div>
-      <div class="col-3 text-center">Rs. {{model.ebay_price}} /=</div>
-      <div class="col-3 text-center">Rs. {{model.nanotek_price}} /=</div>
-      <div class="col-3 text-center">Rs. {{model.redline_price}} /=</div>
+      <div class="col-3 text-center">Rs. 2400.00 /=</div>
+      <div class="col-3 text-center">Rs. 2640.20 /=</div>
+      <div class="col-3 text-center">Rs. 3100.20 /=</div>
     </div>
   </div>
   <!--Comment Section-->

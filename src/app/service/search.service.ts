@@ -53,8 +53,8 @@ export class SearchService {
     return this.http.get(this.pcpartsUrl+"/vendors/"+category+'/'+pro_name);
   }
   
-  public pushNotification(user_id: string, product: string) {
-    return this.http.post(this.pcpartsUrl+"/notify",[user_id,product]);
+  public pushNotification(user_id, product, price) {
+    return this.http.post(this.pcpartsUrl+"/notify",[user_id,product,price]);
   }
 
   public analyzeComments(product: string) {

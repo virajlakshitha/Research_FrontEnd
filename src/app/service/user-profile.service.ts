@@ -14,7 +14,7 @@ export class UserProfileService {
 
   constructor(private http: HttpClient) { 
     this.pcpartsUrl = 'http://localhost:8080/api-techRing/pcparts/';
-    this.userUrl = 'http://localhost:8080/api-techRing/users/';
+    this.userUrl = 'http://localhost:8080/api-techRing/auth/users/';
   }
 
   //----------------PC Parts------------------------------------
