@@ -21,11 +21,11 @@
       <div class="container-fluid pro_details">
         <div class="row">
           <div class="col-3">Name</div>
-          <div class="col-9">{{ model.user_object.name }}</div>
+          <div class="col-9">{{ model.user_object.userName }}</div>
         </div>
         <div class="row">
           <div class="col-3">Username</div>
-          <div class="col-9">{{ model.user_object.username }}</div>
+          <div class="col-9">{{ model.user_object.userName }}</div>
         </div>
         <div class="row">
           <div class="col-3">Email</div>
@@ -37,11 +37,7 @@
         </div>
         <div class="row">
           <div class="col-3">Type</div>
-          <div class="col-9">Vendor</div>
-        </div>
-        <div class="row">
-          <div class="col-3">Account Created Date</div>
-          <div class="col-9">2019-02-01</div>
+          <div class="col-9">{{ model.user_object.type }}</div>
         </div>
         <div class="row">
           <div class="col-8">
@@ -68,39 +64,17 @@
           </div>
         </div>
 
-
-
-        <div class="row pro_list">
-          <div class="col-2">
-            <img src="" class="pro_img">
-          </div>
-          <div class="col-1"></div>
-          <div class="col-9">
-            <div>Product Name</div>
-            <div>Price</div>
-            <div>URL</div>
-          </div>
-        </div>
-        <div class="row pro_list">
-          <div class="col-2">
-            <img src="" class="pro_img">
-          </div>
-          <div class="col-1"></div>
-          <div class="col-9">
-            <div>Product Name</div>
-            <div>Price</div>
-            <div>URL</div>
-          </div>
-        </div>
-        <div class="row pro_list">
-          <div class="col-2">
-            <img src="" class="pro_img">
-          </div>
-          <div class="col-1"></div>
-          <div class="col-9">
-            <div>Product Name</div>
-            <div>Price</div>
-            <div>URL</div>
+        <div *ngFor="let p of model.pcpart">
+          <div class="row pro_list">
+            <div class="col-2">
+              <img src="{{ p.image }}" class="pro_img">
+            </div>
+            <div class="col-1"></div>
+            <div class="col-9">
+              <div>{{ p.name }}</div>
+              <div>Rs. {{ p.price }}/=</div>
+              <div>{{ p.link }}</div>
+            </div>
           </div>
         </div>
       </div>

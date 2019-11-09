@@ -32,7 +32,7 @@ export class UserProfileComponent implements OnInit {
     });
 
     this.getAllPCParts('ebay');
-    this.getUserData('viraj');
+    this.getUserData('5d98e131e265c622343f038f');
   }
 
   getAllPCParts(vendor: string) {
@@ -42,9 +42,10 @@ export class UserProfileComponent implements OnInit {
       (error: any) => console.log(error));
   }
 
-  getUserData(username: string) {
-    this.userProfileService.findByUserUsername(username).subscribe(data => {
+  getUserData(userId: string) {
+    this.userProfileService.findByUserId(userId).subscribe(data => {
       this.model.user_object = data["responseObject"];
+      this.model.type = data["responseObject"]["type"]
     },
       (error: any) => console.log(error));
   }
