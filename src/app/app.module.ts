@@ -28,6 +28,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { LoadingComponent } from './loading/loading.component';
 import {LaptopStore} from './laptop-products/laptop.store';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    NgxSpinnerModule,
     GoogleChartsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
