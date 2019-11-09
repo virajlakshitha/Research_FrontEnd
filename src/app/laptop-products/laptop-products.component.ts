@@ -54,29 +54,50 @@ export class LaptopProductsComponent implements OnInit {
   ngOnInit() {
     this.getLapBrad();
     this.myFunc(this.defaulsLaptop);
-    
   }
 
   /* Get All Laptop Brands From TechRing API */
   getLapBrad(){
-      this.laptopBrandService.getAllLapBrand().subscribe(
-        data => {
-          this.lapBrand = data;
-          this.lapBrandList = this.lapBrand["responseObject"]
-        }
-      )
+
+    let promise = this.laptopBrandService.getAllLapBrand().toPromise();
+    promise.then((data) => {
+
+      this.lapBrand = data;
+      this.lapBrandList = this.lapBrand["responseObject"]
+
+    }).catch((err) => {
+      console.log(err+" Error...........");
+    })
+
+
+    // this.laptopBrandService.getAllLapBrand().subscribe(
+    //   data => {
+    //     this.lapBrand = data;
+    //     this.lapBrandList = this.lapBrand["responseObject"]
+    //   }
+    // )
   }
 
   /* Find Laptop Brand Wise
      We need pass laptop brand name as parameter 
   */
   myFunc(brand){
-       this.laptopService.getAllLaptopBrandWise(brand).subscribe(
-         data => {
-           this.laptop = data;
-           this.laptopList = this.laptop["responseObject"];
-         }
-       )
+
+    let promise = this.laptopService.getAllLaptopBrandWise(brand).toPromise();
+    promise.then((data) => {
+      this.laptop = data;
+      this.laptopList = this.laptop["responseObject"];
+    }).catch((err) => {
+
+    })
+
+
+    // this.laptopService.getAllLaptopBrandWise(brand).subscribe(
+    //   data => {
+    //     this.laptop = data;
+    //     this.laptopList = this.laptop["responseObject"];
+    //   }123.231.122.161
+    // )
   }
 
   /**
@@ -86,12 +107,23 @@ export class LaptopProductsComponent implements OnInit {
    */
   findLaptopById(id){
     console.log(id);
-    this.laptopService.getLaptopById(id).subscribe(
-      data => {
-          this.oneLaptop = data["responseObject"];
-          console.log(this.oneLaptop);
-      }
-    )
+
+    let promise = this.laptopService.getLaptopById(id).toPromise();
+    promise.then((data) => {
+
+      this.oneLaptop = data["responseObject"];
+      console.log(this.oneLaptop);
+
+    }).catch((err) => {
+
+    })
+
+    // this.laptopService.getLaptopById(id).subscribe(
+    //   data => {
+    //       this.oneLaptop = data["responseObject"];
+    //       console.log(this.oneLaptop);
+    //   }
+    // )
   }
 
   /**
@@ -118,23 +150,80 @@ export class LaptopProductsComponent implements OnInit {
    */
   compare(laptops){
 
-    this.laptopCompareService.getLaptopPoint(laptops[0]).subscribe(data => {
+    new Promise((resolve,reject) => {
+      this.laptopCompareService.getLaptopPoint(laptops[0]).toPromise()
+      .then((data) => {
 
-      this.point1 = new Point(data);
-      this.firstLapScore = data["point"]
-      this.firstLapId = laptops[0].id;
+        this.point1 = new Point(data);
+        this.firstLapScore = data["point"]
+        this.firstLapId = laptops[0].id;
+        resolve();
+      })
+      .catch((err) => {
+          console.log(reject);
+      })
+    });
 
-    })
+    new Promise((resolve,reject) => {
+      this.laptopCompareService.getLaptopPoint(laptops[1]).toPromise()
+      .then((data) => {
 
-    this.laptopCompareService.getLaptopPoint(laptops[1]).toPromise().then(data => {
+        this.point2 = new Point(data);
+        this.secondLapScore = data["point"]
+        this.secondLapId = laptops[1].id;
+        resolve();
+        this.showResult();
+      })
+      .catch((err) => {
+          console.log(reject);
+      })
+    });
 
-      this.point2 = new Point(data);
-      this.secondLapScore = data["point"]
-      this.secondLapId = laptops[1].id;
+    // let promise1 = this.laptopCompareService.getLaptopPoint(laptops[0]).toPromise();
+    // promise1.then((data) => {
 
-      this.showResult();
+    //   this.point1 = new Point(data);
+    //   this.firstLapScore = data["point"]
+    //   this.firstLapId = laptops[0].id;
 
-    })
+    //   console.log(this.firstLapId);
+
+    // }).catch(() => {
+    //   console.log("Calling first point enerator");
+    // });
+
+    // let promise2 = this.laptopCompareService.getLaptopPoint(laptops[1]).toPromise();
+    // promise2.then((data) => {
+
+    //   this.point1 = new Point(data);
+    //   this.firstLapScore = data["point"]
+    //   this.firstLapId = laptops[0].id;
+
+    //   this.showResult();
+
+    // }).catch(() => {
+    //   console.log("Calling second point enerator");
+    // });
+
+    // this.laptopCompareService.getLaptopPoint(laptops[0]).subscribe(data => {
+
+    //   this.point1 = new Point(data);
+    //   this.firstLapScore = data["point"]
+    //   this.firstLapId = laptops[0].id;
+
+    // })
+
+    // this.laptopCompareService.getLaptopPoint(laptops[1]).toPromise().then(data => {
+
+    //   this.point2 = new Point(data);
+    //   this.secondLapScore = data["point"]
+    //   this.secondLapId = laptops[1].id;
+
+    //   this.showResult();
+
+    // })
+
+    
 
   }
 
