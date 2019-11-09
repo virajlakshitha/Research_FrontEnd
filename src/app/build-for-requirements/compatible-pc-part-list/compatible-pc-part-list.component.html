@@ -12,9 +12,9 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row" *ngIf="game">
     <div class="col-12  upper_part">
-      <div class="topic1"> <b>System Requirements</b> <br>
+      <div class="topic1" > <b>System Requirements</b> <br>
         <img class=" game_image" width= "324" hight= "200" src="{{ game.imageSource }}">
         <div class="game_name"><b>{{ game.name }}</b>
         </div>
