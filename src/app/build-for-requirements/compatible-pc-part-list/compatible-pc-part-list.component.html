@@ -12,9 +12,9 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row" *ngIf="game">
     <div class="col-12  upper_part">
-      <div class="topic1"> <b>System Requirements</b> <br>
+      <div class="topic1" > <b>System Requirements</b> <br>
         <img class=" game_image" width= "324" hight= "200" src="{{ game.imageSource }}">
         <div class="game_name"><b>{{ game.name }}</b>
         </div>
@@ -51,19 +51,19 @@
       <div class="lower_part_list">
         <div class="row">
           <div class="col-2">CPU</div>
-          <div class="col-10">Intel Core i5 5100 3.6 GHz 4-core</div>
+          <div class="col-10">Intel Core i5 4000 3.0 GHz 4-core</div>
         </div>
         <div class="row">
           <div class="col-2">Motherboard</div>
-          <div class="col-10">Gigabyte Auros B360 Gaming 3</div>
+          <div class="col-10">Asus TUF B365-PLUS GAMING</div>
         </div>
         <div class="row">
           <div class="col-2">RAM</div>
-          <div class="col-10">4GB DDR4 2666 MHz</div>
+          <div class="col-10">8GB DDR4 Kingston 3200 MHz</div>
         </div>
         <div class="row">
           <div class="col-2">VGA</div>
-          <div class="col-10">Gigabyte GForce GT 1030 2GB GDDR5</div>
+          <div class="col-10">ASUS GForce GT 1050 2GB GDDR5</div>
         </div>
       </div>
     </div>

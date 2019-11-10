@@ -9,6 +9,7 @@ import {passingObject}        from '../model/passingObject';
 
 import {LaptopInteractionService} from '../service/laptop-interaction.service';
 import { Laptop } from '../model/laptop';
+import { NgxSpinnerService } from "ngx-spinner";
 
 
 @Component({
@@ -45,11 +46,12 @@ export class LaptopProductsComponent implements OnInit {
    * 
    */
   private comLap1 = new Array();
+  private elseisVisible = false;
 
 
   list:LaptopStore;
   
-  constructor(private laptopBrandService: LaptopBrandService, private laptopService:LaptopService, private laptopCompareService:LaptopCompareService,private router: Router,private laptopInteractionService:LaptopInteractionService) {}
+  constructor(private laptopBrandService: LaptopBrandService, private laptopService:LaptopService, private laptopCompareService:LaptopCompareService,private router: Router,private laptopInteractionService:LaptopInteractionService, private spinner: NgxSpinnerService) {}
 
   ngOnInit() {
     this.getLapBrad();
@@ -106,17 +108,30 @@ export class LaptopProductsComponent implements OnInit {
       We need pass laptop id as parameter
    */
   findLaptopById(id){
-    console.log(id);
+
+    // this.elseisVisible = true;
+    // alert(1234);
+    // console.log(id);
+    // this.spinner.show();
+    // setTimeout(() => {
+  
+
+    // this.spinner.hide();
+    // }, 2000);
 
     let promise = this.laptopService.getLaptopById(id).toPromise();
+    this.spinner.show();
     promise.then((data) => {
 
       this.oneLaptop = data["responseObject"];
       console.log(this.oneLaptop);
+      this.spinner.hide();
 
     }).catch((err) => {
 
     })
+    
+    
 
     // this.laptopService.getLaptopById(id).subscribe(
     //   data => {
@@ -124,6 +139,10 @@ export class LaptopProductsComponent implements OnInit {
     //       console.log(this.oneLaptop);
     //   }
     // )
+  }
+
+  findLaptop(){
+   
   }
 
   /**

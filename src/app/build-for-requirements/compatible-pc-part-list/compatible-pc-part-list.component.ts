@@ -21,13 +21,25 @@ export class CompatiblePcPartListComponent implements OnInit {
       
       console.log(this.game_id)
 
-      this.gameService.getGame(this.game_id).subscribe(
-        data => {  
-          console.log(data['responseObject'])
+      // this.gameService.getGame(this.game_id).subscribe(
+      //   data => {  
+      //     console.log(data['responseObject'])
 
-          this.game = data['responseObject']
-        }
-      );
+      //     this.game = data['responseObject']
+      //   }
+      // );
+
+      new Promise((res,rej) => {
+        this.gameService.getGame(this.game_id).toPromise()
+        .then((res)=> {
+          console.log(res['responseObject'])
+
+          this.game = res['responseObject']
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+      })
     });
   }
 

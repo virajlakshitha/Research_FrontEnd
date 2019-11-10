@@ -26,4 +26,5 @@ export class Model {
     nanotek_price;
     redline_price;
     isVisible: Boolean;
+    loading: Boolean;
 }

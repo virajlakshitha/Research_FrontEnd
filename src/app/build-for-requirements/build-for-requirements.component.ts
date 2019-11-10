@@ -29,8 +29,9 @@ export class BuildForRequirementsComponent implements OnInit {
   getGames() {
     this.gameService.getAllGames().subscribe(
       data => {
-          this.games = data;
-          this.game = this.games["responseObject"]; 
+          this.games = data; 
+          this.game = this.games["responseObject"];
+          this.game = this.swap(this.games["responseObject"]); 
           console.log(this.games["responseObject"]);
       }
     );
@@ -51,5 +52,10 @@ export class BuildForRequirementsComponent implements OnInit {
     var game = id
     this.router.navigate(['build_for_gaming/pc-part-list/'+game]);
   }
+
+   swap(arra) {
+    [arra[0], arra[arra.length - 1]] = [arra[arra.length - 1], arra[0]];
+    return arra;
+}
 
 }

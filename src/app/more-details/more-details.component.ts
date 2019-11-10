@@ -42,6 +42,28 @@ export class MoreDetailsComponent implements OnInit {
     },
       (error: any) => console.log(error)
     );
+    
+    // this.loading = 'true';
+    // this.getComments();
+    // this.getVendorPrices(category, name);
+
+    // // console.log("--------------------------"+this.pcpart["name"])
+    // // this.searchService.analyzeComments(this.pcpart["name"]).subscribe(data => {
+    //   console.log("---------*******"+this.PC_part_name)
+    // this.searchService.analyzeComments("https://www.youtube.com/watch?v=5BpYD7TxvKU").subscribe(data => { 
+    //   let abc = new SentimentAnalysis(data["avg_compound_value"])
+     
+    //    console.log("----------***" + JSON.stringify(abc.value)) 
+    //    console.log("----------***" +  data) 
+
+    //    this.positive = +abc.value * 100;
+    //    this.negative = 100 - this.positive;
+    //    console.log("")
+    //    this.load_for_comment = false;
+    //    this.isShowChart = true;
+    // },
+    // (error: any) => console.log(error)
+    // );
 
     this.getVendorPrices(this.model.category, this.model.name);
     

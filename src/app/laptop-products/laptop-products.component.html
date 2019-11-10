@@ -6,6 +6,10 @@
 
 <body>
   <div class="container-fluid content">
+          <div *ngIf="elseisVisible" class="col-12 he" id="right_side">
+            <div class="no_data text-center"><img src="../../assets/img/ajax-loader.gif" height="75" width="75" />
+            </div>
+          </div>
     <div class="row">
       <!--Left Side Bar-->
       <div class="col-3">
@@ -24,6 +28,7 @@
             <img src="{{lapTop.imageSource}}" class="imgs">
             <div class="text-center">{{lapTop.lapName}}</div>
             <button class="btn btn-info btn_lap" data-toggle="modal" data-target="#createModel" (click)="findLaptopById(lapTop.id)">View</button>
+            <!-- <button class="btn btn-info btn_lap"  (click)="findLaptop()">View 1</button> -->
             <button class="btn btn-primary btn_lap" (click)="addToCompare(lapTop)">Add to Compare</button>
           </div>
         </div>
