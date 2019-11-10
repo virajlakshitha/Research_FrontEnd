@@ -32,6 +32,11 @@ export class MoreDetailsComponent implements OnInit {
       this.model.pcpart = data["responseObject"];
       this.model.name = this.model.pcpart["name"];
       this.model.PC_part_name = this.model.pcpart["name"];
+      
+      this.model.positive = this.model.pcpart["user_rating"];
+      this.model.negative = this.model.pcpart["user_rating_neg"];
+
+      this.model.isShowChart = true;
       this.getComments(this.model.PC_part_name);
       console.log(this.model.PC_part_name)
     },
@@ -75,7 +80,9 @@ export class MoreDetailsComponent implements OnInit {
     if (localStorage.getItem('username')) {
       this.model.logged_in = true;
     }
+    
     this.model.isVisible = false;
+    
   }
 
   getPartDetails(category: string, id: string) {
@@ -131,8 +138,15 @@ export class MoreDetailsComponent implements OnInit {
     var username;
     if (localStorage.getItem('username')) {
       username = localStorage.getItem('username');
+      username = "virajlakshitha39@gmail.com";
       this.searchService.pushNotification(username, product, price).subscribe(data => {
-        console.log("Success");
+        console.log(data);
+        if (data["responseObject"] != null){
+          this.Swal.fire('Ooops', 'Something is wrong !!!', 'error');
+        }
+        else{
+          this.Swal.fire('Success', 'We will inform you when a price drop happens !!!', 'success');
+        }
       },
         (error: any) => console.log(error)
       );
