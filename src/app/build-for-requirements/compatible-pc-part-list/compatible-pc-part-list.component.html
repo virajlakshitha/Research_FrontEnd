@@ -43,27 +43,33 @@
         </div>
       </div>
     </div>
+    <img class="animated fadeInDown" id="spinner" *ngIf="loading" src="../../assets/img/ajax-loader.gif"> 
   </div>
 
-  <div class="row">
+  <div class="row" *ngIf="show">
+      
     <div class="col-12 lower_part">
       <div class="topic1"><b>PC Parts List</b></div>
       <div class="lower_part_list">
         <div class="row">
           <div class="col-2">CPU</div>
-          <div class="col-10">Intel Core i5 4000 3.0 GHz 4-core</div>
+          <div class="col-10">{{ cpu }}</div>
         </div>
         <div class="row">
           <div class="col-2">Motherboard</div>
-          <div class="col-10">Asus TUF B365-PLUS GAMING</div>
+          <div class="col-10">{{ motherboard }}</div>
         </div>
         <div class="row">
           <div class="col-2">RAM</div>
-          <div class="col-10">8GB DDR4 Kingston 3200 MHz</div>
+          <div class="col-10">{{ ram }}</div>
         </div>
         <div class="row">
           <div class="col-2">VGA</div>
-          <div class="col-10">ASUS GForce GT 1050 2GB GDDR5</div>
+          <div class="col-10">{{ vga }}</div>
+        </div>
+        <div class="row">
+          <div class="col-2">Storage</div>
+          <div class="col-10">{{ hdd }}</div>
         </div>
       </div>
     </div>

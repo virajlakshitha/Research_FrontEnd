@@ -54,7 +54,7 @@ export class SearchService {
   }
   
   public pushNotification(user_id, product, price) {
-    return this.http.post(this.pcpartsUrl+"/notify",[user_id,product,price]);
+    return this.http.post(this.pcpartsUrl+"/notify", {"user_id": user_id, "product": product, "price": price}, this.httpOptions);
   }
 
   public analyzeComments(product: string) {

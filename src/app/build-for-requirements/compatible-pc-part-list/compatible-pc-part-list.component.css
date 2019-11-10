@@ -43,3 +43,8 @@
 .lower_part_list .row .col-10{
     padding-left: 50px;
 }
+
+#spinner {
+    position: relative;
+    padding-left: 400px
+}
