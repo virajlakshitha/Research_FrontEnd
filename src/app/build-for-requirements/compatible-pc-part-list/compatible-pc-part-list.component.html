@@ -43,9 +43,11 @@
         </div>
       </div>
     </div>
+    <img class="animated fadeInDown" id="spinner" *ngIf="loading" src="../../assets/img/ajax-loader.gif"> 
   </div>
 
-  <div class="row">
+  <div class="row" *ngIf="show">
+      
     <div class="col-12 lower_part">
       <div class="topic1"><b>PC Parts List</b></div>
       <div class="lower_part_list">

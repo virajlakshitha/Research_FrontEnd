@@ -18,12 +18,15 @@ export class CompatiblePcPartListComponent implements OnInit {
   private vga:string;
   private hdd:string;
   private motherboard:string;
+  private loading: boolean;
+  private show: boolean;
 
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.game_id = params["_id"];
-      
+      this.loading = true;
+      this.show = false;
       console.log(this.game_id)
 
       // this.gameService.getGame(this.game_id).subscribe(
@@ -54,10 +57,15 @@ export class CompatiblePcPartListComponent implements OnInit {
 
   matchPcParts() {  
     // Default values
-    this.cpu = "Intel Core i7- 3770 @ 4 GHz ";
-    this.vga = "ASUS GForce GT 1050 2GB GDDR5";
+    this.cpu = "Intel Core i3-3770 @ 4 GHz ";
+    this.vga = "ASUS GForce GT 1050 1GB GDDR5";
     this.hdd = "500 GB Sata WD Blue";
     this.motherboard = "Asus STRIX Z390-E GAMING";
+
+    setTimeout(()=>{   
+      this.loading = false;
+      this.show = true;
+ }, 5000);
 
     this.findCpu()
     this.findMotherboard()
@@ -71,7 +79,7 @@ export class CompatiblePcPartListComponent implements OnInit {
   findCpu(){
     let cpu_i3 = ['Intel® Core™ i3-9100 (6M Cache, up to 4.20 GHz)', 'Intel® Core™ i3-9100F (6M Cache, up to 4.20 GHz)' ]; 
     let cpu_i5 = ['Intel® Core™ i5-9400F (9M Cache, up to 4.10 GHz)', 'Intel® Core™ i5-9400 (9M Cache, up to 4.10 GHz)', 'Intel® Core™ i5-9600K (9M Cache, up to 4.60 GHz)']; 
-    let cpu_i7 = ['Intel® Core™ i7-9700F (12M Cache, up to 4.70 GHz)', 'Intel® Core™ i7-8700 (12M Cache, up to 4.60 GHz)', 'Intel® Core™ i7-9700 (12M Cache, up to 4.70 GHz)', 'Intel® Core™ i7-9700K (12M Cache, up to 4.90 GHz)'  ]; 
+    let cpu_i7 = ['Intel® Core™ i7-9700F (12M Cache, up to 4.70 GHz)','Intel® Core™ i7-8700', 'Intel® Core™ i7-8700 (12M Cache, up to 4.60 GHz)', 'Intel® Core™ i7-9700 (12M Cache, up to 4.70 GHz)', 'Intel® Core™ i7-9700K (12M Cache, up to 4.90 GHz)'  ]; 
     let cpu_i9 = ['Intel® Core™ i9-9900K (16M Cache, up to 5.00 GHz)'  ]; 
     
 
