@@ -130,8 +130,8 @@
 
   <img class="animated fadeInDown" *ngIf="load_for_comment" src="../../assets/img/analyze_comment2.gif">
 
-  <google-chart #chart *ngIf="model.isShowChart" [title]="title" [type]="type"
-    [data]="[['Positive', positive ], ['Negative', negative ]]" [columnNames]="columnNames" [options]="options"
+  <google-chart #chart *ngIf="model.isShowChart" [title]="title" [type]="model.type"
+    [data]="[['Positive', model.positive ], ['Negative', model.negative ]]" [columnNames]="columnNames" [options]="options"
     [width]="width" [height]="height">
   </google-chart>
 

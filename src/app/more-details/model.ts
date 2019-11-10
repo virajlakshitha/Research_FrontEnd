@@ -12,6 +12,7 @@ export class Model {
     load_for_comment: boolean;
     positive: number;
     negative: number;
+    neutral: number;
     isShowChart: boolean = false;
     title = 'Analysis results of feedback';
     type = 'PieChart';
