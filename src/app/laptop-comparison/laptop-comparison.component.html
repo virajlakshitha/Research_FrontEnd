@@ -2,7 +2,8 @@
 <app-menu-bar></app-menu-bar>
 <!------------>
 <div class="container content">
-    <div class="row">
+    <img class="animated fadeInDown" id="spinner" *ngIf="loading" src="../../assets/img/ajax-loader.gif"> 
+  <div class="row" *ngIf="show">
       <!--Left Side Laptop section-->
       <div class="col-6 left_side" *ngIf="oneLaptop">
         <img src="{{oneLaptop.imageSource}}" class="imgs">
@@ -50,10 +51,14 @@
         <br>
         <div class="row">
           <div class="col-5">
-            <div><h5>Laptop Point</h5></div>
+            <div>
+              <h5>Laptop Point</h5>
+            </div>
           </div>
           <div class="col-7">
-            <div><h3><b>{{firstScore}}</b></h3></div>
+            <div>
+              <h3><b>{{firstScore}}</b></h3>
+            </div>
           </div>
         </div>
         <div class="row">
@@ -110,10 +115,14 @@
         <br>
         <div class="row">
           <div class="col-5">
-            <div><h5>Laptop Point</h5></div>
+            <div>
+              <h5>Laptop Point</h5>
+            </div>
           </div>
           <div class="col-7">
-            <div><h3><b>{{secondScore}}</b></h3></div>
+            <div>
+              <h3><b>{{secondScore}}</b></h3>
+            </div>
           </div>
         </div>
         <div class="row">
@@ -123,8 +132,8 @@
         </div>
       </div>
       <!----------------------------->
-    </div>
   </div>
+</div>
 <!--Footer-->
 <app-footer></app-footer>
 <!---------->

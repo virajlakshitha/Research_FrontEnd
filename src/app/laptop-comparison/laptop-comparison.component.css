@@ -34,3 +34,8 @@
 .right_side .col-5{
     border-right: 1px solid;
 }
+
+#spinner {
+    position: relative;
+    padding-left: 400px
+}

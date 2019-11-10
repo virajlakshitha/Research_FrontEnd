@@ -5,6 +5,7 @@ import { LaptopService } from '../service/laptop.service';
 import { Laptop } from '../model/laptop';
 import {Router} from '@angular/router'
 import {ActivatedRoute} from '@angular/router'
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-laptop-comparison',
@@ -27,27 +28,32 @@ export class LaptopComparisonComponent implements OnInit {
   private firstScore:number;
   private secondtId:string;
   private secondScore:number;
-
+  private loading: Boolean;
+  private show:boolean;
   private laptopRecommentMes:string;
 
-  constructor(private laptopInteractionService:LaptopInteractionService,private laptopService:LaptopService,private router:Router,private activatedRoute:ActivatedRoute) {
+  constructor(private spinner: NgxSpinnerService, private laptopInteractionService:LaptopInteractionService,private laptopService:LaptopService,private router:Router,private activatedRoute:ActivatedRoute) {
 
   }
 
   ngOnInit() {
 
+    // this.spinner.show();
     this.activatedRoute.params.subscribe(params => {
-
       this.firstId = params["firstId"]
       this.firstScore = params["firstPoint"]
       this.secondtId = params["secondId"]
       this.secondScore = params["secondPoint"]
+      this.loading = true;
+      this.show = false;
 
       console.log("Lap one point "+this.firstScore+" , "+ "Laptwo point "+this.secondScore);
 
       this.laptopRecommendation();
 
     })
+
+   
 
     // this.laptopInteractionService.compareResult$.subscribe( data => {
     //   console.log("****"+data[0]);
@@ -56,6 +62,11 @@ export class LaptopComparisonComponent implements OnInit {
 
     this.findLaptopOneById(this.firstId);
     this.findLaptopTwoById(this.secondtId);
+
+    setTimeout(() => {
+      this.loading = false;
+      this.show =true;
+    }, 5000)
   }
 
   findLaptopOneById(lapId){
@@ -87,5 +98,7 @@ export class LaptopComparisonComponent implements OnInit {
       }
     }
   }
+
+  
 
 }
