@@ -33,8 +33,10 @@ export class MoreDetailsComponent implements OnInit {
       this.model.name = this.model.pcpart["name"];
       this.model.PC_part_name = this.model.pcpart["name"];
       
-      this.model.positive = this.model.pcpart["user_rating"];
-      this.model.negative = this.model.pcpart["user_rating_neg"];
+      this.model.positive =  parseInt(this.model.pcpart["user_rating"]);
+      this.model.negative = 100 - this.model.positive;
+
+      console.log("Values "+this.model.positive+ " ********"+this.model.negative)
 
       this.model.isShowChart = true;
       this.getComments(this.model.PC_part_name);

@@ -37,6 +37,7 @@ export class SearchComponent implements OnInit {
 
   getAllPCPartsByCategory(category, name) {
     this.searchService.findByName(category, name).subscribe(data => {
+      this.isVisible = true;
       this.code = data["responseCode"];
       if(this.code != "000"){
         this.pcParts = data["responseObject"];
